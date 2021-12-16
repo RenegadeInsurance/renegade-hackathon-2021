@@ -31,7 +31,7 @@ If your app is stable and works perfectly with simple UI then it is fine but if 
 Your frontend app can be developed using Typescript or by just JavaScript. You can use any framework of you choice be it React or Angular or Vue or jQuery. You can host it on vercel, netlify or anywhere you like. If you have functions then you can execute it them on Firebase/Netlify or in Vercel. You can use any UI library like Ant Design, Chakra UI, Material UI, Semantic UI for React, Angular and Vue. In short make use of any tools thats already avaialble and can help you build perfect stable application.
 
 ### Give me some idea about Backend?
-It runs on server. You can run it on docker and orchasterate it by k8s or just manuall SSH it on server and host it. You can create an API based server or GraphQL server but make sure the exceptions are handled properly and theres no "Oops" when doing the presentation ;) 
+It runs on server. You can run it on docker and orchestrate it by k8s or just manuall SSH it on server and host it. You can create an API based server or GraphQL server but make sure the exceptions are handled properly and theres no "Oops" when doing the presentation ;) 
 
 ### What are the bonus points?
 - Deployed, even better if its automated.
