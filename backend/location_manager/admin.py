@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from location_manager.models import LocationData
+
+
+@admin.register(LocationData)
+class LocationDataAdmin(admin.ModelAdmin):
+    pass
