@@ -9,7 +9,14 @@ class User(models.Model):
     email=models.EmailField(unique=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in +977 format.")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
-    address=models.CharField(max_length=50,blank=True)
+    current_address=models.CharField(max_length=50,blank=True)
+    permanent_address=models.CharField(max_length=50,blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        verbose_name_plural = "user"
 
 
 class Location(models.Model):
@@ -32,10 +39,10 @@ class Connection(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
 
     def __str__(self):
-        return f"{self.User}'s {self.relationship}"
+        return f"{self.user}'s {self.relationship}"
 
     class Meta:
-        verbose_name_plural = "location"
+        verbose_name_plural = "connection"
 
 
 
