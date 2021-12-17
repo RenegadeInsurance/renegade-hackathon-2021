@@ -12,7 +12,7 @@ class WeatherAPI:
     WEATHERAPI_CURRENT_WEATHER_API_ENDPOINT = "http://api.weatherapi.com/v1/current.json"
     WEATHERAPI_FORECAST_WEATHER_API_ENDPOINT = "http://api.weatherapi.com/v1/forecast.json"
 
-    def __init__(self, api_key):
+    def __init__(self, api_key: dict[str, str]) -> None:
         """
         :param api_key: Dictionary of api keys for available APIS.
         """
@@ -24,9 +24,9 @@ class WeatherAPI:
         self.api_key = api_key
 
     def get_weather_for_location(
-            self, location, get_air_quality_index: bool = False, get_alerts: bool = False,
+            self, location: str, get_air_quality_index: bool = False, get_alerts: bool = False,
             days: int = None
-    ):
+    ) -> dict[str, any]:
         """
         Gets location data from available APIS , depending on the parameters.
 
@@ -62,6 +62,6 @@ class WeatherAPI:
                 return resp.json()
             except Exception as e:
                 logging.error(e)
-                return ValueError("Invalid input or Location not found.")
+                raise ValueError("Invalid input or Location not found.")
         else:
             raise ValueError("Location Not Found.")

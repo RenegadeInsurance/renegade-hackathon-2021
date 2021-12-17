@@ -1,13 +1,14 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.request import Request
 
 from risk_management.models import RiskManagementQuestion
 from risk_management.serializers import RiskManagementQuestionSerializer
 
 
 @api_view(["GET"])
-def risk_management_questions(request, category: str):
+def risk_management_questions(request: Request, category: str) -> Response:
     """
     Gets all the risk management question for a given category
 

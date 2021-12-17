@@ -29,7 +29,7 @@ class LocationData(BaseModel):
     )
 
     @classmethod
-    def scrape_and_load_province_data(cls):
+    def scrape_and_load_province_data(cls) -> list["LocationData"]:
         """
         Scrapes data from web and saves data to the database.
         NOTE: For now it is using the pre-scraped data to populate the database.
@@ -52,7 +52,7 @@ class LocationData(BaseModel):
 
             return cls.objects.bulk_create(location_objects)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         :return: Str of country and province joined by ','.
         """

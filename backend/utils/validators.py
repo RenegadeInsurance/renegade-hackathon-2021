@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 import phonenumbers
 
 
-def validate_phone(number: str):
+def validate_phone(number: str) -> None:
     """
     Validates given phone number, If invalid then raise django.core.exceptions.ValidationError
 
@@ -18,7 +18,7 @@ def validate_phone(number: str):
         )
 
 
-def validate_name(name: str):
+def validate_name(name: str) -> None:
     """
     Validates the given name, If invalid then raise django.core.exceptions.ValidationError
     :param name: Name to validate

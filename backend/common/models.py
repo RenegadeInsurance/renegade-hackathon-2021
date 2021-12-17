@@ -26,7 +26,7 @@ class BaseModel(models.Model):
         """
         return self._state.adding
 
-    def is_update(self):
+    def is_update(self) -> bool:
         """
         returns `True` if the object is being updated !!
 
@@ -35,4 +35,5 @@ class BaseModel(models.Model):
         return not self.is_creation()
 
     class Meta:
-        abstract = True  # Makes this model abstract so that it would not create any db tables.
+        # Makes this model abstract so that it would not create any db tables.
+        abstract = True

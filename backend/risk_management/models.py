@@ -26,7 +26,7 @@ class RiskManagementQuestion(BaseModel):
     )
 
     @classmethod
-    def load_questions_from_json(cls):
+    def load_questions_from_json(cls) -> list["RiskManagementQuestion"]:
         """
         Loads data from question bank, and populates the database.
         This is used for making it easier to update database with new questions.
@@ -42,5 +42,5 @@ class RiskManagementQuestion(BaseModel):
 
             return cls.objects.bulk_create(questions_objects)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.category
