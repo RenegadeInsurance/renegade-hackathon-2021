@@ -1,0 +1,78 @@
+{% load static from static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4 ">
+  
+  <!-- Sidebar Menu -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <span
+          class="avatar"
+          style="background-image: url('{{ request.user.image.url }}')"
+        ></span>
+      </div>
+      <div class="info">
+        <a href="#" class="d-block">{{ request.user }}</a>
+      </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+        <li
+          class="nav-item has-treeview {% if active_menu == 'authentication' %}menu-open{% endif %}"
+        >
+          <a
+            href="#"
+            class="nav-link {% if active_menu == 'authentication' %}active{% endif %}"
+          >
+            <i class="nav-icon fas fa-user-shield"></i>
+            <p>
+              Authentication
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a
+                href="{% url 'authentication:user_index' %}"
+                class="nav-link {% if title == 'User' %}active{% endif %}"
+              >
+                <i class="far fa-circle nav-li"></i>
+                <p>User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{% url 'authentication:group_index' %}"
+                class="nav-link {% if title == 'Group' %}active{% endif %}"
+              >
+                <i class="far fa-circle nav-li"></i>
+                <p>Group</p>
+              </a>
+            </li>
+          </ul>
+          <li class="nav-item">
+            <a
+              href="{% url 'authentication:group_index' %}"
+              class="nav-link {% if title == 'Group' %}active{% endif %}"
+            >
+            <i class="fas fa-house-damage"></i>
+              <p>Risk Assesment</p>
+            </a>
+          </li>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar-menu -->
+  <!-- /.sidebar -->
+</aside>

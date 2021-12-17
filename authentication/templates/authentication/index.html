@@ -1,0 +1,86 @@
+{% extends 'base.html' %}{% load static from static %}{% block content%}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark"><i class="fas fa-user"></i>&nbsp;{{ title }}</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{ title }}</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<div class="card card-danger card-outline">
+    <div class="card-body">
+        <div class="row">
+            <a href="{% url 'authentication:user_create' %}" class="add-link">
+                <p class="add-text"><i class="fa fa-plus">&nbsp;</i> Add {{ title }}</p>
+            </a>
+        </div>
+        <div class="table-title">
+            <p class="title-text">All {{ title }}s</p>
+        </div>
+        <table id="table" class="table table-bordered table-striped table-hover dataTable w-100">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th width="10">Photo</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Date Joined</th>
+                    <th>Last Login</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td class="w-25">{% if user.image.url != '' %}
+                        <img src="{{ user.image.url }}" class="w-25" alt="Photo"> {% endif %}</td>
+                    <td>{{ user.first_name}} {{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.is_active }}</td>
+                    <td>{{ user.date_joined }}</td>
+                    <td>{{ user.last_login }}</td>
+                    <td><a class="btn btn-success btn-xs btn-edit " href="{% url 'authentication:user_update' id=user.id %}"><span><i class="fas fa-edit "></i></span></a>
+                        <form action="{% url 'authentication:user_delete' %}">
+                            <input type="hidden" name="id" value="{{user.id}}">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-xs btn-delete" type="submit"><span><i class="far fa-trash-alt "></i></span></button></td>
+                        </form>
+                        
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+{% endblock %} {% block javascript %}
+<script>
+    $(function() {
+        var table = $('#table').DataTable({
+            'responsive': true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
+        });
+        table.buttons().container().appendTo($('.col-sm-6:eq(0)', table.table().container()));
+        $(document).on('click', '.add-link', function() {
+            $addForm.find('input').removeClass('is-invalid');
+            $addForm.find('error').html('');
+            $modal_form.modal();
+        });
+    });
+</script>
+{% endblock %}
