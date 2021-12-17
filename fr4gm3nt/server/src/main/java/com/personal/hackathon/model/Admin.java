@@ -1,10 +1,7 @@
 package com.personal.hackathon.model;
 
 import com.personal.hackathon.auth.AuthUserDetails;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,7 +12,7 @@ import javax.persistence.OneToOne;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 @Entity
 public class Admin {
 
