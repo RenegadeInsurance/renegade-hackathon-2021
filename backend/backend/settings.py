@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'common.apps.CommonConfig',
     'location_manager.apps.LocationManagerConfig',
     'risk_management.apps.RiskManagementConfig',
-    'weather_manager.apps.WeatherManagerConfig'
+    'weather_manager.apps.WeatherManagerConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
