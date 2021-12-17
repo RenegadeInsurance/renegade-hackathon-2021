@@ -7,7 +7,14 @@ from risk_management.serializers import RiskManagementQuestionSerializer
 
 
 @api_view(["GET"])
-def risk_management_questions(request, category):
+def risk_management_questions(request, category: str):
+    """
+    Gets all the risk management question for a given category
+
+    :param request: Django's default request object
+    :param category: Gets questions related to given category
+    :return:
+    """
     questions = RiskManagementQuestionSerializer(
         RiskManagementQuestion.objects.filter(category=category),
         many=True

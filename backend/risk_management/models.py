@@ -9,12 +9,17 @@ from common.models import BaseModel
 
 
 class RiskManagementQuestion(BaseModel):
+    """
+    Stores the questions related to Risk Management.
+    """
     category = models.CharField(
         verbose_name=_("Category"),
         help_text=_("Category of questions dict"),
         max_length=128,
         blank=False,
     )
+    # This will store data in a tree format,
+    # where each new dictionary branches from the given question, until the final question is reached.
     questions = models.JSONField(
         verbose_name=_("Questions"),
         help_text=_("Question JSON data")
@@ -22,6 +27,12 @@ class RiskManagementQuestion(BaseModel):
 
     @classmethod
     def load_questions_from_json(cls):
+        """
+        Loads data from question bank, and populates the database.
+        This is used for making it easier to update database with new questions.
+
+        :return: List of newly created objects of `RiskManagementQuestion`.
+        """
         with open(str(pathlib.Path(settings.BASE_DIR, "risk_management", "data", "questions.json")), "r") as f:
             questions_dict = json.load(f)
             questions_objects = []

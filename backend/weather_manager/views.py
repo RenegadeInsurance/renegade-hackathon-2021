@@ -9,11 +9,12 @@ from weather_manager.weather_api import WeatherAPI
 @api_view(["GET"])
 def get_weather_data(request):
     # TODO: REMOVE HARDCODED API KEY !!
-    weather_api = WeatherAPI("0e9591f33b6e43bfbd795528211712")
+    weather_api = WeatherAPI(
+        {"weatherapi": "0e9591f33b6e43bfbd795528211712"}
+    )
     params = WeatherApiParameterSerializer(data=request.GET)
 
     if params.is_valid():
-        print(params.validated_data)
         try:
             if params.validated_data.get("location") is None:
                 raise ValueError("Location is required")
