@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "752116080165",
+    "project_id": "renegade-weas",
+    "storage_bucket": "renegade-weas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752116080165:android:4a1cfefa57cc9eeb1e29cc",
+        "android_client_info": {
+          "package_name": "com.renegade.weas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752116080165-0b16uqsk6rqni3ec6hjptran735s8ucv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4heY4VS3FsV_DSoEPKj9Oj4nvNdlDIz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752116080165-0b16uqsk6rqni3ec6hjptran735s8ucv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
