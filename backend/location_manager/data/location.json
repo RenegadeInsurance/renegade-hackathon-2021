@@ -1,0 +1,95 @@
+{
+  "NP": {
+    "Province 1": {
+      "Taplejung": [],
+      "Panchthar": [],
+      "Ilam": [],
+      "Jhapa": [],
+      "Morang": [],
+      "Sunsari": [],
+      "Dhankuta": [],
+      "Terhathum": [],
+      "Sankhuwasabha": [],
+      "Bhojpur": [],
+      "Solukhumbu": [],
+      "Okhaldhunga": [],
+      "Khotang": [],
+      "Udayapur": []
+    },
+    "Sudurpashchim Province": {
+      "Bajura": [],
+      "Bajhang": [],
+      "Achham": [],
+      "Doti": [],
+      "Kailali": [],
+      "Kanchanpur": [],
+      "Dadeldhura": [],
+      "Baitadi": [],
+      "Darchula": []
+    },
+    "Province 2": {
+      "Saptari": [],
+      "Siraha": [],
+      "Dhanusha": [],
+      "Mahottari": [],
+      "Sarlahi": [],
+      "Rautahat": [],
+      "Bara": [],
+      "Parsa": []
+    },
+    "Bagmati Province": {
+      "Sindhuli": [],
+      "Ramechhap": [],
+      "Dolakha": [],
+      "Sindhupalchowk": [],
+      "Kavrepalanchok": [],
+      "Lalitpur": [],
+      "Bhaktapur": [],
+      "Kathmandu": [],
+      "Nuwakot": [],
+      "Rasuwa": [],
+      "Dhading": [],
+      "Makawanpur": [],
+      "Chitwan": []
+    },
+    "Gandaki Province": {
+      "Gorkha": [],
+      "Lamjung": [],
+      "Tanahun": [],
+      "Syangja": [],
+      "Kaski": [],
+      "Manang": [],
+      "Mustang": [],
+      "Myagdi": [],
+      "Parbat": [],
+      "Baglung": [],
+      "Nawalpur": []
+    },
+    "Lumbini Province": {
+      "Gulmi": [],
+      "Palpa": [],
+      "Rupandehi": [],
+      "Kapilbastu": [],
+      "Arghakhanchi": [],
+      "Pyuthan": [],
+      "Rolpa": [],
+      "Dang": [],
+      "Banke": [],
+      "Bardiya": [],
+      "Parasi": [],
+      "Eastern Rukum": []
+    },
+    "Karnali Province": {
+      "Western Rukum": [],
+      "Salyan": [],
+      "Surkhet": [],
+      "Dailekh": [],
+      "Jajarkot": [],
+      "Dolpa": [],
+      "Jumla": [],
+      "Kalikot": [],
+      "Mugu": [],
+      "Humla": []
+    }
+  }
+}
