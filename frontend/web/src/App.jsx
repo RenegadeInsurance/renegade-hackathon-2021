@@ -1,11 +1,16 @@
-import React from 'react'
+import { ThemeProvider } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
+import { customTheme } from './theme';
+import AllRoutes from './Routes';
 
 const App = () => {
   return (
-    <div>
-      <h1>Hello World!</h1>
-    </div>
-  )
-}
+    <ThemeProvider theme={customTheme}>
+      <BrowserRouter>
+        <AllRoutes />
+      </BrowserRouter>
+    </ThemeProvider>
+  );
+};
 
-export default App
+export default App;
