@@ -1,0 +1,181 @@
+{% extends 'base.html' %}}{% load static from static %}{% block content%}
+<div class="card card-default">
+    <div class="card-header bg-danger">
+        <div class="row" style="height:40px;">
+            <div class="col-sm-6">
+                <h4 class="text-white" style="margin-top: 1%;"><i class="fas fa-user-graduate"></i>&nbsp; {{ title }}</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right bg-danger">
+                    <li class="breadcrumb-item text-white"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item active text-white">{{ title }}</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <a href="javascript:void(0)" class="add-link">
+                <p class="add-text"><i class="fa fa-plus">&nbsp;</i> Add {{ title }}</p>
+            </a>
+        </div>
+        <div class="table-title">
+            <p class="title-text">All {{ title }}s</p>
+        </div>
+        <table id="table" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Date Joined</th>
+                    <th>Last Login</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_profile in users %}
+                <tr>
+                    <td>{{ user_profile.user.id }}</td>
+                    <td class="w-25">{% if user_profile.image.url != '' %}
+                        <img src="{{ user_profile.image.url }}" class="w-25" alt="Photo"> {% endif %}</td>
+                    <td>{{ user_profile.user.first_name}} {{ user_profile.user.last_name }}</td>
+                    <td>{{ user_profile.user.email }}</td>
+                    <td>{{ user_profile.user.is_active }}</td>
+                    <td>{{ user_profile.user.date_joined }}</td>
+                    <td>{{ user_profile.user.last_login }}</td>
+                    <td><a class="btn btn-success btn-xs btn-edit " href="/guardian/edit/{{ guardian.slug }} "><span><i class="fas fa-edit "></i></span></a>
+                        <button class="btn btn-danger btn-xs btn-delete " slug="{{ guardian.slug }} "><span><i class="far fa-trash-alt "></i></span></button></td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+<div class="modal fade " id="modal-xl " style="display: none; " aria-hidden="true ">
+    <div class="modal-dialog modal-xl ">
+        <div class="modal-content ">
+            <div class="modal-header ">
+                <h4 class="modal-title ">Add {{ title }}</h4>
+                <button type="button " class="close modal-close " data-dismiss="modal " aria-label="Close ">
+            <span aria-hidden="true ">×</span>
+          </button>
+            </div>
+            <div class="modal-body ">
+                <form action="/guardian/create/" enctype="multipart/form-data" method="POST">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block javascript %}
+<script>
+    $(function() {
+        var table = $table.DataTable({
+            'responsive': true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
+        });
+        table.buttons().container().appendTo($('.col-sm-6:eq(0)', table.table().container()));
+        $(document).on('click', '.add-link', function() {
+            $addForm.find('input').removeClass('is-invalid');
+            $addForm.find('error').html('');
+            $modal_form.modal();
+        });
+    });
+</script>
+<script>
+    var $addForm = $('#add-form');
+    var inputs = $addForm.find('input');
+    var keys = []
+    var $url = ''
+    var $modal_form = $('.modal')
+    var $api_url = '/api/guardian/'
+    var $table = $('#table')
+    var $csrf = '{{ csrf_token }}'
+    $('.select').select2({
+        'theme': "bootstrap4 ",
+        'width': '100%',
+
+    });
+    $.each(inputs, function(i, ele) {
+        keys.push(ele.name);
+    });
+
+    $.each($addForm.find('select'), function(i, ele) {
+        keys.push(ele.name);
+    });
+    var $valid = false
+        //
+        //function check_validation() {
+        //    var $formData = $addForm.serialize()
+        //    $.ajax({
+        //        method: "POST ",
+        //        url: ,
+        //        data: $formData,
+        //        headers: {
+        //            "X-CSRFToken ": '{{csrf_token}}'
+        //        },
+        //        success: function() {
+        //            $valid = true
+        //        },
+        //        error: function(jqXHR, textStatus, errorThrown) {
+        //            $valid = false;
+        //            $.each(keys, function(i, ele) {
+        //                error = $.parseJSON(jqXHR.responseText)[ele]
+        //                $('#' + ele + '-error').remove();
+        //                if (error != undefined) {
+        //                    var $field = $("input[name=" + ele + "]");
+        //                    var $label = $("#id_" + ele).text();
+        //                    $field.addClass('is-invalid');
+        //                    $field.after('<span id="' + ele +
+        //                        '-error" class="error invalid-feedback">' + error + '</span>');
+        //                } else {
+        //                    $('#' + ele + '-error').remove();
+        //                    $("input[name=" + ele + "]").removeClass('is-invalid');
+        //                }
+        //            });
+        //        },
+        //    });
+        //    console.log($valid)
+        //    return $valid
+        //}
+    $(document).submit('#add-form', function(event) {
+        $addForm.trigger('submit');
+    });
+
+    function handleFormSuccess(data, textStatus, jqXHR) {
+        $addForm[0].reset();
+        $modal_form.modal('hide');
+        $(location).attr('href', $url)
+    }
+
+    function handleFormError(jqXHR, textStatus,
+        errorThrown) {}
+    $(document).on('click', '.modal-close', function() {});
+    $(document).on("hide.bs.modal", $modal_form, function() {
+        $modal_form.find('form')[0].reset();
+        $addForm.children().removeClass('is-invalid');
+    });
+    $(document).on('click', '.btn-edit', function() {
+        var $slug = $(this).attr('slug');
+        console.log(keys)
+        $.getJSON($api_url + $slug, function(data) {
+            $.each(keys, function(i, ele) {
+                if (data[ele] != undefined) {
+                    $("input[name=" + ele + "]").val(data[ele]);
+                    $("select[name=" + ele + "]").val(data[ele]).trigger('change');
+                    $modal_form.modal('show');
+                }
+            });
+        });
+    });
+</script> -->
+<!-- <script src="{% static 'js/cms.js' %}"></script>
+    {% endblock %}

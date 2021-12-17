@@ -1,0 +1,72 @@
+{% extends 'base.html' %}}{% load static from static %}{% block content%}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark"><i class="fas fa-users"></i>&nbsp;{{ title }}</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{ title }}</li>
+                </ol>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<div class="card card-danger card-outline">
+    <div class="card-body">
+        <div class="row">
+            <a href="{% url 'authentication:group_create' %}" class="add-link">
+                <p class="add-text"><i class="fa fa-plus">&nbsp;</i> Add {{ title }}</p>
+            </a>
+        </div>
+        <div class="table-title">
+            <p class="title-text">All {{ title }}s</p>
+        </div>
+        <table id="table" class="table table-bordered table-striped table-hover dataTable">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in groups %}
+                <tr>
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.name }}</td>
+                    <td><a class="btn btn-success btn-xs btn-edit " href="{% url 'authentication:group_index' %}/edit/{{ group.id }} "><span><i class="fas fa-edit "></i></span></a>
+                        <button class="btn btn-danger btn-xs btn-delete " slug="{{ guardian.slug }} "><span><i class="far fa-trash-alt "></i></span></button></td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+{% endblock %} {% block javascript %}
+<script>
+    $(function() {
+        let table = $('#table').DataTable({
+            'responsive': true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print', 'colvis'],
+        });
+        table.buttons().container().appendTo($('.col-sm-6:eq(0)', table.table().container()));
+        $(document).on('click', '.add-link', function() {
+            $addForm.find('input').removeClass('is-invalid');
+            $addForm.find('error').html('');
+            $modal_form.modal();
+        });
+    });
+</script>
+
+{% endblock %}
