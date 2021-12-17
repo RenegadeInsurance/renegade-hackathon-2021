@@ -22,7 +22,7 @@ public class AppUserServiceImpl implements AppUserService {
 
     @Override
     @Transactional
-    public long create(AppUserData data) {
+    public long register(AppUserData data) {
         var optionalAppUser = appUserRepo.findByAuthEmail(data.getEmail());
 
         if(optionalAppUser.isPresent()){
