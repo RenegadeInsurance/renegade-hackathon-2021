@@ -20,6 +20,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/location/', include('location_manager.urls')),
+    path('api/weather/', include('weather_manager.urls'))
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
