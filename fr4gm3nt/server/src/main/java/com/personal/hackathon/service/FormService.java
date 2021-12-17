@@ -4,4 +4,6 @@ import com.personal.hackathon.dto.form.FormDataList;
 
 public interface FormService {
     int createForm(FormDataList formDataList);
+
+    FormDataList retrieveForm(int formId);
 }

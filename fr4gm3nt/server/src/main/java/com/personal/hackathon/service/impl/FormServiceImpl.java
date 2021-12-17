@@ -1,6 +1,9 @@
 package com.personal.hackathon.service.impl;
 
+import com.personal.hackathon.dto.form.FieldData;
+import com.personal.hackathon.dto.form.FormData;
 import com.personal.hackathon.dto.form.FormDataList;
+import com.personal.hackathon.exception.DataNotFound;
 import com.personal.hackathon.model.form.Field;
 import com.personal.hackathon.model.form.Form;
 import com.personal.hackathon.model.form.Heading;
@@ -14,6 +17,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +79,60 @@ public class FormServiceImpl implements FormService {
         });
 
 
-        return 0;
+        return form.getId();
+    }
+
+    @Override
+    public FormDataList retrieveForm(int formId) {
+        var form = formRepo.findById(formId)
+                .orElseThrow(()->new DataNotFound("Form does not exist"));
+
+        var headings = headingRepo.findByFormId(formId);
+
+        List<FormData> formData = new ArrayList<>();
+
+        for (Heading heading : headings) {
+            var fieldList = fieldRepo.findByHeadingId(heading.getId());
+
+            List<FieldData> fieldDataList = new ArrayList<>();
+
+            fieldList.forEach(field -> {
+
+                var valueList = valueRepo.findByFieldId(field.getId());
+
+                var values = valueList.stream()
+                        .map(Value::getValue)
+                        .collect(Collectors.toList());
+
+                var fieldData = FieldData.builder()
+                        .id(field.getId())
+                        .name(field.getName())
+                        .field(field.getField())
+                        .isRequired(field.isRequired())
+                        .type(field.getType())
+                        .isRiskIndicator(field.isRiskIndicator())
+                        .riskLevel(field.getRiskLevel())
+                        .riskIf(field.getRiskIf())
+                        .values(values)
+                        .build();
+
+                fieldDataList.add(fieldData);
+
+            });
+
+            formData.add(
+                    FormData.builder()
+                            .id(heading.getId())
+                            .heading(heading.getTitle())
+                            .fields(fieldDataList)
+                            .build()
+            );
+        }
+
+        return FormDataList.builder()
+                .id(form.getId())
+                .formName(form.getFormName())
+                .formData(formData)
+                .build();
     }
 }

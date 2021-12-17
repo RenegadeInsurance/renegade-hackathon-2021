@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @ToString
 public class FormDataList {
+    private int id;
     private String formName;
     private List<FormData> formData;
 }

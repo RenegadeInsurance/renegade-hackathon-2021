@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @ToString
 public class FieldData {
+    private int id;
     private String name;
     private String field;
     private boolean isRequired;

@@ -10,6 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class FormData {
+    private int id;
+
     private String heading;
 
     private List<FieldData> fields;
