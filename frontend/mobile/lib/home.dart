@@ -9,13 +9,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late WebViewController controller;
+  double progress = 0;
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return const SafeArea(
-      child: WebView(
-        initialUrl: 'https://github.com',
-        javascriptMode: JavascriptMode.unrestricted,
+    return WillPopScope(
+      onWillPop: () async {
+        if (await controller.canGoBack()) {
+          controller.goBack();
+        }
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              LinearProgressIndicator(
+                value: progress,
+                color: Colors.black,
+                backgroundColor: Colors.white,
+              ),
+              Expanded(
+                child: WebView(
+                  initialUrl: 'https://ec21-113-199-231-136.ngrok.io/',
+                  javascriptMode: JavascriptMode.unrestricted,
+                  onWebViewCreated: (controller) =>
+                      {this.controller = controller},
+                  onProgress: (progress) =>
+                      setState(() => this.progress = progress / 100),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
