@@ -1,0 +1,13 @@
+# IDE
+.vs
+.vscode
+.idea
+
+# Python files
+.pyc
+__pycache__
+
+# Django Files
+migrations
+migration
+db.sqlite3
