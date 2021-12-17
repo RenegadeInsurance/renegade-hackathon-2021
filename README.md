@@ -5,7 +5,7 @@ RI Hackathon, a nationwide event, will take place from 17th December to 19th Dec
 
 # Challenge
 Please find the challenge on the link below
-https://drive.google.com/file/d/1OviEXczIOJaUHyowfpg0OQv-4I7fLZT_/view?usp=sharing
+https://drive.google.com/file/d/1PnWgK16lp8XkAznych50_9O0qDJJiCXR/view
 
 # Communication
 Please use below slack workspace to commuincate with each other and with mentors and volunteers.
