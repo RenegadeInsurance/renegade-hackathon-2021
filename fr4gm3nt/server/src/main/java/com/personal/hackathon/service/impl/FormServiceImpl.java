@@ -1,10 +1,12 @@
 package com.personal.hackathon.service.impl;
 
 import com.personal.hackathon.dto.form.FormDataList;
-import com.personal.hackathon.model.field.Field;
-import com.personal.hackathon.model.field.Heading;
-import com.personal.hackathon.model.field.Value;
+import com.personal.hackathon.model.form.Field;
+import com.personal.hackathon.model.form.Form;
+import com.personal.hackathon.model.form.Heading;
+import com.personal.hackathon.model.form.Value;
 import com.personal.hackathon.repo.form.FieldRepo;
+import com.personal.hackathon.repo.form.FormRepo;
 import com.personal.hackathon.repo.form.HeadingRepo;
 import com.personal.hackathon.repo.form.ValueRepo;
 import com.personal.hackathon.service.FormService;
@@ -19,21 +21,28 @@ public class FormServiceImpl implements FormService {
     private final FieldRepo fieldRepo;
     private final HeadingRepo headingRepo;
     private final ValueRepo valueRepo;
+    private final FormRepo formRepo;
 
     @Override
     @Transactional
     public int createForm(FormDataList formDataList) {
+        var form = Form.builder()
+                .formName(formDataList.getFormName())
+                .build();
 
-        formDataList.getFormData().forEach(form ->{
+        formRepo.save(form);
+
+        formDataList.getFormData().forEach(formData -> {
             var heading = Heading.builder()
-                            .title(form.getHeading())
+                    .title(formData.getHeading())
+                    .form(form)
                     .build();
 
 
             headingRepo.save(heading);
 
-            var fieldDataList = form.getFields();
-            fieldDataList.forEach(fieldData-> {
+            var fieldDataList = formData.getFields();
+            fieldDataList.forEach(fieldData -> {
                 var field = Field.builder()
                         .name(fieldData.getName())
                         .type(fieldData.getType())
@@ -49,7 +58,7 @@ public class FormServiceImpl implements FormService {
 
                 var valueDataList = fieldData.getValues();
 
-                valueDataList.forEach(valueData ->{
+                valueDataList.forEach(valueData -> {
                     var value = Value.builder()
                             .value(valueData)
                             .field(field)
@@ -62,7 +71,6 @@ public class FormServiceImpl implements FormService {
 
 
         });
-
 
 
         return 0;

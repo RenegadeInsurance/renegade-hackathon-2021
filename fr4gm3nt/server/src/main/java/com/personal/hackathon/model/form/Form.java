@@ -1,11 +1,10 @@
-package com.personal.hackathon.model.field;
+package com.personal.hackathon.model.form;
 
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
@@ -14,13 +13,10 @@ import javax.persistence.ManyToOne;
 @Builder
 
 @Entity
-public class Value {
+public class Form {
     @Id
     @GeneratedValue
     private int id;
 
-    private String value;
-
-    @ManyToOne
-    private Field field;
+    private String formName;
 }

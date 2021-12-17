@@ -1,6 +1,6 @@
 package com.personal.hackathon.repo.form;
 
-import com.personal.hackathon.model.field.Field;
+import com.personal.hackathon.model.form.Field;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

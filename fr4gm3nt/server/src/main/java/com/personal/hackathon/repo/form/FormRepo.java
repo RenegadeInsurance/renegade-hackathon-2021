@@ -1,9 +1,9 @@
 package com.personal.hackathon.repo.form;
 
-import com.personal.hackathon.model.form.Value;
+import com.personal.hackathon.model.form.Form;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ValueRepo extends JpaRepository<Value, Integer> {
+public interface FormRepo extends JpaRepository<Form, Integer> {
 }

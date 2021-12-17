@@ -1,4 +1,4 @@
-package com.personal.hackathon.model.field;
+package com.personal.hackathon.model.form;
 
 import lombok.*;
 
@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import java.util.List;
 
 @Getter
 @Setter
