@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:hackathonfrontend/Services/CountryService/CountryService.dart';
 import 'package:hackathonfrontend/Skeletons/DropdownSkeleton.dart';
+import 'package:hackathonfrontend/WeatherForecast/Dashboard.dart';
+import 'package:hackathonfrontend/WeatherForecast/WeatherForecast.dart';
 import 'package:hackathonfrontend/components/Button.dart';
 
 import '../SurveyScreen.dart';
@@ -202,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Button("CONTINUE", () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                  return SurveyScreen();
+                  return WeatherForecast();
                 }));
               }, Colors.green, Icons.arrow_forward_outlined),
             ],
