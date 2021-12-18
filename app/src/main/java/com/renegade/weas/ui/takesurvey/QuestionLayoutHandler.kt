@@ -5,4 +5,5 @@ import com.renegade.weas.databinding.QuestionLayoutBinding
 class QuestionLayoutHandler(
     private val binding: QuestionLayoutBinding
 ) {
+
 }
