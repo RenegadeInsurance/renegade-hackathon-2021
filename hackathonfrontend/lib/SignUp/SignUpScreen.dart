@@ -8,6 +8,10 @@ import 'package:hackathonfrontend/Services/CountryService/CountryService.dart';
 import 'package:hackathonfrontend/Services/LocationService.dart';
 import 'package:hackathonfrontend/Services/UserService.dart';
 import 'package:hackathonfrontend/Skeletons/DropdownSkeleton.dart';
+<<<<<<< HEAD
+=======
+import 'package:hackathonfrontend/WeatherForecast/Dashboard.dart';
+>>>>>>> 62de74542b6af46d7b5f7470929bf9f3861ace69
 import 'package:hackathonfrontend/WeatherForecast/WeatherForecast.dart';
 import 'package:hackathonfrontend/components/Button.dart';
 import 'package:hackathonfrontend/components/Presets.dart';
@@ -383,9 +387,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
               ),
+<<<<<<< HEAD
             ),
             LogInScreen(),
           ],
+=======
+              Button("CONTINUE", () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                  return WeatherForecast();
+                }));
+              }, Colors.green, Icons.arrow_forward_outlined),
+            ],
+          ),
+>>>>>>> 62de74542b6af46d7b5f7470929bf9f3861ace69
         ),
       ),
     );
