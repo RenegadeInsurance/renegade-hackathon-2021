@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.request import Request
 from rest_framework.response import Response
 
 from weather_manager.serializers import WeatherApiParameterSerializer
@@ -7,13 +8,26 @@ from weather_manager.weather_api import WeatherAPI
 
 
 @api_view(["GET"])
-def get_weather_data(request):
+def get_weather_data(request: Request) -> Response:
+    """
+    Gets current weather data or forecast for given number of days, depending on the GET parameters.
+
+    AVAILABLE PARAMETERS:
+     - location
+     - alerts
+     - days
+     - aqi
+
+    :param request: ...
+    :return: Current weather or forecast for given number of days
+    """
     # TODO: REMOVE HARDCODED API KEY !!
-    weather_api = WeatherAPI("0e9591f33b6e43bfbd795528211712")
+    weather_api = WeatherAPI(
+        {"weatherapi": "0e9591f33b6e43bfbd795528211712"}
+    )
     params = WeatherApiParameterSerializer(data=request.GET)
 
     if params.is_valid():
-        print(params.validated_data)
         try:
             if params.validated_data.get("location") is None:
                 raise ValueError("Location is required")

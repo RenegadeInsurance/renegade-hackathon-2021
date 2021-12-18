@@ -1,0 +1,36 @@
+[
+  {
+    "category": "flooding",
+    "data": {
+      "Have you Experienced one or more flooding events in your life?": {
+        "Yes": {
+          "Has your municipality prepared an emergency plan?": {
+            "Yes": "Low Risk",
+            "No": "Moderate Risk"
+          }
+        },
+        "No": {
+          "Do you feel well prepared to face a flooding event?": {
+            "Yes": {
+              "In your opinion what is the flood risk area where you live?": {
+                "High": "Moderate Risk",
+                "Low": "Minimal Risk"
+              }
+            },
+            "No": {
+              "Do you live near the river?": {
+                "Yes": {
+                  "In your opinion what is the flood risk area where you live?": {
+                    "High": "High Risk",
+                    "Low": "Moderate Risk"
+                  }
+                },
+                "No": "Minimal Risk"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
