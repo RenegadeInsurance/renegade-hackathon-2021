@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-
 class WebViewWidget extends StatefulWidget {
-  const WebViewWidget({ Key? key }) : super(key: key);
+  const WebViewWidget({Key? key}) : super(key: key);
 
   @override
   _WebViewWidgetState createState() => _WebViewWidgetState();
@@ -30,7 +29,7 @@ class _WebViewWidgetState extends State<WebViewWidget> {
           ),
           Expanded(
             child: WebView(
-              initialUrl: 'https://www.bennish.net/web-notifications.html',
+              initialUrl: 'https://google.com',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (controller) => {this.controller = controller},
               onProgress: (progress) =>
