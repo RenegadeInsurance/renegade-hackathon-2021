@@ -15,14 +15,19 @@ object SafeApiCall {
     ): Resource<T> {
         return withContext(Dispatchers.IO) {
             try {
+                Log.e(TAG, "execute: klasjfdlkasdjf")
                 val response = apiCall.invoke()
+                Log.e(TAG, "execute no response", )
                 if (response.isSuccessful) {
+                    Log.e(TAG, "execute: success")
                     Resource.Success(response.body())
                 } else {
                     if (response.code() == 401) {
+                        Log.e(TAG, "execute: authorization")
                         Log.e(TAG, "UnAuthorized Request")
                         Resource.Loading
                     } else {
+                        Log.e(TAG, "execute: sign up fail")
 
                         Resource.Failure(response.errorBody().toString(), false)
                     }

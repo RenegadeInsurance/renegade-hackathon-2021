@@ -25,7 +25,6 @@ class MoreFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding.logOutBtn.setOnClickListener {
-            sharedViewModel.logout()
             requireActivity().startActivity(Intent(requireContext(), MainActivity::class.java))
             requireActivity().finish()
 

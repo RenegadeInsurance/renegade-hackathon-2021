@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.renegade.weas">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -11,12 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WEAS">
         <activity
-            android:name=".ui.signup.SignUpActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.login.LoginActivity"
-            android:exported="true"
-            android:label="@string/title_activity_login">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +22,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.signup.SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
