@@ -8,35 +8,35 @@ from rest_framework.decorators import api_view
 import json
 
 @api_view(['GET'])
-def getFAQs(request):
+def getPersonalCitys(request):
     # request_json = request.data
     if 1==1:
         # ASMID = request_json['ASMID']
         cnx = mysql.connector.connect(user = 'root', password = '', host = 'localhost', database = 'hackathon')
         cursor = cnx.cursor()
-        query = ("SELECT * FROM FAQ;")
+        query = ("SELECT * FROM PersonalCity;")
         cursor.execute(query)
-        df = pd.DataFrame(cursor.fetchall(),columns=["faqID", "riskAssessmentID", "yesRiskFactor", "noRiskFactor", "question", "yesNode", "noNode", "isStart"]).to_json(orient="records")
+        df = pd.DataFrame(cursor.fetchall(),columns=["personalCityID", "userID", "country", "state", "city",]).to_json(orient="records")
         return Response(json.loads(df))
     return Response("False")
 
 
 @api_view(['POST'])
-def insertFAQ(request): 
+def insertPersonalCity(request): 
     request_json = request.data
     cnx = mysql.connector.connect(user = 'root', password = '', host = 'localhost', database = 'hackathon')
     cursor = cnx.cursor()
     if request_json:
         myKeys = list(request_json.keys())
-        query1 = "INSERT INTO FAQ("
+        query1 = "INSERT INTO PersonalCity("
         for i in myKeys:
           query1 += i + ", "
         query1 = query1[0:len(query1)-2] + ") VALUES ("
         for i in myKeys:
-          if(i=="question"):
+          if(i=="country" or i=="state" or i=="city"):
             query1 += '"'
           query1 += str(request_json[i])
-          if(i=="question"):
+          if(i=="country" or i=="state" or i=="city"):
             query1 += '"'
           query1 += ","           
         query1 = (query1[0:len(query1)-1] + ");")
@@ -44,28 +44,28 @@ def insertFAQ(request):
         cnx.commit()
         return Response("True")
     else:
-        return Response(str(type(request_json)))
+        return Response("False")
 
 @api_view(['PUT'])
-def updateFAQ(request): 
+def updatePersonalCity(request): 
     request_json = request.data
     cnx = mysql.connector.connect(user = 'root', password = '', host = 'localhost', database = 'hackathon')
     cursor = cnx.cursor()
     if request_json:
         myKeys = list(request_json.keys())
-        faqID = request_json["faqID"]
-        myKeys.remove("locationID")
-        query1 = "UPDATE Location SET "
+        personalCityID = request_json["personalCityID"]
+        myKeys.remove("personalCityID")
+        query1 = "UPDATE PersonalCity SET "
         for i in myKeys:
           query1 += i
           query1 += "="
-          if(i=="question"):
+          if(i=="country" or i=="state" or i=="city"):
             query1 += '"'
           query1 += str(request_json[i])
-          if(i=="question"):
+          if(i=="country" or i=="state" or i=="city"):
             query1 += '"'
           query1 += ","           
-        query = (query1[0:len(query1)-1] + " WHERE faqID = " + faqID + ";")
+        query = (query1[0:len(query1)-1] + " WHERE personalCityID = " + personalCityID + ";")
         cursor.execute(query)
         cnx.commit()
         return Response("True")
