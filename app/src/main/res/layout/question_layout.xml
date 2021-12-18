@@ -8,77 +8,28 @@
     android:padding="24dp">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/questionLayout_question_TV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Have you experienced rainfall?"
+        android:textColor="@color/gray_900"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/questionLayout_answers_radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Have you experienced rainfall?" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/questionLayout_answers_radioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         app:layout_constraintBottom_toTopOf="@+id/materialButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/radio_button_background"
-            android:layoutDirection="rtl"
-            android:padding="16dp"
-            android:text="1-2 years"
-            android:textAlignment="textStart"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/radio_button_background"
-            android:layoutDirection="rtl"
-            android:padding="16dp"
-            android:text="1-2 years"
-            android:textAlignment="textStart"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/radio_button_background"
-            android:checked="true"
-            android:layoutDirection="rtl"
-
-            android:padding="16dp"
-            android:text="1-2 years"
-            android:textAlignment="textStart"
-            android:textSize="18sp" />
-
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/radio_button_background"
-            android:layoutDirection="rtl"
-            android:padding="16dp"
-            android:text="1-2 years"
-            android:textAlignment="textStart"
-            android:textSize="18sp" />
+        app:layout_constraintTop_toBottomOf="@+id/questionLayout_question_TV">
 
 
     </RadioGroup>

@@ -16,17 +16,25 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TakeSurveyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTakeSurveyBinding
-
+    private lateinit var questionLayoutHandler: QuestionLayoutHandler
 
     private val viewModel: TakeSurveyViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakeSurveyBinding.inflate(layoutInflater)
+        questionLayoutHandler = QuestionLayoutHandler(binding.takeSurveyActQuestionLayout)
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setUpObserverForQuestion()
-        askForFirstQuestion()
+
+        if (viewModel.questionLiveData.value == null) {
+            askForFirstQuestion()
+        }
+
     }
+
+
 
     private fun setUpObserverForQuestion() {
         viewModel.questionLiveData.observe(this) { questionResource ->
@@ -34,8 +42,8 @@ class TakeSurveyActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     binding.takeSurveyActProgressBar.visibility = View.INVISIBLE
                     makeScreenTouchable()
-                    setUpQuestion(questionResource.value)
-                    setUpAnswers(questionResource.value)
+                    questionResource.value?.let { setUpQuestion(it) }
+                    questionResource.value?.let { setUpAnswers(it) }
                 }
                 is Resource.Failure -> {
                     binding.takeSurveyActProgressBar.visibility = View.INVISIBLE
@@ -55,12 +63,12 @@ class TakeSurveyActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpAnswers(value: QuestionResponse?) {
-
+    private fun setUpAnswers(value: QuestionResponse) {
+        questionLayoutHandler.setUpAnswers(value.answers)
     }
 
-    private fun setUpQuestion(value: QuestionResponse?) {
-
+    private fun setUpQuestion(value: QuestionResponse) {
+        questionLayoutHandler.writeQuestion(value.question)
     }
 
     private fun askForFirstQuestion() {
