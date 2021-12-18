@@ -1,11 +1,14 @@
 package com.renegade.weas.ui.home
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.renegade.weas.databinding.FragmentHomeBinding
@@ -22,6 +25,17 @@ class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding get() = _binding!!
     private lateinit var weatherLayoutHandler: WeatherLayoutHandler
     private val sharedViewModel: MainActivityViewModel by activityViewModels()
+
+//    private val c = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
+//        if (result.resultCode == Activity.RESULT_OK){
+//            val risk = result.data
+//
+//            AlertDialog.Builder(requireContext())
+//                .setTitle("Your Flood Risk!")
+//                .setMessage()
+//        }
+//    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

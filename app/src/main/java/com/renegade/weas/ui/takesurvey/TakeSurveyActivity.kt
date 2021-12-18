@@ -91,9 +91,6 @@ class TakeSurveyActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 
 
 }
