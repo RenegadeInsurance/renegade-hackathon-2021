@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { Box, Container, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import BG_PlaceHolder from "./../assets/bg_placeholder.jpg";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import IconButton from "@mui/material/IconButton";
-import CommentIcon from "@mui/icons-material/Comment";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import CloudIcon from "@mui/icons-material/Cloud";
+import UmbrellaIcon from "@mui/icons-material/Umbrella";
 
 const useStyles = makeStyles({
   root: {
@@ -99,22 +107,34 @@ const Home = () => {
           </Box>
         </Container>
       </div>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-        {[0, 1, 2, 3].map((value) => {
-          const labelId = `checkbox-list-label-${value}`;
+      <List>
+        <ListItem>
+          <ListItemText>Today</ListItemText>
+          <ListItemIcon>
+            <WbSunnyIcon />
+          </ListItemIcon>
+          <ListItemText>L: 4°</ListItemText>
+          <ListItemText>H: 18°</ListItemText>
+        </ListItem>
+        <Divider />
+        <ListItem>
+          <ListItemText>Sunday</ListItemText>
+          <ListItemIcon>
+            <CloudIcon />
+          </ListItemIcon>
+          <ListItemText>L: 3°</ListItemText>
+          <ListItemText>H: 16°</ListItemText>
+        </ListItem>
+        <Divider />
 
-          return (
-            <ListItem
-              key={value}
-              secondaryAction={
-                <IconButton edge="end" aria-label="comments">
-                  <CommentIcon />
-                </IconButton>
-              }
-              disablePadding
-            ></ListItem>
-          );
-        })}
+        <ListItem>
+          <ListItemText>Monday</ListItemText>
+          <ListItemIcon>
+            <UmbrellaIcon />
+          </ListItemIcon>
+          <ListItemText>L: 2°</ListItemText>
+          <ListItemText>H: 15°</ListItemText>
+        </ListItem>
       </List>
     </>
   );
