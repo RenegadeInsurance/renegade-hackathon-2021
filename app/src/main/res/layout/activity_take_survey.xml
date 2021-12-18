@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.takesurvey.TakeSurveyActivity">
 
+    <include
+        android:id="@+id/takeSurveyAct_questionLayout"
+        layout="@layout/question_layout" />
+
     <ProgressBar
         android:id="@+id/takeSurveyAct_progressBar"
         android:layout_width="wrap_content"

@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 private const val TAG = "RetrofitModule"
 
-const val BASE_URL_OUR = "https://bb1b-49-244-59-60.ngrok.io/"
+const val BASE_URL_OUR = "http://ec2-3-111-42-76.ap-south-1.compute.amazonaws.com/"
 const val BASE_URL_WEATHER = "https://api.openweathermap.org/"
 
 @Module
