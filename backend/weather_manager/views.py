@@ -61,14 +61,24 @@ def get_weather_data(request: Request) -> Response:
 @api_view(["GET"])
 def get_location_from_geo_location(request):
     coordinates = request.GET.get("coordinates")
-    print(dotenv_values().get("weather_api_key"))
+    resp = requests.get(
+        "https://maps.googleapis.com/maps/api/geocode/json",
+        params={
+            "latlng": coordinates,
+            "sensor": "true",
+            "key": dotenv_values().get("weather_api_key")
+        }
+    )
+
+    if resp.ok:
+        resp = resp.json()
+        plus_code = resp.get("plus_code", {})
+
+        if compound_code := plus_code.get("compound_code", {}):
+            return Response(
+                " ".join(compound_code.split(" ")[1:])
+            )
+
     return Response(
-        requests.get(
-            "https://maps.googleapis.com/maps/api/geocode/json",
-            params={
-                "latlng": coordinates,
-                "sensor": "true",
-                "key": dotenv_values().get("weather_api_key")
-            }
-        ).json()
+        {"error": True, "message": "Couldn't get location from coordinates."}
     )
