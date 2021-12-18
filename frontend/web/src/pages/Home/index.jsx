@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+
 import BG_PlaceHolder from 'assets/bg_placeholder.jpg';
 
 import Signals from 'pages/Home/components/Signals';
 import WeatherLocOverview from 'pages/Home/components/WeatherLocOverview';
+import CustomSpeedDial from 'pages/Home/components/CustomSpeedDial';
 
 const useStyles = makeStyles({
   root: {
@@ -47,19 +49,25 @@ const Home = () => {
   const [weatherType, setWeatherType] = useState(`Sunny Day`);
 
   return (
-    <div className={classes.root}>
-      <Container>
-        <WeatherLocOverview
-          temp={temp}
-          weatherType={weatherType}
-          location={location}
-        />
-      </Container>
+    <>
+      <div className={classes.root}>
+        <Container>
+          <WeatherLocOverview
+            temp={temp}
+            weatherType={weatherType}
+            location={location}
+          />
+        </Container>
 
-      <Container sx={{ textAlign: `center` }}>
-        <Signals signals={signals} />
-      </Container>
-    </div>
+        <Container sx={{ textAlign: `center` }}>
+          <Signals signals={signals} />
+        </Container>
+
+        <Box sx={{ position: `fixed`, right: 0, bottom: 0, padding: `1rem` }}>
+          <CustomSpeedDial />
+        </Box>
+      </div>
+    </>
   );
 };
 
