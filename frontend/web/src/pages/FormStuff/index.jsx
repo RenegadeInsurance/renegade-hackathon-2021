@@ -17,6 +17,15 @@ const RiskAssessment = React.lazy(() => import('./components/RiskAssessment'));
 
 const FormStuff = () => {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    age: 0,
+    gender: 'female',
+    country: '',
+    state: '',
+    city: '',
+  });
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -30,18 +39,31 @@ const FormStuff = () => {
     setActiveStep(0);
   };
 
+  const handleFormData = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const steps = [
     {
       title: 'Personal Detail',
-      component: <PersonalDetail />,
+      component: (
+        <PersonalDetail formData={formData} handleFormData={handleFormData} />
+      ),
     },
     {
       title: 'Location',
-      component: <Location />,
+      component: (
+        <Location formData={formData} handleFormData={handleFormData} />
+      ),
     },
     {
       title: 'Risk Assessment',
-      component: <RiskAssessment />,
+      component: (
+        <RiskAssessment formData={formData} handleFormData={handleFormData} />
+      ),
     },
   ];
   return (

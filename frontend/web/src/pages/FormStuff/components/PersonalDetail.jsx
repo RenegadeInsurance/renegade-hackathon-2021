@@ -10,7 +10,7 @@ import {
   FormLabel,
 } from '@mui/material';
 
-const PersonalDetail = () => {
+const PersonalDetail = ({ formData, handleFormData }) => {
   return (
     <>
       <Typography variant='h4' fontWeight='bold' mb={2}>

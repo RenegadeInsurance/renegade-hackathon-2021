@@ -1,4 +1,4 @@
-const RiskAssessment = () => {
+const RiskAssessment = ({ formData, handleFormData }) => {
   return (
     <>
       <h1>Risk Assessment Detail</h1>
