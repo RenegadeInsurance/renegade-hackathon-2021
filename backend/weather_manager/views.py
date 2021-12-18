@@ -1,3 +1,6 @@
+import requests
+from dotenv import dotenv_values
+
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.request import Request
@@ -17,6 +20,7 @@ def get_weather_data(request: Request) -> Response:
      - alerts
      - days
      - aqi
+     - coordinates
 
     :param request: ...
     :return: Current weather or forecast for given number of days
@@ -52,3 +56,19 @@ def get_weather_data(request: Request) -> Response:
             params.errors,
             status=status.HTTP_403_FORBIDDEN
         )
+
+
+@api_view(["GET"])
+def get_location_from_geo_location(request):
+    coordinates = request.GET.get("coordinates")
+    print(dotenv_values().get("weather_api_key"))
+    return Response(
+        requests.get(
+            "https://maps.googleapis.com/maps/api/geocode/json",
+            params={
+                "latlng": coordinates,
+                "sensor": "true",
+                "key": dotenv_values().get("weather_api_key")
+            }
+        ).json()
+    )
