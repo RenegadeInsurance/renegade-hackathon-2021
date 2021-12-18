@@ -12,13 +12,14 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class RiskResult {
 
     @Id
     @GeneratedValue
     private int id;
 
-    private String riskType;
+    private String riskTitle;
 
-    private int riskFactor;
+    private String riskFactor;
 }

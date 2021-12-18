@@ -1,7 +1,7 @@
 package com.personal.hackathon.controller;
 
 import com.personal.hackathon.model.tree.RiskAssessmentQuestion;
-import com.personal.hackathon.repo.treee.RiskAssessmentQuestionRepo;
+import com.personal.hackathon.repo.tree.RiskAssessmentQuestionRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

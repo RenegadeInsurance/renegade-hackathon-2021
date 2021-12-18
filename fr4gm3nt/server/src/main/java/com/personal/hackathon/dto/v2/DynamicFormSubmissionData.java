@@ -11,6 +11,8 @@ import java.util.List;
 @Builder
 @ToString
 public class DynamicFormSubmissionData {
+    private int formId;
+    
     private List<GeneralDetail> generalDetails;
 
     private List<RiskDetail> riskDetails;
