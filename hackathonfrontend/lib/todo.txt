@@ -1,0 +1,15 @@
+NOT DONE MINIMUM REQUIREMENTS
+
+a. Location Drill Down
+1> location drill down while adding a new location in the multiple locations
+
+c. Flood Risk Assessment
+1> whether the test is already done retake or take test,
+2> will pop scope to navigate well
+
+d. Alert Mechanism
+
+e. Validation
+1> new friend creation validations
+
+
