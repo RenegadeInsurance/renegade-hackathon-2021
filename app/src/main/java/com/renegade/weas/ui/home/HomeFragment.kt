@@ -20,7 +20,7 @@ private const val TAG = "HomeFragment"
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
-
+private lateinit var weatherLayoutHandler :WeatherLayoutHandler
     private val sharedViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -28,10 +28,11 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
+        weatherLayoutHandler = WeatherLayoutHandler(binding.weatherLayout)
         sharedViewModel.weatherLiveData.observe(viewLifecycleOwner) { weatherResponse ->
             when (weatherResponse) {
                 is Resource.Success -> {
-                    Log.e(TAG, "onCreateView: ${weatherResponse.value?.base}")
+                    weatherLayoutHandler.updateValues()
                 }
                 is Resource.Failure -> {
                     Log.e(TAG, "onCreateView: Something went wrong")

@@ -7,6 +7,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 <include
+    android:id="@+id/weather_layout"
     layout="@layout/weather_layout"></include>
 
     <Button
