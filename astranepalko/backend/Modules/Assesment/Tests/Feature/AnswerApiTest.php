@@ -2,10 +2,10 @@
 
 namespace Modules\Assesment\Tests\Feature;
 
-use Tests\TestCase;
 use Modules\Assesment\Entities\Answer;
+use Modules\Core\Tests\BaseTestCase;
 
-class AnswerApiTest extends TestCase
+class AnswerApiTest extends BaseTestCase
 {
     public function setUp(): void
     {

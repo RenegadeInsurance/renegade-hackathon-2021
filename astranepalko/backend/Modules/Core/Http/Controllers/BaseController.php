@@ -78,7 +78,7 @@ class BaseController extends Controller
         );
     }
 
-    public function show(int $id): JsonResponse
+    public function show(string $id): JsonResponse
     {
         try {
             $fetched = $this->repository->fetch($id, $this->relationships);
@@ -92,7 +92,7 @@ class BaseController extends Controller
         );
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function update(Request $request, string $id): JsonResponse
     {
         try {
             $data = $this->repository->validateData($request);
@@ -107,7 +107,7 @@ class BaseController extends Controller
         );
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(string $id): JsonResponse
     {
         try {
             $this->repository->delete($id);

@@ -4,14 +4,13 @@ namespace Modules\Assesment\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Assesment\Entities\Flow;
 
-class AssesmentDatabaseSeeder extends Seeder
+class FlowTableSeeder extends Seeder
 {
     public function run(): void
     {
         Model::unguard();
-        $this->call(QuestionTableSeeder::class);
-        $this->call(AnswerTableSeeder::class);
-        $this->call(FlowTableSeeder::class);
+        Flow::factory(10)->create();
     }
 }

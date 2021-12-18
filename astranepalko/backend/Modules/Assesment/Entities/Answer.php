@@ -10,7 +10,7 @@ class Answer extends Model
     use HasFactory;
 
     protected $connection = "mongodb";
-    protected $guard = [];
+    protected $guarded = [];
 
     protected static function newFactory()
     {

@@ -7,7 +7,7 @@ use Modules\Core\Traits\ResponseMessage;
 
 class BaseTestCase extends TestCase
 {
-    use DatabaseTransactions;
+    // use DatabaseTransactions;
     use ResponseMessage;
 
     protected array $headers;
@@ -18,8 +18,8 @@ class BaseTestCase extends TestCase
     public array $response_messages;
 
     public array $filters;
-    public int $default_resource_id;
-    public int $fake_resource_id;
+    public string $default_resource_id;
+    public string $fake_resource_id;
     public int $factory_count;
     public bool $create_factories;
     public bool $has_filters;

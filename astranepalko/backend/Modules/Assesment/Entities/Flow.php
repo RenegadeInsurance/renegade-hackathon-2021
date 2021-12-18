@@ -5,7 +5,7 @@ namespace Modules\Assesment\Entities;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Question extends Model
+class Flow extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class Question extends Model
 
     protected static function newFactory()
     {
-        return \Modules\Assesment\Database\factories\QuestionFactory::new();
+        return \Modules\Assesment\Database\factories\FlowFactory::new();
     }
 }

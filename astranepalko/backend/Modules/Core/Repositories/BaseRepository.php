@@ -4,8 +4,8 @@ namespace Modules\Core\Repositories;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Modules\Core\Traits\Cacheable;
-use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Traits\Filterable;
+use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository
 {
@@ -61,7 +61,7 @@ class BaseRepository
         return $fetched;
     }
 
-    public function fetch(int $id, array $with = [], ?callable $callback = null): object
+    public function fetch(string $id, array $with = [], ?callable $callback = null): object
     {
         try {
             $rows = $callback ? $callback() : $this->model;
@@ -84,7 +84,7 @@ class BaseRepository
 
     public function store(array $data, ?callable $callback = null): object
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         try {
             $created = $this->model->create($data);
@@ -92,19 +92,19 @@ class BaseRepository
                 $callback($created);
             }
         } catch (Exception $exception) {
-            DB::rollBack();
+            // DB::rollBack();
             throw $exception;
         }
 
-        DB::commit();
+        // DB::commit();
         $this->flushAllCache();
 
         return $created;
     }
 
-    public function update(array $data, int $id, ?callable $callback = null): object
+    public function update(array $data, string $id, ?callable $callback = null): object
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         try {
             $updated = $this->model->findOrFail($id);
@@ -115,20 +115,20 @@ class BaseRepository
                 $callback($updated);
             }
         } catch (Exception $exception) {
-            DB::rollBack();
+            // DB::rollBack();
             throw $exception;
         }
 
-        DB::commit();
+        // DB::commit();
         $this->flushAllCache($id);
         $this->flushAllCache();
 
         return $updated;
     }
 
-    public function delete(int $id, ?callable $callback = null): object
+    public function delete(string $id, ?callable $callback = null): object
     {
-        DB::beginTransaction();
+        // DB::beginTransaction();
 
         try {
             $deleted = $this->model->findOrFail($id);
@@ -139,11 +139,11 @@ class BaseRepository
 
             $deleted->delete();
         } catch (Exception $exception) {
-            DB::rollBack();
+            // DB::rollBack();
             throw $exception;
         }
 
-        DB::commit();
+        // DB::commit();
         $this->flushAllCache($id);
         $this->flushAllCache();
 
