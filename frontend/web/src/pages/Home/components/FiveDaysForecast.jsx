@@ -32,7 +32,7 @@ const FiveDaysForecast = ({ loc }) => {
         </Typography>
         <List>
           {isLoading ? (
-            <Skeleton />
+            <Skeleton variant='rectangular' width='100%' height={70} />
           ) : (
             data.forecast.forecastday.map((singleDay) => (
               <div key={singleDay.date}>

@@ -50,7 +50,7 @@ const WeatherLocOverview = ({ loc, handleChange }) => {
         }}
       >
         {isLoading ? (
-          <Skeleton />
+          <Skeleton variant='rectangular' width={210} height={118} />
         ) : (
           <div>
             <Box margin={0} p={0}>
@@ -76,7 +76,7 @@ const WeatherLocOverview = ({ loc, handleChange }) => {
         )}
 
         {isLoading ? (
-          <p>Loading...</p>
+          <Skeleton variant='rectangular' width={150} height={150} />
         ) : (
           <div>
             <Box

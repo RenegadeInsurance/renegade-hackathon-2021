@@ -36,7 +36,19 @@ const Signals = ({ loc }) => {
           }}
         >
           {isLoading ? (
-            <Skeleton />
+            <>
+              <Box className={classes.singleSignal}>
+                <Skeleton variant='rectangular' width={150} height={75} />
+              </Box>
+
+              <Box className={classes.singleSignal}>
+                <Skeleton variant='rectangular' width={150} height={75} />
+              </Box>
+
+              <Box className={classes.singleSignal}>
+                <Skeleton variant='rectangular' width={150} height={75} />
+              </Box>
+            </>
           ) : (
             <>
               <Box className={classes.singleSignal}>
