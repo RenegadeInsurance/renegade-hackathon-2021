@@ -27,7 +27,7 @@ public class DynamicFormSubmission {
     @OneToMany
     private Set<GeneralDetail> generalDetails;
 
-    @OneToOne
-    private RiskResult riskFactor;
+    @OneToMany
+    private Set<RiskResult> riskResults;
 
 }

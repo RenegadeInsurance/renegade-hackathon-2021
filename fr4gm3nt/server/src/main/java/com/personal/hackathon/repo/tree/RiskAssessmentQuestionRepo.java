@@ -1,4 +1,4 @@
-package com.personal.hackathon.repo.treee;
+package com.personal.hackathon.repo.tree;
 
 import com.personal.hackathon.model.tree.RiskAssessmentQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;
