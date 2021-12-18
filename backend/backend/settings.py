@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'location_manager.apps.LocationManagerConfig',
     'risk_management.apps.RiskManagementConfig',
     'weather_manager.apps.WeatherManagerConfig',
+    'news.apps.NewsConfig',
     'rest_framework',
     'corsheaders',
 ]

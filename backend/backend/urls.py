@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/weather/', include('weather_manager.urls')),
     path('api/risk-management/', include('risk_management.urls')),
     path('api/alert-management/', include('alert_manager.urls')),
+    path('api/news/', include('news.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
