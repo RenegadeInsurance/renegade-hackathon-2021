@@ -11,3 +11,5 @@ __pycache__
 migrations
 migration
 db.sqlite3
+
+.env
