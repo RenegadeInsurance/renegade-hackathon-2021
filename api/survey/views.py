@@ -45,7 +45,7 @@ class QuestionView(APIView):
                 final = 'Moderate Risk'
             else:
                 final = 'High Risk'
-            return Response({'question': final}, status=status.HTTP_200_OK)
+            return Response({'id':-1, 'question': final}, status=status.HTTP_200_OK)
 
         serialized = QuestionSerializer(question)
         return Response(serialized.data, status=status.HTTP_200_OK)
