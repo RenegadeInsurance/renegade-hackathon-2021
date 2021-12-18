@@ -2,8 +2,6 @@ package com.personal.hackathon.dto;
 
 import lombok.*;
 
-import java.sql.Date;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,8 +11,8 @@ public class AppUserData {
     int id;
     private String email;
     private String password;
-    private String fullName;
-    private Date dob;
+    private String name;
+    private String age;
     private String gender;
     private String country;
     private String state;

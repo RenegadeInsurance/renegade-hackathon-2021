@@ -20,9 +20,9 @@ public class AppUser {
     @GeneratedValue
     private int id;
 
-    private String fullName;
+    private String name;
 
-    private Date dob;
+    private String age;
 
     private String gender;
 

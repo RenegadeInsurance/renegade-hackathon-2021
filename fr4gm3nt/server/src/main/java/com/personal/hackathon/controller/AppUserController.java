@@ -22,7 +22,7 @@ public class AppUserController {
     @PostMapping("/register")
     public ResponseEntity<?> create(@Valid @RequestBody AppUserData data){
         return ResponseEntity.ok(
-                HttpResponse.of(appUserService.create(data))
+                HttpResponse.of(appUserService.register(data))
         );
     }
 
