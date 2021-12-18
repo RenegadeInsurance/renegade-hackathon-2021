@@ -1,6 +1,15 @@
-import { useState } from 'react';
-import { Container } from '@mui/material';
+import { useState, useEffect } from 'react';
+import {
+  Container,
+  Box,
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Tooltip,
+  ClickAwayListener,
+} from '@mui/material';
 import { makeStyles } from '@mui/styles';
+// import {} from '@mui/icons-material'
 import BG_PlaceHolder from 'assets/bg_placeholder.jpg';
 
 import Signals from 'pages/Home/components/Signals';
@@ -46,20 +55,67 @@ const Home = () => {
   const [location, setLocation] = useState(`Nepal`);
   const [weatherType, setWeatherType] = useState(`Sunny Day`);
 
-  return (
-    <div className={classes.root}>
-      <Container>
-        <WeatherLocOverview
-          temp={temp}
-          weatherType={weatherType}
-          location={location}
-        />
-      </Container>
+  const [tooltipOpen, setTooltipOpen] = useState(
+    JSON.parse(localStorage.getItem('userFT')) === true ? false : true
+  );
 
-      <Container sx={{ textAlign: `center` }}>
-        <Signals signals={signals} />
-      </Container>
-    </div>
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+    localStorage.setItem('userFT', false);
+  };
+
+  useEffect(() => {
+    setTooltipOpen(!tooltipOpen);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      <div className={classes.root}>
+        <Container>
+          <WeatherLocOverview
+            temp={temp}
+            weatherType={weatherType}
+            location={location}
+          />
+        </Container>
+
+        <Container sx={{ textAlign: `center` }}>
+          <Signals signals={signals} />
+        </Container>
+
+        <Box sx={{ position: `fixed`, right: 0, bottom: 0, padding: `1rem` }}>
+          <ClickAwayListener onClickAway={handleTooltipClose}>
+            <div>
+              <Tooltip
+                PopperProps={{
+                  disablePortal: true,
+                }}
+                onClose={handleTooltipClose}
+                open={tooltipOpen}
+                placement='left-end'
+                disableFocusListener
+                disableHoverListener
+                disableTouchListener
+                title='New user? Click here for more information'
+                arrow
+              >
+                {/* <Button onClick={handleTooltipOpen}>Click</Button> */}
+                <SpeedDial
+                  ariaLabel='SpeedDial basic example'
+                  icon={<SpeedDialIcon />}
+                >
+                  <SpeedDialAction
+                    icon={<SpeedDialIcon />}
+                    tooltipTitle='Add Information'
+                  />
+                </SpeedDial>
+              </Tooltip>
+            </div>
+          </ClickAwayListener>
+        </Box>
+      </div>
+    </>
   );
 };
 
