@@ -21,8 +21,6 @@ const Signals = () => {
     getSignals
   );
 
-  console.log(data);
-
   return (
     <>
       <Box sx={{ marginBottom: `5rem` }}>
