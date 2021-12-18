@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.renegade.weas.MainActivity
-import com.renegade.weas.R
+import com.renegade.weas.ui.MainActivity
 import com.renegade.weas.databinding.FragmentMoreBinding
 import com.renegade.weas.ui.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
