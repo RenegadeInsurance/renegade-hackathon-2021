@@ -10,6 +10,7 @@ def register_for_notification(request):
     user_detail_serializer = serializer.UserDetailsSerializer(data=request.data)
 
     if user_detail_serializer.is_valid():
+        user_detail_serializer.save()
         return Response(
             user_detail_serializer.data,
             status=status.HTTP_201_CREATED
