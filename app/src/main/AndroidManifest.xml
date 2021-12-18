@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.renegade.weas">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:name=".App"
@@ -17,15 +18,17 @@
             android:name=".ui.login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"></activity>
     </application>
 
 </manifest>

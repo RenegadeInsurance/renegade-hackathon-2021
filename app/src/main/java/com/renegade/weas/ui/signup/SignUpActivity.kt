@@ -41,9 +41,7 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
 
-        binding.logInTV.setOnClickListener{
-            finish()
-        }
 
+        }
     }
 }
