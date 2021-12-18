@@ -5,7 +5,7 @@ namespace Modules\Response\Entities;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Response extends Model
+class ResponseUser extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class Response extends Model
 
     protected static function newFactory()
     {
-        return \Modules\Response\Database\factories\ResponseFactory::new();
+        return \Modules\Response\Database\factories\ResponseUserFactory::new();
     }
 }

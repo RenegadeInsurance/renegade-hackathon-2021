@@ -15,6 +15,7 @@ class ResponseDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        $this->call(ResponseTableSeeder::class);
 
         // $this->call("OthersTableSeeder");
     }

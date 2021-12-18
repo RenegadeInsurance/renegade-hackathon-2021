@@ -4,18 +4,13 @@ namespace Modules\Response\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Response\Entities\Response;
 
 class ResponseTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        Response::factory(1000)->create();
     }
 }
