@@ -19,24 +19,6 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.signUpBtn.setOnClickListener {
-            binding.loadingSignUp.visibility = View.VISIBLE
-            auth.createUserWithEmailAndPassword(
-                binding.usernameSignUp.text.toString(),
-                binding.passwordSignUp.text.toString()
-            ).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    startActivity(
-                        Intent(this, MainActivity::class.java)
-                    )
-                    finish()
-                } else {
-                    Toast.makeText(this, "Sign Up Failed.", Toast.LENGTH_LONG).show()
-                }
-                binding.loadingSignUp.visibility = View.INVISIBLE
-
-            }
-        }
 
         binding.logInTV.setOnClickListener{
             finish()

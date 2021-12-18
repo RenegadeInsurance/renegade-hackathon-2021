@@ -3,20 +3,24 @@ package com.renegade.weas.network.apiservices
 import com.renegade.weas.network.response.weatherresponse.WeatherResponse
 import retrofit2.Response
 import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-val APIKEY ="57390f3e72838c9e211d91d6960de1fc"
-interface WeatherApi {
-    @GET("weather")
-       suspend fun getApi(
-        @Field ("lat" ) lat: Double,
-        @Field("lon") lon: Double,
-        @Field("cnt") cnt: Int? =null,
-        @Field("appid") appid: String= APIKEY,
-        @Field("mode") mode: String?=null,
-        @Field("units") units: String?=null,
-        @Field("lang") lang: String?=null
-        ): Response<WeatherResponse>
+import retrofit2.http.Query
 
+val APIKEY = "57390f3e72838c9e211d91d6960de1fc"
+
+interface WeatherApi {
+
+    @GET("/data/2.5/weather")
+    suspend fun getApi(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("cnt") cnt: Int? = null,
+        @Query("appid") appid: String = APIKEY,
+        @Query("mode") mode: String? = null,
+        @Query("units") units: String? = null,
+        @Query("lang") lang: String? = null
+    ): Response<WeatherResponse>
 
 
 }
