@@ -50,7 +50,7 @@ class _OfflineRequestState extends State<OfflineRequest> {
             },
           ),
           const Text(
-            '(+9779800000000)',
+            'Emergency Call: 100',
           ),
         ],
       ),

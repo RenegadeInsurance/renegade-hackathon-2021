@@ -11,12 +11,4 @@ class NewsModel {
     required this.creationDate,
   });
 
-  factory NewsModel.fromJson(final json) {
-    return NewsModel(
-      title: json["title"],
-      newsContent: json["newsContent"],
-      imageURL: json["imageURL"],
-      creationDate: json["creationDate"],
-    );
-  }
 }

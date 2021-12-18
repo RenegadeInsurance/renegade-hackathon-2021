@@ -20,6 +20,7 @@ class _NewsViewState extends State<NewsView> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final news = snapshot.data;
+              print(snapshot.data);
               return Column(
                 children: [
                   const SizedBox(
@@ -57,22 +58,23 @@ class _NewsViewState extends State<NewsView> {
                 ],
               );
             } else if (snapshot.hasError) {
+              print(snapshot.error);
               return Text(
                 snapshot.error.toString(),
               );
             }
-            return const CircularProgressIndicator();
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }
 }
 
 Future<NewsModel> getNews() async {
-  final url = Uri.http('user:pass@10.0.2.2:8000', '/api/news/get-news/');
-  final response = await http.get(url);
+  var url = Uri.http('bda9-27-34-16-254.ngrok.io', '/api/news/get-news/');
+  var response = await http.get(url);
   if (response.statusCode == 200) {
-    String newsJson = jsonDecode(response.body);
-    return NewsModel.fromJson(newsJson);
+    var newsJson = jsonDecode(response.body);
+    return newsJson;
   } else {
     throw Exception();
   }
