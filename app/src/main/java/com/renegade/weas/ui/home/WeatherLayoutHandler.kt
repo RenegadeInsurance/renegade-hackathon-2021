@@ -2,6 +2,7 @@ package com.renegade.weas.ui.home
 
 import com.renegade.weas.databinding.WeatherLayoutBinding
 import com.renegade.weas.network.response.weatherresponse.WeatherResponse
+import com.renegade.weas.network.safeapicall.Resource
 import java.util.*
 
 class WeatherLayoutHandler(
