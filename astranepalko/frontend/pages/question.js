@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Block, { InputField } from '../comp/form-block';
 
+// layout for the admin page
+import Admin from "../layouts/Admin.js";
+
 export default function Home() {
   const questionStruct = {
     id: null,
@@ -81,15 +84,20 @@ export default function Home() {
       });
   };
   return (
-    <div className="container">
+    <>
+    <div key="asdfadsfew" className="container pb-5">
       <div className="card">
+      <h1 className="card-title">Create A Question</h1>
         <form onSubmit={saveQuestion}>
-          <div>
+          <div className="row">
+            <div className="col-md-12">
             <InputField
               name="question"
               label="Question"
               onChangeAction={e => updateQuestion('question', e)}
-            />
+              />
+            </div>
+            <div className="col-md-3">
             <InputField
               type="range"
               name="weight"
@@ -98,17 +106,25 @@ export default function Home() {
               max="100"
               onChangeAction={e => updateQuestion('weight', e)}
             />
+            </div>
+
           </div>
-          <div>
+
+
+
+          <div className="row">
             {question.answers.map((item, i) => {
               return (
                 <>
-                  <fieldset key="answer_${i}">
-                    <label>Choice {i + 1}</label>
+                <div key={`${i}`} className="col-md-4 mb-2 stretch-card transparent">
+                  <div className="card">
+                    <div className="card-body">
+                    <fieldset key="answer_${i}">
+                    <label>Option {i + 1}</label>
                     <InputField
                       key={`choice_${i}`}
                       name={`choice_${i}`}
-                      label="New Choice"
+                      label=""
                       value={item.weight}
                       onChangeAction={e => {
                         updateAnswer('answer', e.target.value, i);
@@ -118,7 +134,7 @@ export default function Home() {
                       type="range"
                       key={`weight_${i}`}
                       name={`weight_${i}`}
-                      label="Probability Factor"
+                      label="Impact Scale(Low to High)"
                       min="0"
                       max="100"
                       onChangeAction={e => {
@@ -126,15 +142,26 @@ export default function Home() {
                       }}
                     />
                   </fieldset>
+                    </div>
+                  </div>
+                </div>
                 </>
               );
             })}
-            <button onClick={addOption}>Add Choices</button>
           </div>
-          <button>Save Question</button>
+          <div className="template-demo">
+            <button type="button" className="btn btn-outline-primary btn-fw" onClick={addOption}>Add Choices</button>
+          </div>
+          <div className="template-demo">
+            <button type="submit" className="btn btn-outline-success btn-fw">Save Question</button>
+          </div>
+
         </form>
         <pre>{JSON.stringify(question, null, 2)}</pre>
       </div>
     </div>
+    </>
   );
 }
+
+Home.layout = Admin;

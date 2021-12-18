@@ -16,6 +16,7 @@ export default function NavBar() {
   const [display, changeDisplay] = useState('none');
 
   return (
+    <>
     <Flex>
       {/* Mobile */}
       <IconButton
@@ -95,5 +96,6 @@ export default function NavBar() {
         </Flex>
       </Flex>
     </Flex>
+    </>
   );
 }

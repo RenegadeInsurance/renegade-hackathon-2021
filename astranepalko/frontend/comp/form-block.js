@@ -84,6 +84,7 @@ function InputField(props) {
         type={type || 'text'}
         name={name}
         key={name}
+        className="form-control form-control-sm"
         onChange={e => {
           setValue(e.target.value);
           onChangeAction(e);
