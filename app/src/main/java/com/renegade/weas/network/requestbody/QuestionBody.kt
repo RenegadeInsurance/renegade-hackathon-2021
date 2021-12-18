@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class QuestionBody(
     @SerializedName("current_ques")
-    val currentQuestionID: Long,
+    val currentQuestionID: Int,
 
     @SerializedName("answer")
-    val ansID: Long
+    val ansID: Int
 )

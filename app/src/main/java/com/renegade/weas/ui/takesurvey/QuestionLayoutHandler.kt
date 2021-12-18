@@ -3,19 +3,41 @@ package com.renegade.weas.ui.takesurvey
 import android.util.TypedValue
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.core.view.setPadding
 import com.renegade.weas.R
 import com.renegade.weas.databinding.QuestionLayoutBinding
 import com.renegade.weas.network.response.questionresponse.Answer
 
 class QuestionLayoutHandler(
-    private val binding: QuestionLayoutBinding
+    private val binding: QuestionLayoutBinding,
+    private val requestNextQuestion: (questionID: Int, answerID: Int) -> Unit
 ) {
-    fun writeQuestion(question: String) {
+
+    private var questionID: Int? = null
+
+    init {
+        binding.questionLayoutNextBtn.setOnClickListener {
+            val selectedId = binding.questionLayoutAnswersRadioGroup.checkedRadioButtonId
+            if (selectedId == -1) {
+                Toast.makeText(binding.root.context, "Please Select An Answer", Toast.LENGTH_LONG)
+                    .show()
+            } else {
+                requestNextQuestion(
+                    questionID!!,
+                    binding.questionLayoutAnswersRadioGroup.checkedRadioButtonId
+                )
+            }
+        }
+    }
+
+    fun writeQuestion(question: String, questionID: Int) {
+        this.questionID = questionID
         binding.questionLayoutQuestionTV.text = question
     }
 
     fun setUpAnswers(answerList: List<Answer>) {
+        binding.questionLayoutAnswersRadioGroup.removeAllViews()
         answerList.forEach { answer ->
             val radioButton = getRadioButton(answer.answer, answer.id)
             binding.questionLayoutAnswersRadioGroup.addView(radioButton)

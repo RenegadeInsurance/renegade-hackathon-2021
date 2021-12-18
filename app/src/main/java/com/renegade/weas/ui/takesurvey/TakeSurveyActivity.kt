@@ -23,7 +23,12 @@ class TakeSurveyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTakeSurveyBinding.inflate(layoutInflater)
-        questionLayoutHandler = QuestionLayoutHandler(binding.takeSurveyActQuestionLayout)
+        questionLayoutHandler =
+            QuestionLayoutHandler(
+                binding.takeSurveyActQuestionLayout
+            ) { questionID, answerID ->
+                viewModel.getNextQuestion(questionID, answerID)
+            }
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setUpObserverForQuestion()
@@ -35,7 +40,6 @@ class TakeSurveyActivity : AppCompatActivity() {
     }
 
 
-
     private fun setUpObserverForQuestion() {
         viewModel.questionLiveData.observe(this) { questionResource ->
             when (questionResource) {
@@ -43,7 +47,6 @@ class TakeSurveyActivity : AppCompatActivity() {
                     binding.takeSurveyActProgressBar.visibility = View.INVISIBLE
                     makeScreenTouchable()
                     questionResource.value?.let { setUpQuestion(it) }
-                    questionResource.value?.let { setUpAnswers(it) }
                 }
                 is Resource.Failure -> {
                     binding.takeSurveyActProgressBar.visibility = View.INVISIBLE
@@ -68,7 +71,13 @@ class TakeSurveyActivity : AppCompatActivity() {
     }
 
     private fun setUpQuestion(value: QuestionResponse) {
-        questionLayoutHandler.writeQuestion(value.question)
+        //Means we got result from the server
+        if (value.id == -1) {
+            Toast.makeText(this, value.question, Toast.LENGTH_LONG).show()
+        } else {
+            questionLayoutHandler.writeQuestion(value.question, value.id)
+            setUpAnswers(value)
+        }
     }
 
     private fun askForFirstQuestion() {
@@ -80,6 +89,10 @@ class TakeSurveyActivity : AppCompatActivity() {
             super.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

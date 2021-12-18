@@ -5,6 +5,7 @@ import com.renegade.weas.network.apiservices.AuthApi
 import com.renegade.weas.network.apiservices.QuestionApi
 import com.renegade.weas.network.apiservices.WeatherApi
 import com.renegade.weas.network.requestbody.LoginBody
+import com.renegade.weas.network.requestbody.QuestionBody
 import com.renegade.weas.network.requestbody.SignUpBody
 import com.renegade.weas.network.response.loginresponse.LoginResponse
 import com.renegade.weas.network.response.questionresponse.QuestionResponse
@@ -50,6 +51,14 @@ constructor(
 
     suspend fun getFirstQuestion(): Resource<QuestionResponse> {
         return SafeApiCall.execute { questionApi.getFirstQuestion() }
+    }
+
+    suspend fun getNextQuestion(questionID: Int, answerID: Int): Resource<QuestionResponse> {
+        return SafeApiCall.execute {
+            questionApi.getNextQuestion(
+                QuestionBody(questionID, answerID)
+            )
+        }
     }
 
 }

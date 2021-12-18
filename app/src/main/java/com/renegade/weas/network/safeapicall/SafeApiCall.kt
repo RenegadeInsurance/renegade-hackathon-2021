@@ -17,19 +17,19 @@ object SafeApiCall {
             try {
                 val response = apiCall.invoke()
                 if (response.isSuccessful) {
-                    Log.e(TAG, "execute: success")
+                    Log.d(TAG, "execute: success")
                     Resource.Success(response.body())
                 } else {
                     if (response.code() == 401) {
-                        Log.e(TAG, "UnAuthorized Request")
+                        Log.d(TAG, "UnAuthorized Request")
                         Resource.Loading
                     } else {
-                        Log.e(TAG, "execute: sign up fail")
+                        Log.d(TAG, "execute: sign up fail")
                         Resource.Failure("Something went wrong", false)
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Unknown Api Error: ${e.message}")
+                Log.d(TAG, "Unknown Api Error: ${e.message}")
                 Resource.Failure("Something went wrong", true)
             }
         }

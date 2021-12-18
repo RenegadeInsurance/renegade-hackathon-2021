@@ -20,7 +20,7 @@ private const val TAG = "HomeFragment"
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
-private lateinit var weatherLayoutHandler :WeatherLayoutHandler
+    private lateinit var weatherLayoutHandler: WeatherLayoutHandler
     private val sharedViewModel: MainActivityViewModel by activityViewModels()
 
     override fun onCreateView(

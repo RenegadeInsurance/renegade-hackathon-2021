@@ -19,12 +19,18 @@ constructor(
 ) : ViewModel() {
 
     private val _questionLiveData = MutableLiveData<Resource<QuestionResponse>>()
-     val questionLiveData: LiveData<Resource<QuestionResponse>> get() = _questionLiveData
+    val questionLiveData: LiveData<Resource<QuestionResponse>> get() = _questionLiveData
 
     fun getFirstQuestion() {
         _questionLiveData.value = Resource.Loading
         viewModelScope.launch {
             _questionLiveData.value = mainRepository.getFirstQuestion()
+        }
+    }
+
+    fun getNextQuestion(questionID: Int, answerID: Int) {
+        viewModelScope.launch {
+            _questionLiveData.value = mainRepository.getNextQuestion(questionID, answerID)
         }
     }
 }
