@@ -24,11 +24,7 @@ const CustomSpeedDial = () => {
   );
   const actions = [
     {
-      icon: withLink('/login', <CloudSyncTwoToneIcon />),
-      name: 'Sync information',
-    },
-    {
-      icon: withLink('/users', <FmdBadTwoToneIcon />),
+      icon: withLink('/formstuff', <FmdBadTwoToneIcon />),
       name: 'Risk in your zone? Send alerts',
     },
   ];
