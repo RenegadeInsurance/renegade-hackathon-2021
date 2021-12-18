@@ -50,6 +50,55 @@ class AlertPersonnel(BaseModel):
         max_length=128,
     )
 
+    #
+    # relative = models.ForeignKey(
+    #     verbose_name=_("Relative"),
+    #     help_text=_("Relative of the people"),
+    #     to=UserDetails,
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True,
+    #     default=None
+    # )
+
+    def __str__(self):
+        return self.name
+
+
+class AlertPersonnel(BaseModel):
+    name = models.CharField(
+        verbose_name=_("Name"),
+        help_text=_("Name of the user."),
+        max_length=256,
+        validators=[validate_name],
+    )
+    email = models.EmailField(
+        verbose_name=_("Email"),
+        help_text=_("Email of the user."),
+    )
+    phone_number = models.CharField(
+        verbose_name=_("Phone Number"),
+        help_text=_("Phone Number to send notification on."),
+        validators=[validate_phone],
+        max_length=32,
+    )
+    relationship = models.CharField(
+        verbose_name=_("Relationship"),
+        help_text=_("Relationship to the person."),
+        max_length=128,
+    )
+
+    #
+    # relative = models.ForeignKey(
+    #     verbose_name=_("Relative"),
+    #     help_text=_("Relative of the people"),
+    #     to=UserDetails,
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True,
+    #     default=None
+    # )
+
     def __str__(self):
         return self.name
 
@@ -63,6 +112,10 @@ class UserDetails(BaseModel):
     COUNTRY_CHOICES = [
         ("Nepal", "Nepal"),
         ("Nepal", "India"),
+    ]
+    RISK_AMOUNT_CHOICES = [
+        ("High", "high"),
+        ("Moderate", "Moderate"),
     ]
 
     # PERSONAL DETAIL !!
@@ -112,17 +165,27 @@ class UserDetails(BaseModel):
     )
 
     # ... Risk Assessment !!
-    risks = models.ForeignKey(
-        to=RiskAssessment,
-        on_delete=models.CASCADE,
-        verbose_name=_("Risks"),
-        help_text=_("Keeps track of Severeness of risk in different category in users area.")
+    # risks = models.ForeignKey(
+    #     to=RiskAssessment,
+    #     on_delete=models.CASCADE,
+    #     verbose_name=_("Risks"),
+    #     help_text=_("Keeps track of Severeness of risk in different category in users area.")
+    # )
+    category = models.CharField(
+        verbose_name=_("Category"),
+        help_text=_("Category of risk"),
+        max_length=64,
     )
-    alert_personnel = models.ForeignKey(
+    risk_amount = models.CharField(
+        verbose_name=_("Risk Amount"),
+        help_text=_("Severeness of risk"),
+        max_length=32,
+        choices=RISK_AMOUNT_CHOICES,
+    )
+    relative = models.ManyToManyField(
         to=AlertPersonnel,
-        on_delete=models.CASCADE,
-        verbose_name=_("Alert Personnel"),
-        help_text=_("Group of people to send alert to."),
+        verbose_name=_("Relatives"),
+        help_text=_("Relatives of the user")
     )
 
     def __str__(self):

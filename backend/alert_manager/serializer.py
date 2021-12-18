@@ -21,5 +21,5 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         fields = [
             "name", "email", "phone_number", "date_of_birth",
             "biological_gender", "country", "state", "city",
-            "risks", "alert_personnel"
+            "risk_amount", "category", "relative"
         ]
