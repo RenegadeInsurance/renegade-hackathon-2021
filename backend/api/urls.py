@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 # Register viewset with Router
-router.register('personal', TechUserModelViewSet, basename= 'personal')
+router.register('personal', PersonalModelViewSet, basename= 'personal')
 
 urlpatterns =[
 	path('',include(router.urls))
