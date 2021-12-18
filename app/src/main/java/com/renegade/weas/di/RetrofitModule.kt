@@ -18,7 +18,8 @@ import javax.inject.Singleton
 
 private const val TAG = "RetrofitModule"
 
-const val BASE_URL = ""
+const val BASE_URL_OUR = "http://2022-202-79-35-20.ngrok.io/"
+const val BASE_URL_WEATHER = ""
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -42,7 +43,7 @@ object RetrofitModule {
         return httpBuilder.build()
     }
 
-
+    @OurApi
     @Singleton
     @Provides
     fun providesRetrofit(
@@ -52,13 +53,20 @@ object RetrofitModule {
     ): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL_OUR)
             .client(getHttpClient(dataStoreHelper, httpLoggingInterceptor, authenticator))
             .build()
 
+    @WeatherApi
+    @Provides
+    @Singleton
+    private fun provideRetrofit() =
+        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(API).build()
+
+
     @Singleton
     @Provides
-    fun providesAuthApi(retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
+    fun providesAuthApi(@OurApi retrofit: Retrofit): AuthApi = retrofit.create(AuthApi::class.java)
 
 
     private fun getInterceptorWithTokenHeader(dataStoreHelper: DataStoreHelper): Interceptor {
