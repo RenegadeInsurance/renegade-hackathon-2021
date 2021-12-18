@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/pages/news.dart';
 import 'package:mobile/pages/offlineRequest.dart';
 import 'package:mobile/widget/webviewWidget.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,9 +15,7 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     WebViewWidget(),
     OfflineRequest(),
-    Text(
-      'Index 2: School',
-    ),
+    NewsView(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -38,19 +36,15 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.home,
             ),
-            label: 'a',
+            label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.business,
-            ),
-            label: 'b',
+            icon: Icon(Icons.help),
+            label: 'Help',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.school,
-            ),
-            label: 'c',
+            icon: Icon(Icons.book),
+            label: 'News',
           ),
         ],
         currentIndex: _selectedIndex,

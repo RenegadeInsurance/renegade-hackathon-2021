@@ -14,6 +14,7 @@ dependencies:
   flutter_local_notifications: ^9.1.5
   geolocator: ^8.0.1
   url_launcher: ^6.0.17
+  font_awesome_flutter: ^9.2.0
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -24,3 +25,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/flood.jpeg
