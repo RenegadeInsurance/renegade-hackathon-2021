@@ -8,7 +8,7 @@ import java.util.*
 class WeatherLayoutHandler(
     private val binding: WeatherLayoutBinding,
 ) {
-    private lateinit var weatherResponse: WeatherResponse
+
 
     fun updateValues(weatherResponse: WeatherResponse) {
         var date = Calendar.getInstance().time
