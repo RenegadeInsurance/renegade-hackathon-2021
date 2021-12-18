@@ -1,0 +1,13 @@
+{
+    "name": "Response",
+    "alias": "response",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Response\\Providers\\ResponseServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
