@@ -3,6 +3,37 @@ from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 # Create your models here.
 
+class Attribute(models.Model):
+    OPTIONS = (
+        ('boolean', 'Boolean'),
+        ('radio', 'Radio'),
+        ('checkbox', 'Checkbox'),
+        ('dropdown', 'Dropdown'),
+        ('date', 'Date'),
+        ('text', 'Text'),
+        ('int', 'Integer'),
+        ('decimal', 'Decimal'),
+        ('file', 'File')
+    )
+    name = models.CharField(max_length=150)
+    option_type = models.CharField(max_length=12, choices=OPTIONS)
+
+    def __str__(self):
+        return self.name
+    
+class Name(models.Model):
+    name=models.CharField(max_length=20)
+    def __str__(self):
+        return self.name
+
+class Form(models.Model):
+    value = models.ForeignKey(Attribute, on_delete=models.CASCADE)
+    name = models.ForeignKey(Name, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.value} {self.name}"
+
+
 class User(models.Model):
     first_name=models.CharField(max_length=50,blank=False)
     last_name=models.CharField(max_length=50,blank=False)
