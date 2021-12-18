@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %}
+{%load static %}
+
+{% block content %}
+
+<div style="display:flex;width:80%;margin:auto;background-color:#CBC3E3">
+    <div style="flex:1;margin:10px;padding:2px">
+        <form method="POST">
+        {{form1|crispy}}
+            {{form2|crispy}}
+            <br>
+        <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+    <div>
+        <div style="margin-right: 20px;">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock%}
