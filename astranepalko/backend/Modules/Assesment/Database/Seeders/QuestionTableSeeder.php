@@ -4,18 +4,13 @@ namespace Modules\Assesment\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Assesment\Entities\Question;
 
 class QuestionTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        Question::factory(10)->create();
     }
 }

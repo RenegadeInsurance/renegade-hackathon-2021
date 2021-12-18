@@ -5,22 +5,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestionFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = \Modules\Assesment\Entities\Question::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
+            "question" => $this->faker->paragraph() . "?",
+            "weight" => $this->faker->randomFloat(2, 0, 1),
         ];
     }
 }

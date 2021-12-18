@@ -2,15 +2,16 @@
 
 namespace Modules\Assesment\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Question extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $connection = "mongodb";
+    protected $guard = [];
+
     protected static function newFactory()
     {
         return \Modules\Assesment\Database\factories\QuestionFactory::new();
