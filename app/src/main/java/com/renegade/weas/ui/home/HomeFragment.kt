@@ -11,9 +11,11 @@ import com.renegade.weas.R
 import com.renegade.weas.databinding.FragmentHomeBinding
 import com.renegade.weas.network.safeapicall.Resource
 import com.renegade.weas.ui.MainActivityViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.log
 
 private const val TAG = "HomeFragment"
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!

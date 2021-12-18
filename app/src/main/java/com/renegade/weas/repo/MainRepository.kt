@@ -10,13 +10,12 @@ import javax.inject.Inject
 class MainRepository
 @Inject
 constructor(
-private val weatherApi: WeatherApi
+    private val weatherApi: WeatherApi
 ) {
 
 
-
     suspend fun getWeather(lat: Double, lon: Double): Resource<WeatherResponse> {
-    return    SafeApiCall.execute {
+        return SafeApiCall.execute {
             weatherApi.getApi(lat, lon)
         }
     }

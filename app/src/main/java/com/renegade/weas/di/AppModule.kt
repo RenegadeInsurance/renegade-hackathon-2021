@@ -1,5 +1,6 @@
 package com.renegade.weas.di
 
+import com.renegade.weas.network.apiservices.WeatherApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +17,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    private fun provideRetrofit() =
-        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()). baseUrl (API).build()
+    fun provideRetrofit(): Retrofit =
+        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(API).build()
 
-
+    @Provides
+    @Singleton
+    fun provideWeatherApi(retrofit: Retrofit):WeatherApi = retrofit.create(WeatherApi::class.java)
 }

@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.renegade.weas.databinding.FragmentCompareBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CompareFragment : Fragment() {
     private var _binding: FragmentCompareBinding? = null
     private val binding: FragmentCompareBinding get() = _binding!!
