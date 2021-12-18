@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 child: WebView(
-                  initialUrl: 'https://ec21-113-199-231-136.ngrok.io/',
+                  initialUrl: 'https://www.bennish.net/web-notifications.html',
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (controller) =>
                       {this.controller = controller},
