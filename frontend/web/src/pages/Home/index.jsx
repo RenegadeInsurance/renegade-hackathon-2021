@@ -8,6 +8,7 @@ import Signals from 'pages/Home/components/Signals';
 import WeatherLocOverview from 'pages/Home/components/WeatherLocOverview';
 import CustomSpeedDial from 'pages/Home/components/CustomSpeedDial';
 import FiveDaysForecast from 'pages/Home/components/FiveDaysForecast';
+import Footer from 'components/shared/Footer';
 
 const useStyles = makeStyles({
   root: {
@@ -57,6 +58,8 @@ const Home = () => {
       </div>
 
       <FiveDaysForecast />
+
+      <Footer />
     </>
   );
 };

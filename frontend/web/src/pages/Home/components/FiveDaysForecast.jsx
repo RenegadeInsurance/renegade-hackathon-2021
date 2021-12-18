@@ -6,6 +6,7 @@ import {
   Divider,
   Skeleton,
   Avatar,
+  Typography,
 } from '@mui/material';
 import { useQuery } from 'react-query';
 
@@ -21,12 +22,20 @@ const FiveDaysForecast = () => {
   return (
     <>
       <Container>
+        <Typography
+          textAlign='center'
+          variant='h4'
+          paddingTop={2}
+          paddingBottom={2}
+        >
+          Weather Forecast
+        </Typography>
         <List>
           {isLoading ? (
             <Skeleton />
           ) : (
             data.forecast.forecastday.map((singleDay) => (
-              <>
+              <div key={singleDay.date}>
                 <ListItem>
                   <ListItemText>
                     {weekday[new Date(singleDay.date).getDay()]}
@@ -42,7 +51,7 @@ const FiveDaysForecast = () => {
                   <ListItemText>H: {singleDay.day.mintemp_c}°</ListItemText>
                 </ListItem>
                 <Divider />
-              </>
+              </div>
             ))
           )}
         </List>
