@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-const WeatherLocOverview = ({ location, temp, weatherType }) => {
+const WeatherLocOverview = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
@@ -32,8 +32,6 @@ const WeatherLocOverview = ({ location, temp, weatherType }) => {
     ['getWeather', { locName: 'kathmandu' }],
     getWeather
   );
-
-  console.log(data);
 
   return (
     <>

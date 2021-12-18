@@ -7,6 +7,7 @@ import BG_PlaceHolder from 'assets/bg_placeholder.jpg';
 import Signals from 'pages/Home/components/Signals';
 import WeatherLocOverview from 'pages/Home/components/WeatherLocOverview';
 import CustomSpeedDial from 'pages/Home/components/CustomSpeedDial';
+import FiveDaysForecast from 'pages/Home/components/FiveDaysForecast';
 
 const useStyles = makeStyles({
   root: {
@@ -40,32 +41,22 @@ const useStyles = makeStyles({
 
 const Home = () => {
   const classes = useStyles();
-  const [signals, setSignals] = useState([
-    { title: 'Humidity', value: '63%' },
-    { title: 'Visibility', value: '4km' },
-    { title: 'UV Index', value: 'Low 0' },
-  ]);
-  const [temp, setTemp] = useState(19);
-  const [location, setLocation] = useState(`Nepal`);
-  const [weatherType, setWeatherType] = useState(`Sunny Day`);
 
   return (
     <>
       <div className={classes.root}>
         <Container>
-          <WeatherLocOverview
-            temp={temp}
-            weatherType={weatherType}
-            location={location}
-          />
+          <WeatherLocOverview />
         </Container>
         <Container sx={{ textAlign: `center` }}>
-          <Signals signals={signals} />
+          <Signals />
         </Container>
         <Box sx={{ position: `fixed`, right: 0, bottom: 0, padding: `1rem` }}>
           <CustomSpeedDial />
         </Box>
       </div>
+
+      <FiveDaysForecast />
     </>
   );
 };
