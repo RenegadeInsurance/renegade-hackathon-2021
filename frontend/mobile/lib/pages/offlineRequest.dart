@@ -31,7 +31,7 @@ class _OfflineRequestState extends State<OfflineRequest> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Icon(
-            Icons.help,
+            Icons.announcement,
             size: 46,
           ),
           const SizedBox(
