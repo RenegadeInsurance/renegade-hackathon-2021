@@ -4,6 +4,7 @@ import Loading from './utils/Loading';
 
 const Home = React.lazy(() => import('./pages/Home'));
 const FormStuff = React.lazy(() => import('./pages/FormStuff'));
+const RadarLiveView = React.lazy(() => import('./pages/RadarLiveView'));
 
 const AllRoutes = () => {
   return (
@@ -21,6 +22,14 @@ const AllRoutes = () => {
         element={
           <React.Suspense fallback={<Loading />}>
             <FormStuff />
+          </React.Suspense>
+        }
+      />
+      <Route
+        path='/radar-live-view'
+        element={
+          <React.Suspense fallback={<Loading />}>
+            <RadarLiveView />
           </React.Suspense>
         }
       />

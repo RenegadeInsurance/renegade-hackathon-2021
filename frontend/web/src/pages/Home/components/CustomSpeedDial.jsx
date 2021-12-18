@@ -7,8 +7,9 @@ import {
   ClickAwayListener,
 } from '@mui/material';
 import {
-  CloudSyncTwoTone as CloudSyncTwoToneIcon,
+  TrackChangesTwoTone as TrackChangesTwoToneIcon,
   FmdBadTwoTone as FmdBadTwoToneIcon,
+  TrackChangesTwoTone,
 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
@@ -26,6 +27,10 @@ const CustomSpeedDial = () => {
     {
       icon: withLink('/formstuff', <FmdBadTwoToneIcon />),
       name: 'Risk in your zone? Send alerts',
+    },
+    {
+      icon: withLink('/radar-live-view', <TrackChangesTwoTone />),
+      name: 'Radar live view',
     },
   ];
 
