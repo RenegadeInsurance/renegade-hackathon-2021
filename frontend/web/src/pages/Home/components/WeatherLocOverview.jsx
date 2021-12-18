@@ -1,6 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const WeatherLocOverview = ({ location, temp, weatherType }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <>
       <Box
@@ -21,7 +25,12 @@ const WeatherLocOverview = ({ location, temp, weatherType }) => {
         </div>
 
         <div>
-          <Box sx={{ transform: `rotate(270deg)`, fontSize: `1.5rem` }}>
+          <Box
+            sx={{
+              transform: `${!matches && `rotate(270deg)`}`,
+              fontSize: `1.5rem`,
+            }}
+          >
             {weatherType}
           </Box>
         </div>
