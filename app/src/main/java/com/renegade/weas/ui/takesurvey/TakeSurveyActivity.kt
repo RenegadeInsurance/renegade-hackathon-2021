@@ -1,11 +1,14 @@
 package com.renegade.weas.ui.takesurvey
 
+import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.renegade.weas.R
 import com.renegade.weas.databinding.ActivityTakeSurveyBinding
 import com.renegade.weas.extensions.makeScreenNotTouchable
 import com.renegade.weas.extensions.makeScreenTouchable
@@ -73,7 +76,9 @@ class TakeSurveyActivity : AppCompatActivity() {
     private fun setUpQuestion(value: QuestionResponse) {
         //Means we got result from the server
         if (value.id == -1) {
-            Toast.makeText(this, value.question, Toast.LENGTH_LONG).show()
+            intent.putExtra("risk", value.question)
+            setResult(Activity.RESULT_OK, intent)
+            finish()
         } else {
             questionLayoutHandler.writeQuestion(value.question, value.id)
             setUpAnswers(value)
@@ -91,6 +96,10 @@ class TakeSurveyActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.mainact_bottom_nav_menu, menu)
+        return true
+    }
 
 
 }

@@ -1,9 +1,12 @@
 package com.renegade.weas.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.renegade.weas.databinding.ActivityMainBinding
 import com.renegade.weas.network.safeapicall.Resource
@@ -21,6 +24,22 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     private val viewModel: MainActivityViewModel by viewModels()
     private lateinit var weatherLayoutHandler: WeatherLayoutHandler
 
+    private val takeSurveyStarter =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                if (result.data != null) {
+                    val risk = result.data!!.getStringExtra("risk")
+                    AlertDialog.Builder(this)
+                        .setTitle("Your Flood Risk")
+                        .setMessage(risk)
+                        .setCancelable(false)
+                        .setPositiveButton(
+                            "Thanks"
+                        ) { dialogInterface, _ ->  dialogInterface.dismiss()}
+                        .create().show()
+                }
+            }
+        }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,11 +96,11 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
 
     private fun setClickListenerForTakeSurveyBtn() {
         binding.homeFrgTakeSurveyBtn.setOnClickListener {
-            startActivity(Intent(this, TakeSurveyActivity::class.java))
+            takeSurveyStarter.launch(Intent(this, TakeSurveyActivity::class.java))
         }
     }
 
-    override fun permissionAllowed(){
+    override fun permissionAllowed() {
 
     }
 }
