@@ -13,11 +13,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Signals = () => {
+const Signals = ({ loc }) => {
   const classes = useStyles();
 
   const { data, isLoading, error, refetch } = useQuery(
-    ['getSignal', { locName: 'kathmandu' }],
+    ['getSignal', { locName: loc }],
     getSignals
   );
 

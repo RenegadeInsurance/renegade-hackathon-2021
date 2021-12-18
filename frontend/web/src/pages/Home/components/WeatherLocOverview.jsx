@@ -23,15 +23,21 @@ const useStyles = makeStyles({
   },
 });
 
-const WeatherLocOverview = () => {
+const WeatherLocOverview = ({ loc, handleChange }) => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
+  const [tempState, setTempState] = useState(loc);
+
   const { data, isLoading, error, refetch } = useQuery(
-    ['getWeather', { locName: 'kathmandu' }],
+    ['getWeather', { locName: loc }],
     getWeather
   );
+
+  const handleInput = (e) => {
+    setTempState(e.target.value);
+  };
 
   return (
     <>
@@ -48,11 +54,20 @@ const WeatherLocOverview = () => {
         ) : (
           <div>
             <Box margin={0} p={0}>
-              <input
-                type='text'
-                className={classes.customInput}
-                value={data.location.name}
-              />
+              <form
+                onSubmit={(e) => {
+                  handleChange(tempState);
+                  e.preventDefault();
+                }}
+              >
+                <input
+                  type='text'
+                  className={classes.customInput}
+                  value={tempState}
+                  onChange={handleInput}
+                  style={{ textTransform: 'capitalize' }}
+                />
+              </form>
             </Box>
             <Box margin={0} p={0}>
               <Typography fontSize='7rem'>{data.current.temp_c}°</Typography>

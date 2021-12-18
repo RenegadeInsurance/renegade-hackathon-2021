@@ -1,7 +1,6 @@
+import phonenumbers
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
-import phonenumbers
 
 
 def validate_phone(number: str) -> None:
@@ -11,8 +10,13 @@ def validate_phone(number: str) -> None:
     :param number: Phone Number in any format
     :return: None
     """
-    _number = phonenumbers.parse(number, "NP")
-    if not phonenumbers.is_valid_number(_number):
+    try:
+        _number = phonenumbers.parse(number, "NP")
+        if not phonenumbers.is_valid_number(_number):
+            raise ValidationError(
+                _(f"`{number}` is not a Valid Number."),
+            )
+    except Exception as e:
         raise ValidationError(
             _(f"`{number}` is not a Valid Number."),
         )
