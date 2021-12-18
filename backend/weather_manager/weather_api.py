@@ -53,7 +53,7 @@ class WeatherAPI:
             })
         else:
             resp = requests.get(self.WEATHERAPI_CURRENT_WEATHER_API_ENDPOINT, params={
-                "key": self.api_key,
+                "key": self.api_key.get("weatherapi"),
                 "q": location,
             })
 
