@@ -15,6 +15,7 @@ const AllRoutes = () => {
           </React.Suspense>
         }
       />
+      <Route path='*' element={<>404 Not Found</>} />
     </Routes>
   );
 };

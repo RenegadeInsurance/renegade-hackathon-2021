@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 
+# Starting point for all urls !!
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/location/', include('location_manager.urls')),
-    path('api/weather/', include('weather_manager.urls'))
+    path('api/weather/', include('weather_manager.urls')),
+    path('api/risk-management/', include('risk_management.urls')),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
