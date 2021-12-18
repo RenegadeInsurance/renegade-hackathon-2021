@@ -22,6 +22,7 @@ constructor(
      val questionLiveData: LiveData<Resource<QuestionResponse>> get() = _questionLiveData
 
     fun getFirstQuestion() {
+        _questionLiveData.value = Resource.Loading
         viewModelScope.launch {
             _questionLiveData.value = mainRepository.getFirstQuestion()
         }

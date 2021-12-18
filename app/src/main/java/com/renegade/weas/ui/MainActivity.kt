@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setObserverForIsLoggedIn()
 
+        viewModel.doesAccessTokenExists()
+
         setUpNavControllerWithBottomNav()
 
 

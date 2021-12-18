@@ -5,7 +5,6 @@ import retrofit2.Response
 import retrofit2.http.POST
 
 interface QuestionApi {
-
-    @POST("api/v1/question")
+    @POST("api/v1/question/")
     suspend fun getFirstQuestion(): Response<QuestionResponse>
 }
