@@ -32,7 +32,8 @@ private lateinit var weatherLayoutHandler :WeatherLayoutHandler
         sharedViewModel.weatherLiveData.observe(viewLifecycleOwner) { weatherResponse ->
             when (weatherResponse) {
                 is Resource.Success -> {
-                    weatherLayoutHandler.updateValues()
+weatherResponse.value?.let {weatherLayoutHandler.updateValues(it)
+}
                 }
                 is Resource.Failure -> {
                     Log.e(TAG, "onCreateView: Something went wrong")

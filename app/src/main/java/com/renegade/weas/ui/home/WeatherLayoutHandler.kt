@@ -10,7 +10,7 @@ class WeatherLayoutHandler(
 ) {
     private lateinit var weatherResponse: WeatherResponse
 
-    fun updateValues() {
+    fun updateValues(weatherResponse: WeatherResponse) {
         var date = Calendar.getInstance().time
         binding.currentDateTxt.setText(date.toString())
         binding.currentTempTxt.setText(weatherResponse.main.temp.toString())
