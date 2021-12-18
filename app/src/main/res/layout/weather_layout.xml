@@ -152,7 +152,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:text="200 F"
-                app:layout_constraintBottom_toTopOf="@+id/humidity"
+                app:layout_constraintBottom_toTopOf="@+id/humi"
                 app:layout_constraintEnd_toStartOf="@+id/max_temp_txt"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,13 +167,13 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="10dp"
                 android:text="300 F"
-                app:layout_constraintBottom_toTopOf="@+id/pressure"
+                app:layout_constraintBottom_toTopOf="@+id/press"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/min_temp_txt"
                 app:layout_constraintTop_toBottomOf="@+id/max_temp" />
 
             <TextView
-                android:id="@+id/humidity"
+                android:id="@+id/humi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -182,13 +182,13 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"
                 android:text="Humidity"
-                app:layout_constraintBottom_toTopOf="@+id/textView19"
-                app:layout_constraintEnd_toStartOf="@+id/pressure"
+                app:layout_constraintBottom_toTopOf="@+id/humidity"
+                app:layout_constraintEnd_toStartOf="@+id/press"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/min_temp_txt" />
 
             <TextView
-                android:id="@+id/pressure"
+                android:id="@+id/press"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -197,13 +197,13 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="5dp"
                 android:text="Pressure"
-                app:layout_constraintBottom_toTopOf="@+id/textView17"
+                app:layout_constraintBottom_toTopOf="@+id/pressure"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/humidity"
+                app:layout_constraintStart_toEndOf="@+id/humi"
                 app:layout_constraintTop_toBottomOf="@+id/max_temp_txt" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
@@ -213,11 +213,11 @@
                 android:text="1008"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView19"
-                app:layout_constraintTop_toBottomOf="@+id/pressure" />
+                app:layout_constraintStart_toEndOf="@+id/humidity"
+                app:layout_constraintTop_toBottomOf="@+id/press" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -226,9 +226,9 @@
                 android:layout_marginBottom="10dp"
                 android:text="16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView17"
+                app:layout_constraintEnd_toStartOf="@+id/pressure"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/humidity" />
+                app:layout_constraintTop_toBottomOf="@+id/humi" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
