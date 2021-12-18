@@ -12,10 +12,10 @@ import { useQuery } from 'react-query';
 
 import { fiveDaysForecast } from './../api';
 
-const FiveDaysForecast = () => {
+const FiveDaysForecast = ({ loc }) => {
   const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
   const { data, isLoading, error, refetch } = useQuery(
-    ['fiveDaysForecast', { locName: 'kathmandu' }],
+    ['fiveDaysForecast', { locName: loc }],
     fiveDaysForecast
   );
 
