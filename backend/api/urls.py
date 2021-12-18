@@ -1,7 +1,15 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from .views import PersonalModelViewSet
+from rest_framework.routers import DefaultRouter
+# from django.views.generic import TemplateView
 
-urlpatterns = [
-    path("", views.index, name="home"),
-    # path("delete/<city_name>/", views.delete_city, name="delete_city"),
+# creating Router Object
+router = DefaultRouter()
+
+# Register viewset with Router
+router.register('personal', TechUserModelViewSet, basename= 'personal')
+
+urlpatterns =[
+	path('',include(router.urls))
 ]
+

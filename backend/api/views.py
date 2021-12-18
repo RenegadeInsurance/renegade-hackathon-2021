@@ -1,6 +1,14 @@
 from django.shortcuts import render
+from .models import *
+from .serializers import PersonalSerializer
+from rest_framework import viewsets
 
-# Create your views here.
+# from django_filters.rest_framework import DjangoFilterBackend 
 
-def index(request):
-    return render(request,'api/home.html')
+
+# Create your views here.  
+class PersonalModelViewSet(viewsets.ModelViewSet):
+    queryset = Personal.objects.all()
+    serializer_class = PersonalSerializer
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['profession','location']
