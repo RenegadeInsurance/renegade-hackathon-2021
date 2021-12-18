@@ -5,12 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <!-- TODO: Update blank fragment layout -->
+<include
+    layout="@layout/weather_layout"></include>
 
     <Button
         android:id="@+id/homeFrg_takeSurvey_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Take Survey" />
+        android:text="Take Survey"
+        android:visibility="gone"/>
 
 </FrameLayout>
