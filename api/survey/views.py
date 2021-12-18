@@ -1,11 +1,9 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import Question, Answer, AnsweredQuestion
 from .serializers import QuestionSerializer, AnswerSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-from django.db.models import Q
 
 class QuestionView(APIView):
     permission_classes = [IsAuthenticated]

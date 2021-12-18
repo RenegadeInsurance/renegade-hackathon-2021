@@ -26,7 +26,14 @@ def send_alert():
         data = res.json()
         if data['main']['temp'] < threshold_temp:
             message = client.messages.create(
-                body="Alert! You may be in danger. Please stay safe :-)",
-                to=user.phone,
-                from_=from_)
+                        body="Alert! You may be in danger. Please stay safe :-)",
+                        to=user.phone,
+                        from_=from_)
+            if user.alert_personnels:
+                for personnel in user.alert_personnels:
+                    message = client.messages.create(
+                        body="Alert! You may be in danger. Please stay safe :-)",
+                        to=personnel.phone,
+                        from_=from_)
+
 
