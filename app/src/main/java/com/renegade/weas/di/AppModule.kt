@@ -18,4 +18,6 @@ object AppModule {
     @Singleton
     private fun provideRetrofit() =
         Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()). baseUrl (API).build()
+
+
 }

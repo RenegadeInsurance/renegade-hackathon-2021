@@ -15,4 +15,9 @@
         android:name="com.renegade.weas.ui.compare.CompareFragment"
         android:label="fragment_compare"
         tools:layout="@layout/fragment_compare" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.renegade.weas.ui.more.MoreFragment"
+        android:label="fragment_more"
+        tools:layout="@layout/fragment_more" />
 </navigation>

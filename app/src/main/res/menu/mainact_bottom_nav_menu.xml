@@ -6,4 +6,7 @@
 
     <item android:id="@+id/compareFragment"
         android:title="Compare"/>
+
+    <item android:id="@+id/moreFragment"
+        android:title="More"/>
 </menu>
