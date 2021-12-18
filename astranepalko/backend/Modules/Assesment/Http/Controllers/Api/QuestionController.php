@@ -2,10 +2,7 @@
 
 namespace Modules\Assesment\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Modules\Assesment\Entities\Question;
-use Illuminate\Contracts\Support\Renderable;
 use Modules\Core\Http\Controllers\BaseController;
 use Modules\Assesment\Repositories\QuestionRepository;
 

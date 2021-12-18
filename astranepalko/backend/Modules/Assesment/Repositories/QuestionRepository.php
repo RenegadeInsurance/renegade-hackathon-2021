@@ -13,8 +13,8 @@ class QuestionRepository extends BaseRepository
         $this->model_key = "Questions";
 
         $this->rules = [
-            "name" => "required",
-            "subject_id" => "sometimes|required|exists:subjects,id",
+            "question" => "required",
+            "weight" => "required|numeric",
         ];
     }
 }

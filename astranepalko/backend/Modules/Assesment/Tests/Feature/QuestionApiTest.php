@@ -3,20 +3,16 @@
 namespace Modules\Assesment\Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Modules\Assesment\Entities\Question;
 
 class QuestionApiTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    public function setUp(): void
     {
-        $response = $this->get('/');
+        $this->model = new Question();
+        $this->model_name = "Question";
+        $this->route_prefix = 'api.questions';
 
-        $response->assertStatus(200);
+        parent::setUp();
     }
 }
