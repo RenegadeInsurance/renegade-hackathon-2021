@@ -11,7 +11,6 @@ data class WeatherResponse(
     val name: String,
     val sys: Sys,
     val timezone: Int,
-    val visibility: Int,
     val weather: List<Weather>,
     val wind: Wind
 )
