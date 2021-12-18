@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 private const val TAG = "RetrofitModule"
 
-const val BASE_URL_OUR = "http://2022-202-79-35-20.ngrok.io/"
+const val BASE_URL_OUR = "https://e3ab-202-79-35-20.ngrok.io/"
 const val BASE_URL_WEATHER = "https://api.openweathermap.org/"
 
 @Module
@@ -54,20 +54,18 @@ object RetrofitModule {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL_OUR)
-            .client(getHttpClient(dataStoreHelper, httpLoggingInterceptor, authenticator))
             .build()
 
     @WeatherApi
     @Provides
-    @Singleton
-     fun provideRetrofit() =
-        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(
-            BASE_URL_WEATHER).build()
+    fun provideRetrofit(): Retrofit =
+        Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL_WEATHER).build()
 
-    @Provides
     @Singleton
-    fun provideWeatherApi(@WeatherApi retrofit: Retrofit): com.renegade.weas.network.apiservices.WeatherApi = retrofit.create(
-        com.renegade.weas.network.apiservices.WeatherApi::class.java)
+    @Provides
+    fun providesWeatherApi(@WeatherApi retrofit: Retrofit): com.renegade.weas.network.apiservices.WeatherApi =
+        retrofit.create(com.renegade.weas.network.apiservices.WeatherApi::class.java)
 
 
     @Singleton
