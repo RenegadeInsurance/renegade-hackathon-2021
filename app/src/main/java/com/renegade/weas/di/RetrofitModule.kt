@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 private const val TAG = "RetrofitModule"
 
-const val BASE_URL_OUR = "https://e3ab-202-79-35-20.ngrok.io/"
+const val BASE_URL_OUR = "https://f254-49-244-59-60.ngrok.io/"
 const val BASE_URL_WEATHER = "https://api.openweathermap.org/"
 
 @Module
@@ -53,6 +53,7 @@ object RetrofitModule {
     ): Retrofit =
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
+            .client(getHttpClient(dataStoreHelper, httpLoggingInterceptor, authenticator))
             .baseUrl(BASE_URL_OUR)
             .build()
 

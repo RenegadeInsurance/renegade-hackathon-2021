@@ -19,6 +19,7 @@ constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
+
     private val _weatherLiveData = MutableLiveData<Resource<WeatherResponse>>()
     val weatherLiveData: LiveData<Resource<WeatherResponse>> get() = _weatherLiveData
     fun getWeather(lat: Double, lon: Double) {
