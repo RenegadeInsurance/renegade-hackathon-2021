@@ -19,12 +19,22 @@ constructor(
     private val mainRepository: MainRepository
 ) : ViewModel() {
 
+    private val _isLoggedInLiveData = MutableLiveData<Boolean>()
+    val isLoggedInLiveData: LiveData<Boolean> get() = _isLoggedInLiveData
 
     private val _weatherLiveData = MutableLiveData<Resource<WeatherResponse>>()
     val weatherLiveData: LiveData<Resource<WeatherResponse>> get() = _weatherLiveData
+
+
     fun getWeather(lat: Double, lon: Double) {
         viewModelScope.launch {
-            _weatherLiveData.value= mainRepository.getWeather(lat, lon)
+            _weatherLiveData.value = mainRepository.getWeather(lat, lon)
+        }
+    }
+
+    fun doesAccessTokenExists() {
+        viewModelScope.launch {
+            _isLoggedInLiveData.value = mainRepository.doesAccessTokenExists()
         }
     }
 

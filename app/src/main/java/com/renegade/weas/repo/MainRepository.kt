@@ -9,6 +9,7 @@ import com.renegade.weas.network.response.loginresponse.LoginResponse
 import com.renegade.weas.network.response.weatherresponse.WeatherResponse
 import com.renegade.weas.network.safeapicall.Resource
 import com.renegade.weas.network.safeapicall.SafeApiCall
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class MainRepository
@@ -40,4 +41,7 @@ constructor(
             dataStoreHelper.setAccessToken(token)
         }
     }
+
+    suspend fun doesAccessTokenExists(): Boolean = dataStoreHelper.getAccessToken().first() != ""
+
 }
