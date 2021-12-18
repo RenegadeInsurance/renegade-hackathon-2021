@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import *
+from .models import PersonalModel
 
 class PersonalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Personal()
+        model = PersonalModel
         fields ='__all__'
