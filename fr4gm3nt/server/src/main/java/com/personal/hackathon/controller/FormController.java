@@ -16,14 +16,21 @@ public class FormController {
 
     @PostMapping("/")
     public ResponseEntity<?> createForm(@RequestBody FormDataList formDataList){
-        System.out.println(formDataList);
         return ResponseEntity.ok(
                 HttpResponse.of(formService.createForm(formDataList))
         );
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<?> getAllForms(){
+        return ResponseEntity.ok(formService.retrieveAllForms());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getForm(@PathVariable int id){
         return ResponseEntity.ok(formService.retrieveForm(id));
     }
+
+
+
 }

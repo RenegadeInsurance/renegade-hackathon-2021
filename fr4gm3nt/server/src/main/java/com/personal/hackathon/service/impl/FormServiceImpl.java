@@ -1,5 +1,7 @@
 package com.personal.hackathon.service.impl;
 
+import com.personal.hackathon.dto.FormSubmissionData;
+import com.personal.hackathon.dto.RiskData;
 import com.personal.hackathon.dto.form.FieldData;
 import com.personal.hackathon.dto.form.FormData;
 import com.personal.hackathon.dto.form.FormDataList;
@@ -8,6 +10,7 @@ import com.personal.hackathon.model.form.Field;
 import com.personal.hackathon.model.form.Form;
 import com.personal.hackathon.model.form.Heading;
 import com.personal.hackathon.model.form.Value;
+import com.personal.hackathon.repo.AppUserRepo;
 import com.personal.hackathon.repo.form.FieldRepo;
 import com.personal.hackathon.repo.form.FormRepo;
 import com.personal.hackathon.repo.form.HeadingRepo;
@@ -17,8 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +30,7 @@ public class FormServiceImpl implements FormService {
     private final HeadingRepo headingRepo;
     private final ValueRepo valueRepo;
     private final FormRepo formRepo;
+    private final AppUserRepo appUserRepo;
 
     @Override
     @Transactional
@@ -85,7 +88,7 @@ public class FormServiceImpl implements FormService {
     @Override
     public FormDataList retrieveForm(int formId) {
         var form = formRepo.findById(formId)
-                .orElseThrow(()->new DataNotFound("Form does not exist"));
+                .orElseThrow(() -> new DataNotFound("Form does not exist"));
 
         var headings = headingRepo.findByFormId(formId);
 
@@ -134,5 +137,61 @@ public class FormServiceImpl implements FormService {
                 .formName(form.getFormName())
                 .formData(formData)
                 .build();
+    }
+
+    @Override
+    public List<FormDataList> retrieveAllForms() {
+        var forms = formRepo.findAll();
+
+        return forms.stream()
+                .map(form -> FormDataList.builder()
+                        .id(form.getId())
+                        .formName(form.getFormName())
+                        .build())
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    @Transactional
+    public Map<String, List<RiskData>> submitForm(FormSubmissionData data, String email) {
+//        var appUser = appUserRepo.findByAuthEmail(email)
+//                .orElseThrow(()->new DataNotFound("User not found"));
+//
+//        appUser.setName(data.getName());
+//        appUser.setAge(data.getAge());
+//        appUser.setCity(data.getCountry());
+//        appUser.setState(data.getState());
+//        appUser.setCountry(data.getCountry());
+//
+//        appUserRepo.save(appUser);
+
+        System.out.println("data "+data);
+
+        Map<String, List<RiskData>> riskMap = new HashMap<>();
+
+        for(var riskData : data.getRiskDataList()){
+            String heading = headingRepo.getById(riskData.getHeadingId()).getTitle();
+
+            Field field = fieldRepo.findByIdAndHeadingId(riskData.getFieldId(), riskData.getHeadingId());
+
+            var risk = RiskData.builder()
+                    .riskLevel(field.getRiskLevel())
+                    .riskIf(field.getRiskIf())
+                    .answer(riskData.getAnswer())
+                    .build();
+
+            if(riskMap.containsKey(heading)){
+                   riskMap.get(heading).add(risk);
+            }else{
+                List<RiskData> risks = new ArrayList<>();
+                risks.add(risk);
+                riskMap.put(heading, risks);
+            }
+        }
+
+
+        return riskMap;
+
     }
 }

@@ -39,8 +39,8 @@ public class AppUserServiceImpl implements AppUserService {
 
         var appUser = appUserRepo.save(
                 AppUser.builder()
-                        .fullName(data.getFullName())
-                        .dob(data.getDob())
+                        .name(data.getName())
+                        .age(data.getAge())
                         .gender(data.getGender())
                         .country(data.getCountry())
                         .state(data.getState())

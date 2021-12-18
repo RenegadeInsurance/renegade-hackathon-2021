@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface FieldRepo extends JpaRepository<Field, Integer> {
     List<Field> findByHeadingId(int headingId);
+    Field findByIdAndHeadingId(int fieldId, int headingId);
+
 }
