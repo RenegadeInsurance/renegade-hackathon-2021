@@ -1,0 +1,19 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+  astranepal:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: astranepalko_frontend
+    ports:
+      - '3000:3000'
+    networks:
+      - astranepalko
+    volumes:
+      - './frontend:/user/app'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+networks:
+  astranepalko:
+    driver: bridge
