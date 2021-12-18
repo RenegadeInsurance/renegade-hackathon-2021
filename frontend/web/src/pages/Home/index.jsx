@@ -1,19 +1,12 @@
-import { useState, useEffect } from 'react';
-import {
-  Container,
-  Box,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-  Tooltip,
-  ClickAwayListener,
-} from '@mui/material';
+import { useState } from 'react';
+import { Container, Box } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-// import {} from '@mui/icons-material'
+
 import BG_PlaceHolder from 'assets/bg_placeholder.jpg';
 
 import Signals from 'pages/Home/components/Signals';
 import WeatherLocOverview from 'pages/Home/components/WeatherLocOverview';
+import CustomSpeedDial from 'pages/Home/components/CustomSpeedDial';
 
 const useStyles = makeStyles({
   root: {
@@ -55,20 +48,6 @@ const Home = () => {
   const [location, setLocation] = useState(`Nepal`);
   const [weatherType, setWeatherType] = useState(`Sunny Day`);
 
-  const [tooltipOpen, setTooltipOpen] = useState(
-    JSON.parse(localStorage.getItem('userFT')) === true ? false : true
-  );
-
-  const handleTooltipClose = () => {
-    setTooltipOpen(false);
-    localStorage.setItem('userFT', false);
-  };
-
-  useEffect(() => {
-    setTooltipOpen(!tooltipOpen);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
       <div className={classes.root}>
@@ -85,34 +64,7 @@ const Home = () => {
         </Container>
 
         <Box sx={{ position: `fixed`, right: 0, bottom: 0, padding: `1rem` }}>
-          <ClickAwayListener onClickAway={handleTooltipClose}>
-            <div>
-              <Tooltip
-                PopperProps={{
-                  disablePortal: true,
-                }}
-                onClose={handleTooltipClose}
-                open={tooltipOpen}
-                placement='left-end'
-                disableFocusListener
-                disableHoverListener
-                disableTouchListener
-                title='New user? Click here for more information'
-                arrow
-              >
-                {/* <Button onClick={handleTooltipOpen}>Click</Button> */}
-                <SpeedDial
-                  ariaLabel='SpeedDial basic example'
-                  icon={<SpeedDialIcon />}
-                >
-                  <SpeedDialAction
-                    icon={<SpeedDialIcon />}
-                    tooltipTitle='Add Information'
-                  />
-                </SpeedDial>
-              </Tooltip>
-            </div>
-          </ClickAwayListener>
+          <CustomSpeedDial />
         </Box>
       </div>
     </>
