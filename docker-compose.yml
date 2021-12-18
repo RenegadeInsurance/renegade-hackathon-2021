@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+ sunya_staging:
+
+services:
+  pgdb_staging:
+    image: postgres
+    container_name: pgdb_staging
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - sunya_staging
+  pgadmin_staging:
+    image: dpage/pgadmin4
+    container_name: pgadmin_staging
+    depends_on:
+      - pgdb_staging
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ""
+      PGADMIN_DEFAULT_PASSWORD: ""
+    restart: always
+    networks:
+      - sunya_staging
+
+  sunya_web_staging:
+    build: .
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - ./api:/app/api
+    container_name: sunya
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgdb_staging
+    env_file:
+      - .env
+    networks:
+      - sunya_staging
