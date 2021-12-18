@@ -6,12 +6,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.renegade.weas.ui.MainActivity
 import com.renegade.weas.databinding.ActivityLoginBinding
 import com.renegade.weas.extensions.makeScreenNotTouchable
 import com.renegade.weas.extensions.makeScreenTouchable
 import com.renegade.weas.network.requestbody.LoginBody
 import com.renegade.weas.network.safeapicall.Resource
+import com.renegade.weas.ui.main.MainActivity
 import com.renegade.weas.ui.signup.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
 

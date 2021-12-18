@@ -1,24 +1,28 @@
-package com.renegade.weas.ui
+package com.renegade.weas.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
-import com.renegade.weas.R
 import com.renegade.weas.databinding.ActivityMainBinding
+import com.renegade.weas.network.safeapicall.Resource
 import com.renegade.weas.ui.login.LoginActivity
+import com.renegade.weas.ui.takesurvey.TakeSurveyActivity
 import com.renegade.weas.utils.permission.IOnPermissionAllowed
 import com.renegade.weas.utils.permission.SinglePermissionManager
 import dagger.hilt.android.AndroidEntryPoint
 
+private const val TAG = "MainActivity"
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     private lateinit var binding: ActivityMainBinding
-
-
     private val viewModel: MainActivityViewModel by viewModels()
+    private lateinit var weatherLayoutHandler: WeatherLayoutHandler
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -26,9 +30,27 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
         setObserverForIsLoggedIn()
         askForLocationPermission()
 
-        viewModel.doesAccessTokenExists()
+        weatherLayoutHandler = WeatherLayoutHandler(binding.weatherLayout)
+        viewModel.weatherLiveData.observe(this) { weatherResponse ->
+            when (weatherResponse) {
+                is Resource.Success -> {
+                    weatherResponse.value?.let { weatherLayoutHandler.updateValues(it) }
+                }
+                is Resource.Failure -> {
+                    Log.e(TAG, "onCreateView: Something went wrong")
+                }
+                is Resource.Loading -> {
 
-        setUpNavControllerWithBottomNav()
+                }
+            }
+
+        }
+        viewModel.getWeather(10.0, 10.0)
+
+        setClickListenerForTakeSurveyBtn()
+
+
+        viewModel.doesAccessTokenExists()
 
 
     }
@@ -53,12 +75,13 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     }
 
 
-    private fun setUpNavControllerWithBottomNav() {
-        supportFragmentManager.findFragmentById(R.id.mainAct_container)?.let {
-            binding.mainActBottomNavView.setupWithNavController(it.findNavController())
+    private fun setClickListenerForTakeSurveyBtn() {
+        binding.homeFrgTakeSurveyBtn.setOnClickListener {
+            startActivity(Intent(this, TakeSurveyActivity::class.java))
         }
     }
 
-    override fun permissionAllowed() {
+    override fun permissionAllowed(){
+
     }
 }

@@ -1,4 +1,4 @@
-package com.renegade.weas.ui
+package com.renegade.weas.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.renegade.weas.ui.home
+package com.renegade.weas.ui.main
 
 import androidx.annotation.DrawableRes
 import com.renegade.weas.R
