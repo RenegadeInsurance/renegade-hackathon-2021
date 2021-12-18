@@ -58,11 +58,9 @@ const Home = () => {
             location={location}
           />
         </Container>
-
         <Container sx={{ textAlign: `center` }}>
           <Signals signals={signals} />
         </Container>
-
         <Box sx={{ position: `fixed`, right: 0, bottom: 0, padding: `1rem` }}>
           <CustomSpeedDial />
         </Box>
