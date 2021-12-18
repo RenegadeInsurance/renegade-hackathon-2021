@@ -9,10 +9,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.renegade.weas.R
 import com.renegade.weas.databinding.ActivityMainBinding
 import com.renegade.weas.ui.login.LoginActivity
+import com.renegade.weas.utils.permission.IOnPermissionAllowed
+import com.renegade.weas.utils.permission.SinglePermissionManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     private lateinit var binding: ActivityMainBinding
 
 
@@ -22,12 +24,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setObserverForIsLoggedIn()
+        askForLocationPermission()
 
         viewModel.doesAccessTokenExists()
 
         setUpNavControllerWithBottomNav()
 
 
+    }
+
+    private fun askForLocationPermission() {
+        SinglePermissionManager(
+            this,
+            this,
+            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            "location",
+            "We need your location permission to know your weather forecasting. Would you like to provide permission?"
+        ).carryOutAllTheNecessaryThingsForManagingPermission()
     }
 
     private fun setObserverForIsLoggedIn() {
@@ -44,5 +57,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.findFragmentById(R.id.mainAct_container)?.let {
             binding.mainActBottomNavView.setupWithNavController(it.findNavController())
         }
+    }
+
+    override fun permissionAllowed() {
     }
 }

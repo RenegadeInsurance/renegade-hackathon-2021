@@ -72,6 +72,8 @@ dependencies {
     implementation 'androidx.activity:activity-ktx:1.4.0'
     implementation 'com.google.firebase:firebase-auth-ktx'
 
+    implementation 'com.google.android.gms:play-services-location:19.0.0'
+
 
     //Circle Image View
     implementation 'de.hdodenhof:circleimageview:3.1.0'
@@ -97,7 +99,6 @@ dependencies {
 
     //Logging Interceptor For Retrofit
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
-
 
 
     //DataStore
