@@ -11,9 +11,15 @@ class Question extends Model
 
     protected $connection = "mongodb";
     protected $guarded = [];
+    protected $appends = ["answers_data"];
 
     protected static function newFactory()
     {
         return \Modules\Assesment\Database\factories\QuestionFactory::new();
+    }
+
+    public function getAnswersDataAttribute()
+    {
+        return Answer::whereIn('_id', $this->answers)->get();
     }
 }

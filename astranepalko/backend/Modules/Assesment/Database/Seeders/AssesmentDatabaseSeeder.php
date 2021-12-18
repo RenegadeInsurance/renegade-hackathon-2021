@@ -10,8 +10,6 @@ class AssesmentDatabaseSeeder extends Seeder
     public function run(): void
     {
         Model::unguard();
-        $this->call(QuestionTableSeeder::class);
-        $this->call(AnswerTableSeeder::class);
-        $this->call(FlowTableSeeder::class);
+        $this->call(FlowRelationTableSeeder::class);
     }
 }
