@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from alert_manager import models
 
@@ -23,3 +24,8 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             "biological_gender", "country", "state", "city",
             "risk_amount", "category", "relative"
         ]
+
+    def validate_relative(self, value):
+        if len(value) > 3:
+            raise ValidationError("Only 3 members can be added.")
+        return value

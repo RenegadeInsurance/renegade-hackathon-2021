@@ -11,3 +11,13 @@ class AlertPersonnelAdmin(admin.ModelAdmin):
 @admin.register(models.UserDetails)
 class UserDetailsAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(models.ThresholdData)
+class ThresholdDataAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(models.ToSendSMS)
+class UserDetailsAdmin(admin.ModelAdmin):
+    pass
