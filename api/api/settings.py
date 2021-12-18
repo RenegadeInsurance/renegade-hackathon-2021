@@ -25,8 +25,7 @@ SECRET_KEY = 'django-insecure-63m8@6r(j2u(ljy3@x)r5!$lb2nuwmg9!67y2_$rc9#@w61$w+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -42,9 +41,9 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'corsheaders',
-    'firebase_auth',
-    'firebase_admin',
-    'survey'
+    'survey',
+    'alerts', 
+    'django_celery_beat', 
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -162,6 +161,16 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "api/v1/activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": False,
+    'SERIALIZERS': {
+            'current_user': 'users.serializers.UserSerializer',
+    }
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kathmandu' # change to your preferred choice
