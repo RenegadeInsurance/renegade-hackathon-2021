@@ -80,5 +80,6 @@ def get_location_from_geo_location(request):
             )
 
     return Response(
-        {"error": True, "message": "Couldn't get location from coordinates."}
+        {"error": True, "message": "Couldn't get location from coordinates."},
+        status=status.HTTP_404_NOT_FOUND
     )
