@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     flexDirection: `column`,
     justifyContent: `space-between`,
     zIndex: 1,
+    overflowY: `auto`,
     '&:before': {
       content: "''",
       width: `100%`,
