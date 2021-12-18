@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/pages/offlineRequest.dart';
+import 'package:mobile/widget/webviewWidget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,40 +11,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late WebViewController controller;
-  double progress = 0;
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    WebViewWidget(),
+    OfflineRequest(),
+    Text(
+      'Index 2: School',
+    ),
+  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return WillPopScope(
-      onWillPop: () async {
-        if (await controller.canGoBack()) {
-          controller.goBack();
-        }
-        return false;
-      },
-      child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              LinearProgressIndicator(
-                value: progress,
-                color: Colors.black,
-                backgroundColor: Colors.white,
-              ),
-              Expanded(
-                child: WebView(
-                  initialUrl: 'https://www.bennish.net/web-notifications.html',
-                  javascriptMode: JavascriptMode.unrestricted,
-                  onWebViewCreated: (controller) =>
-                      {this.controller = controller},
-                  onProgress: (progress) =>
-                      setState(() => this.progress = progress / 100),
-                ),
-              ),
-            ],
+    return Scaffold(
+      body: SafeArea(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: 'a',
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.business,
+            ),
+            label: 'b',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.school,
+            ),
+            label: 'c',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
