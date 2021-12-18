@@ -65,44 +65,6 @@ class AlertPersonnel(BaseModel):
         return self.name
 
 
-class AlertPersonnel(BaseModel):
-    name = models.CharField(
-        verbose_name=_("Name"),
-        help_text=_("Name of the user."),
-        max_length=256,
-        validators=[validate_name],
-    )
-    email = models.EmailField(
-        verbose_name=_("Email"),
-        help_text=_("Email of the user."),
-    )
-    phone_number = models.CharField(
-        verbose_name=_("Phone Number"),
-        help_text=_("Phone Number to send notification on."),
-        validators=[validate_phone],
-        max_length=32,
-    )
-    relationship = models.CharField(
-        verbose_name=_("Relationship"),
-        help_text=_("Relationship to the person."),
-        max_length=128,
-    )
-
-    #
-    # relative = models.ForeignKey(
-    #     verbose_name=_("Relative"),
-    #     help_text=_("Relative of the people"),
-    #     to=UserDetails,
-    #     on_delete=models.CASCADE,
-    #     blank=True,
-    #     null=True,
-    #     default=None
-    # )
-
-    def __str__(self):
-        return self.name
-
-
 class UserDetails(BaseModel):
     # CHOICES FOR FIELDS INSIDE MODEL !!
     GENDER_CHOICES = [
