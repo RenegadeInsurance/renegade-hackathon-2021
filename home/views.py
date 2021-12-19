@@ -40,5 +40,31 @@ def UserAssesment(request):
     content={ 'form':form}
     return  render(request,template,content)
 
-    return render('')
+def Compare(request,city):
+    # user = UserProfile.objects.get(user=request.user.id)
+    # if user:
+    #   location_data=user.get_location()
+    #      city=location_data['city']
+    comparing_city=city
+    current_city = 'Nepal'
+    api = "https://api.openweathermap.org/data/2.5/weather?q=~&units=metric&appid=a3a26cd0cd22bafaaa68a440ff6c8a68"
+    api1=api.replace('~',current_city)
+    api2=api.replace('~',current_city)
+    response1 = requests.get(api1)
+    response2=request.get(api2)
+    current_city_data = json.dumps(response1.json())
+    comparing_city_data=json.dumps(response2.json())
+    content = {
+        'data1':current_city_data,
+        'data2': comparing_city_data
+    }
+
+    return render(request, 'getweatherinfo.html', content)
+
+
+
+
+
+
+
 
