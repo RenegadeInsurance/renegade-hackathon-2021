@@ -38,16 +38,16 @@ class QuestionView(APIView):
 
 
         if not question:
-            user.has_completed = True
-            user.score = 15
-            AnsweredQuestion.objects.filter(user=user).delete()
-            user.save()
             if user.score < 12.5:
                 final = 'Low Risk'
             elif user.score >12.5 and user.score < 17.5:
                 final = 'Moderate Risk'
             else:
                 final = 'High Risk'
+            user.has_completed = True
+            user.score = 15
+            AnsweredQuestion.objects.filter(user=user).delete()
+            user.save()
             return Response({'id':-1, 'question': final}, status=status.HTTP_200_OK)
 
         serialized = QuestionSerializer(question)
