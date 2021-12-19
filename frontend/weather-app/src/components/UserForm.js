@@ -1,18 +1,37 @@
 import { useState } from "react"
 import React from 'react'
 import {useFormik} from 'formik'
+import {useQuery} from 'react-query'
+import { fetchCountires } from "../CountryApi/api"
 
 const UserForm = () => {
+
+  const {data, error, isError, isLoading } = useQuery("country", fetchCountires)
+
+
+const arr = []
+  if(data != null)
+  {
+    data.forEach(d=> {
+      arr.push(d.name)
+      // console.log(d.name)
+    })
+  }
+
+  // console.log(arr)
+
   
   const test = [
-      {title : "Name ", inputType : "text"},
+      {title : "First Name", inputType : "text"},
       {title : "Middle Name ", inputType : "text"},
-      {title : "Middle Name ", inputType : "text"},
-      {title : "Last name  ", inputType : "text"},
-      {title : "Age ", inputType : "Number"},
+      {title : "Last Name ", inputType : "text"},
+      {title : "Age", inputType : "Number"},
+      {title : "Phone Number", inputType : "Number"},
       {title : "Email ", inputType : "email"},
-      {title : "Country ", inputType : "option", options : ["nepal ", "Germany", "US"]},
-      {title : "Gender ", inputType : "radio", values: ["Male", "Female", "Others"]}
+      {title : "Country ", inputType : "option", options : ["Nepal", "Germany", "US"]},
+      {title : "Gender ", inputType : "radio", values: ["Male", "Female", "Others"]},
+      {title : "State ", inputType : "text"},
+      {title : "City", inputType : "text"},
     ]
 
   const [formData, setFormData] = useState({})
@@ -42,17 +61,14 @@ const UserForm = () => {
             {
             inputRef.current[i].classList.add("red-border")
             inputRef.current[i].focus()
-            console.log(" input ", match)
             alert("Email didn't Match ")
             return
             }
         }
 
-        console.log(inputRef.current[i].type)
 
         if(inputRef.current[i].type == "text")
         {
-          console.log("testin sfid ")
           console.log("type ", typeof inputRef.current[i].value)
           const match = /^([a-z0-9]{5,})$/.test(inputRef.current[i].value)
           
@@ -60,7 +76,6 @@ const UserForm = () => {
             {
               inputRef.current[i].classList.add("red-border")
               inputRef.current[i].focus()
-              console.log(" input ", match)
               alert("Only Accept Text ")
               return
             }
@@ -98,17 +113,12 @@ const UserForm = () => {
     // clearInput()
     // console.log("after data ", formData) 
     //productMutate.mutate({ ...formData,launch_at: utcDateTime, productID: productId, author: user.pk })
-    
   }
 
-  const onChange = (e) => {
+const onChange = (e) => {
 
     console.log("name ", e.target.name)  
     console.log("onchange ", e.target.value)  
-    if(e.target.value == "")
-    {
-
-    }
 
     setFormData({ ...formData, [e.target.name]: e.target.value })
 }
@@ -122,11 +132,12 @@ const clearInput = ()=> {
   setFormData({})
 }
 
+
  return (
      <div className="bg-item_list_bg p-8 rounded-lg">
         <form >
             {
-            userDetailsList.map( inputData => {
+            userDetailsList?.map( inputData => {
             return (
               <div>
                 {(() => {
@@ -134,7 +145,7 @@ const clearInput = ()=> {
                     return (
                       <div className="mt-6 mb-2">
                         <label className="pr-4 mr-2 capitalize mb-2" htmlFor={inputData.title}>{inputData.title}<span className="text-red-600"> *</span></label>
-                         {inputData.values.map( value => {
+                         {inputData.values?.map( value => {
                            return (
                              <span>
 
@@ -150,7 +161,7 @@ const clearInput = ()=> {
                                   inputRef.current[refCount] = ref
                                   increaseRefCount()
                                 }}
-                                className="bg-item_list_bg border-4 hover:opacity-70 font-medium focus:border-l-0"
+                                className="bg-red-500 border-4 hover:opacity-70 font-medium focus:border-l-0 mb-6"
                             >
                             
                             </input>
@@ -167,7 +178,11 @@ const clearInput = ()=> {
                          <select className="bg-item_list_bg p-2" name={inputData.title} value={formData[inputData.title]}
                           onChange={onChange}>           
                           {
-                          inputData.options.map(option => {
+                          inputData.options?.map( option => {
+
+                            console.log("OP ", option)
+                            console.log("OP test")
+
                             return (
                               <option value={option}>{option}</option>
                             )
@@ -189,7 +204,7 @@ const clearInput = ()=> {
                             inputRef.current[refCount] = ref
                             increaseRefCount()
                           }}
-                          className="w-full h-9 mb-4 border-4 hover:opacity-70 rounded-sm "
+                          className="bg-item_list_bg w-full h-12 pl-4 mb-4 border-gray-400 border-2 hover:opacity-70 rounded-md "
                       ></input></div>
                     )
                   }

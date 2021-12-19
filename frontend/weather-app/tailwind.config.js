@@ -15,6 +15,9 @@ module.exports = {
 				drak_blue_background: "#1E272D",
 				blue_secondary: "#111E6C",
 
+				gary_blue: "00E472",
+				gary_dark: "2C2C2C",
+
 				// Color used in button to filter
 				// newest or must popular product.
 				color4: "#311A8E",

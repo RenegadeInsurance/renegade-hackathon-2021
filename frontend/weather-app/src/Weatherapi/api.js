@@ -2,9 +2,30 @@
 const API_KEY = "c5d6b6e3bdff41b10301cec2bd1a5f33"
 const API_URL = "https://api.openweathermap.org/data/2.5/weather"
 const API_URL2 = "https://api.openweathermap.org/data/2.5/weather?q="
+const apiKey = "c5d6b6e3bdff41b10301cec2bd1a5f33"
+
 
 
 export const fetchWeatherByCity = async ({ queryKey }) => {
+	
+	const city = queryKey[1]
+
+	if(city == null || city == "") return 
+
+	const url2 = `${API_URL2} + ${city}+&units=metric&appid=${apiKey}` 
+
+	
+
+	const result = {}
+	
+    await fetch( url2)
+        .then((response) => response.json())
+        .then((data) => result = data);
+
+	return result
+};
+
+export const fetchWeatherByCityName = async (city) => {
 	// const cityname = "kathmandu"
 	// const cityname = queryKey[1]
     // console.log("cityname ", cityname)
@@ -20,8 +41,7 @@ export const fetchWeatherByCity = async ({ queryKey }) => {
 	// }).then((res) => res.json());
 
 
-	const city = "kathmandu "
-    const apiKey = "c5d6b6e3bdff41b10301cec2bd1a5f33"
+	// const city = queryKey[1]
 
 
 	const url2 = `${API_URL2} + ${city}+&units=metric&appid=${apiKey}` 
@@ -30,13 +50,12 @@ export const fetchWeatherByCity = async ({ queryKey }) => {
 	{
 		console.log("displaying the data ", data)
 	}
+
+	const result = {}
 	
-    return await fetch( url2, {
-		headers: {
-			"Content-Type": "application/json",
-			Accept: "application/json",
-		}
-	})
+    await fetch( url2)
         .then((response) => response.json())
-        .then((data) => displayWeather(data));
+        .then((data) => result = data);
+
+	return result
 };
