@@ -11,6 +11,7 @@ class PersonalModel(models.Model):
     age = models.IntegerField(blank=False)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in +977 format.")
     phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    gender =models.CharField(max_length=20, blank=False)
     
     country=models.CharField(max_length=50,blank=False)
     state=models.CharField(max_length=50,blank=False)

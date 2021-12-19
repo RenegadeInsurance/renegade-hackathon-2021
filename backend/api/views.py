@@ -11,3 +11,5 @@ class PersonalModelViewSet(viewsets.ModelViewSet):
     queryset = PersonalModel.objects.all()
     serializer_class = PersonalSerializer
     # filter_backends = [DjangoFilterBackend]
+
+
