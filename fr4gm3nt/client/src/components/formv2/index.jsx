@@ -1,48 +1,49 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Select } from "antd";
-import { useNavigate, useParams } from "react-router-dom";
+import { Form, Button, Select, Spin } from "antd";
+import { useParams } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 import { fetchDynamicFormById } from "../../services/api";
 import { Builder } from "./Builder";
+import RiskAssessment from "./RiskAssessment";
 
 const { Option } = Select;
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const FormView = () => {
   const { id } = useParams();
-  const [ form, setForm ] = useState(null);
-  const [ riskData, setRiskData] = useState(null);
+  const [form, setForm] = useState(null);
+  const [riskData, setRiskData] = useState(null);
 
   useEffect(() => {
     fetchDynamicFormById(id).then((data) => {
-      const generalSection = JSON.parse(data.generalSection)
-      const riskSection = JSON.parse(data.riskSection)
+      const generalSection = JSON.parse(data.generalSection);
+      const riskSection = JSON.parse(data.riskSection);
       setRiskData(riskSection);
       setForm(generalSection);
     });
-  }, []);
+  }, [id]);
 
-  console.log(riskData)
-
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
+  console.log(riskData);
 
   const onFinish = (values) => {
-    const noRisks = []
-    const riskDetails = []
-    form.map(data => {
-      data.fields.map(d => {
-      if (!d.isRiskIndicator) 
-      {
-        noRisks[d.name.toLowerCase()] = values[d.name]
-      } 
-      else {
-        riskDetails.push({headingId:data.id, formId: d.id, answer: values[d.name]})
-      }
-    })
-    })
-    const result = {...noRisks, riskDetails}
+    const noRisks = [];
+    const riskDetails = [];
+    form.forEach((data) => {
+      data.fields.forEach((d) => {
+        if (!d.isRiskIndicator) {
+          noRisks[d.name.toLowerCase()] = values[d.name];
+        } else {
+          riskDetails.push({
+            headingId: data.id,
+            formId: d.id,
+            answer: values[d.name],
+          });
+        }
+      });
+    });
+    const result = { ...noRisks, riskDetails };
     // need to send to server
-    console.log(result)
+    console.log(result);
   };
 
   return (
@@ -55,30 +56,19 @@ const FormView = () => {
           layout="vertical"
         >
           <h1>{form.formName}</h1>
-          {
-            form.map((data) => 
-            (
-              <div key={data.id}>
-                <h1>{data.heading}</h1>
-                <Builder fields={data.fields} />
-              </div>
+          {form.map((data) => (
+            <div key={data.id}>
+              <h1>{data.heading}</h1>
+              <Builder fields={data.fields} />
+            </div>
+          ))}
+          {riskData.map((data) =>
+            Object.entries(data).length ? (
+              <RiskAssessment data={{ ...data }} key={data} />
+            ) : (
+              <br />
             )
           )}
-        {
-          riskData.map(data => 
-            (Object.entries(data).length?
-              <div>
-              <h1>{data.title}</h1>
-              <h2>{data.data.label}</h2>
-              <Select defaultValue="--" style={{ width: 120 }} onChange={handleChange}>
-                <Option value="yes">Yes</Option>
-                <Option value="no">No</Option>
-              </Select>
-              </div>: <br/>
-
-            )
-          )
-        }
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Submit
@@ -86,7 +76,7 @@ const FormView = () => {
           </Form.Item>
         </Form>
       ) : (
-        <h1>Loading...</h1>
+        <Spin indicator={antIcon} />
       )}
     </React.Fragment>
   );
