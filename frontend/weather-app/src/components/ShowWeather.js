@@ -8,7 +8,7 @@ import {getIpAddress} from '../utils/ipAddress'
 
 const ShowWeather = () => {
 
-    const cityName = "Kathmandu"
+    const cityName = "Lalitpur"
 
     const {data, isError, error} = useQuery(["getWeatherByCity", cityName], fetchWeatherByCity)
     

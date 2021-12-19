@@ -1,12 +1,20 @@
 import { useState } from "react"
 import React from 'react'
 import {useFormik} from 'formik'
-import {useQuery} from 'react-query'
+import {useQuery, useMutation} from 'react-query'
 import { fetchCountires } from "../CountryApi/api"
+import {addUser} from '../UserApi/api'
+
 
 const UserForm = () => {
 
   const {data, error, isError, isLoading } = useQuery("country", fetchCountires)
+
+  const userMutate = useMutation(addUser, {
+    onSuccess: () => console.log("Added succesfully "),
+    onError: (err) => console.log("Error for adding user " + err)
+  })
+
 
 
 const arr = []
@@ -76,7 +84,7 @@ const arr = []
             {
               inputRef.current[i].classList.add("red-border")
               inputRef.current[i].focus()
-              alert("Only Accept Text ")
+              // alert("Only Accept Text ")
               return
             }
         }
@@ -108,6 +116,24 @@ const arr = []
       }  
   
     }
+
+
+    const d = {
+      "first_name": formData["First Name"],
+      "last_name": formData["Last Name"],
+      "middle_name": formData["Middle Name"],
+      "email": formData["Email"],
+      "age": formData["Age"],
+      "phone_number": formData["Phone Number"],
+      "gender": formData["Gender"],
+      "country": formData["Country"],
+      "state": formData["State"],
+      "city": formData["City"],
+    }
+
+    console.log("d" , d)
+
+    userMutate.mutate({...d})
 
     console.log("form data ", formData) 
     // clearInput()

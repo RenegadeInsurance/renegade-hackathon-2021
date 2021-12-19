@@ -9,6 +9,7 @@ import AddedWeather from './AddedWeather';
 import { useQuery } from 'react-query';
 import { fetchCountires } from '../CountryApi/api';
 import AlertUser from './AlertSystem/AlertUser';
+import { fetchWeatherByCity } from '../Weatherapi/api';
 
 export default function HomePage() {
   const [name, setName] = useState("jeevan")
@@ -16,6 +17,34 @@ export default function HomePage() {
 
   const [lat, setLat] = useState()
   const [long, setLong] = useState()
+
+  const cityName = "Kathmandu"
+
+  const weatherData = useQuery(["getWeatherByCity", cityName], fetchWeatherByCity)
+  
+
+  const alertTempMax = 30 
+  const alertTempMin = 5 
+
+  const [temp, setTemp] = useState(0.0)
+
+  if(weatherData.data != null)
+  {
+    console.log("TEmp data ", weatherData.data)
+    // setTemp(weatherData.data.main.temp)
+  }
+
+
+  console.log("temperature ius ", temp)
+
+  if(weatherData.data != null)
+  {
+    if(weatherData.data.main.temp < alertTempMin && weatherData.data.main.temp < alertTempMin)
+    {
+        //send the alert 
+        alert("Temparature is more than 30 or less than 5")
+    }
+  }
 
 
   const {data, error} = useQuery("country", fetchCountires)
@@ -38,6 +67,11 @@ export default function HomePage() {
       console.log("Longitude is :", position.coords.longitude);
     });
     displayLocation(lat, long)
+
+    // if(weatherData.data != null)
+    // {
+    //   setTemp(weatherData.data.main.temp)
+    // }
   })
 
 

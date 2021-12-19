@@ -1,4 +1,4 @@
-const API_URL = ""
+const API_URL = "http://902e-202-79-35-20.ngrok.io/personalapi/"
 
 export const addUser = async (field) => {
 	// const access =
@@ -7,7 +7,7 @@ export const addUser = async (field) => {
 	// 	return alert("Unauthorized request ");
 	// }
 
-	let url = `${API_URL}/product_upvote/`;
+	let url = `${API_URL}`;
 
 	return await fetch(url, {
 		method: "POST",
