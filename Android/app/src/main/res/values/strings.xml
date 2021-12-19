@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Watchman</string>
+    <string name="logo">logo</string>
+    <string name="watchman">WATCHMAN</string>
+    <string name="location">LOCATION</string>
+    <string name="location_not_added">Location not added</string>
+    <string name="detect_location">Detect Location</string>
+    <string name="add_manually">Add Manually</string>
+    <string name="button_icon">button icon</string>
+    <string name="clear_data">Clear Data</string>
+    <string name="notifications">Notifications</string>
+    <string name="assessment_form">Assessment Form</string>
+    <string name="my_details">My Details</string>
+    <string name="back_button">back button</string>
+    <string name="my_location">My Location</string>
+    <string name="add">Add</string>
+    <string name="other_locations">Other Locations</string>
+    <string name="remove_location">remove location</string>
+    <string name="fetch_weather_data">Fetch Weather Data</string>
+    <string name="weather_data">Weather Data</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="fetching_data">Fetching data...</string>
+</resources>
