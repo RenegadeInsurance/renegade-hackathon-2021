@@ -60,7 +60,7 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             if (typeof newState === 'string') {
               setCurrentQuestion(newState);
               setFormData((prev) => {
-                return { ...prev, risk_amount: prevState };
+                return { ...prev, risk_amount: newState };
               });
             } else {
               manageQuestion(newState, setQuestion, setCurrentQuestion);
@@ -79,7 +79,7 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             if (typeof newState === 'string') {
               setCurrentQuestion(newState);
               setFormData((prev) => {
-                return { ...prev, risk_amount: prevState };
+                return { ...prev, risk_amount: newState };
               });
             } else {
               manageQuestion(newState, setQuestion, setCurrentQuestion);
