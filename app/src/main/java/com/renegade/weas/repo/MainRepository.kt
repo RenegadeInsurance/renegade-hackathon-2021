@@ -14,6 +14,7 @@ import com.renegade.weas.network.safeapicall.Resource
 import com.renegade.weas.network.safeapicall.SafeApiCall
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
+import kotlin.math.roundToInt
 
 class MainRepository
 @Inject
@@ -27,7 +28,7 @@ constructor(
 
     suspend fun getWeather(lat: Double, lon: Double): Resource<WeatherResponse> {
         return SafeApiCall.execute {
-            weatherApi.getApi(lat, lon)
+            weatherApi.getApi(lat.roundToInt(), lon.roundToInt())
         }
     }
 

@@ -13,8 +13,8 @@ interface WeatherApi {
 
     @GET("/data/2.5/weather")
     suspend fun getApi(
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
+        @Query("lat") lat: Int,
+        @Query("lon") lon: Int,
         @Query("cnt") cnt: Int? = null,
         @Query("appid") appid: String = APIKEY,
         @Query("mode") mode: String? = null,

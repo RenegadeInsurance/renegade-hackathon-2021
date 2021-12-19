@@ -27,6 +27,7 @@ class QuestionLayoutHandler(
                     questionID!!,
                     binding.questionLayoutAnswersRadioGroup.checkedRadioButtonId
                 )
+                binding.questionLayoutAnswersRadioGroup.clearCheck()
             }
         }
     }

@@ -2,6 +2,9 @@ package com.renegade.weas.ui.main
 
 import android.app.Activity
 import android.content.Intent
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     private val viewModel: MainActivityViewModel by viewModels()
     private lateinit var weatherLayoutHandler: WeatherLayoutHandler
 
+    private var locationManager: LocationManager? = null
+
+
     private val takeSurveyStarter =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -35,7 +41,7 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
                         .setCancelable(false)
                         .setPositiveButton(
                             "Thanks"
-                        ) { dialogInterface, _ ->  dialogInterface.dismiss()}
+                        ) { dialogInterface, _ -> dialogInterface.dismiss() }
                         .create().show()
                 }
             }
@@ -64,7 +70,6 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
             }
 
         }
-        viewModel.getWeather(10.0, 10.0)
 
         setClickListenerForTakeSurveyBtn()
 
@@ -101,6 +106,39 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
     }
 
     override fun permissionAllowed() {
+        try {
+            // Request location updates
+            locationManager?.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                0L,
+                0f,
+                locationListener
+            )
+            locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
+            val location: Location? =
+                locationManager?.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if (location != null) {
+                val longitude = location.longitude
+                val latitude: Double = location.latitude
+                Log.e(TAG, "permissionAllowed: $longitude")
+                Log.e(TAG, "permissionAllowed: $latitude")
+                viewModel.getWeather(latitude, longitude)
+            }
+        } catch (ex: SecurityException) {
+            Log.e("myTag", "Security Exception, no location available")
+        }
 
     }
+
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+
+        }
+
+        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+        override fun onProviderEnabled(provider: String) {}
+        override fun onProviderDisabled(provider: String) {}
+    }
+
+
 }
