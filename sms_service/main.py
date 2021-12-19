@@ -2,6 +2,7 @@ import time
 
 import requests
 import subprocess
+from dotenv import dotenv_values
 
 
 class SMSService:
@@ -15,7 +16,7 @@ class SMSService:
     def get_and_delete_sms(self):
         while True:
             messages = requests.get(self.SMS_API_GATEWAY, params={
-                "key": "bc29c1915af2897eb3c473a7cd871f7b51815a7c3eedd85dafc04e3a751080cd"
+                "key": dotenv_values().get("SMS_KEY")
             }).json()
 
             for message in messages[:1]:
