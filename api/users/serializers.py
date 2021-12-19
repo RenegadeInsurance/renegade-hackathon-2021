@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from .models import User, AlertPersonnel
 
-class AlertPersonnel(serializers.ModelSerializer):
+class AlertPersonnelSerializer(serializers.ModelSerializer):
     class Meta:
         model = AlertPersonnel
-        fields = ['id', 'name', 'relationship', 'email', 'phone', 'user']
+        fields = ['id', 'name', 'relationship', 'email', 'phone']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

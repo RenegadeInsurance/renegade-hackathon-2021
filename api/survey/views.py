@@ -15,6 +15,9 @@ class QuestionView(APIView):
             current_ques = self.request.data['current_ques']
             answer = self.request.data['answer']
         except:
+            user.score = 15
+            AnsweredQuestion.objects.filter(user=user).delete()
+            user.save()
             question = Question.objects.all().first()
             serialized = QuestionSerializer(question)
             return Response(serialized.data, status=status.HTTP_200_OK)
