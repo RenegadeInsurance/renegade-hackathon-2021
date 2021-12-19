@@ -17,7 +17,7 @@ import NavBar from '../components/navigation';
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Component {...pageProps} />
     </ChakraProvider>
   )
