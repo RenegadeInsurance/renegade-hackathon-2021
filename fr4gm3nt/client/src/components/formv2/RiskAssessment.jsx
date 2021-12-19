@@ -3,9 +3,9 @@ import { Select } from "antd";
 import { test } from "./test";
 const { Option } = Select;
 
-const RiskAssessment = () => {
-  //   const riskData = data.data;
-  const riskData = test.riskSection[0];
+const RiskAssessment = (data) => {
+  const riskData = data.data;
+  // const riskData = test.riskSection[0];
   const [risk, setRisk] = useState(riskData.data);
   const [qns, setQns] = useState({
     label: risk.label,
@@ -29,7 +29,7 @@ const RiskAssessment = () => {
       label: risk.label,
     };
     setQns({ ...qns, answer: value });
-    setQuestions([...questions, obj]);
+    setQuestions([...questions, ...child]);
     // console.log("Before risk", risk);
     // console.log(obj);
     console.log(questions);

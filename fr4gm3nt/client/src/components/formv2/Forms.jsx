@@ -19,7 +19,7 @@ const Forms = () => {
     <React.Fragment>
       {forms.length ? (
         <div className="site-card-wrapper">
-          <Title> Available Form </Title>
+          <Title> Available Forms </Title>
           <Row gutter={16}>
             {forms.map((data) => (
               <Col span={24} style={{ margin: "1em" }} key={data.id}>

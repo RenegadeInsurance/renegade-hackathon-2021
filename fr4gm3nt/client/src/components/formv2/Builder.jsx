@@ -11,7 +11,10 @@ export const Builder = ({ fields }) => {
             label={data.name}
             name={data.name}
             rules={[
-              { required: true, message: `Please input your ${data.name}!` },
+              {
+                required: data.isrequired === "true" ? true : false,
+                message: `Please input your ${data.name}!`,
+              },
             ]}
           >
             <Input />
@@ -22,7 +25,7 @@ export const Builder = ({ fields }) => {
           <Form.Item
             name={data.name}
             label={data.name}
-            rules={[{ required: true }]}
+            rules={[{ required: data.isrequired === "true" ? true : false }]}
           >
             <Select placeholder={data.placeholder} onChange={this} allowClear>
               {data.values.map((data) => (

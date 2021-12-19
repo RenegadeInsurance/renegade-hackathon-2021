@@ -14,7 +14,7 @@ const tabList = [
   },
 ];
 
-export const TabsCard = () => {
+export const WeatherTab = () => {
   const [activeTabKey, setActiveTabKey] = useState("tab1");
 
   const onTabChange = (key) => {
