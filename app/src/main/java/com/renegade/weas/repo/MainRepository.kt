@@ -2,8 +2,9 @@ package com.renegade.weas.repo
 
 import com.renegade.weas.localdata.DataStoreHelper
 import com.renegade.weas.network.apiservices.AuthApi
-import com.renegade.weas.network.apiservices.QuestionApi
+import com.renegade.weas.network.apiservices.MainApi
 import com.renegade.weas.network.apiservices.WeatherApi
+import com.renegade.weas.network.requestbody.AlertBody
 import com.renegade.weas.network.requestbody.LoginBody
 import com.renegade.weas.network.requestbody.QuestionBody
 import com.renegade.weas.network.requestbody.SignUpBody
@@ -22,7 +23,7 @@ constructor(
     private val weatherApi: WeatherApi,
     private val authApi: AuthApi,
     private val dataStoreHelper: DataStoreHelper,
-    private val questionApi: QuestionApi
+    private val mainApi: MainApi
 ) {
 
 
@@ -51,20 +52,24 @@ constructor(
 
 
     suspend fun getFirstQuestion(): Resource<QuestionResponse> {
-        return SafeApiCall.execute { questionApi.getFirstQuestion() }
+        return SafeApiCall.execute { mainApi.getFirstQuestion() }
     }
 
     suspend fun getNextQuestion(questionID: Int, answerID: Int): Resource<QuestionResponse> {
         return SafeApiCall.execute {
-            questionApi.getNextQuestion(
+            mainApi.getNextQuestion(
                 QuestionBody(questionID, answerID)
             )
         }
     }
 
     suspend fun logOut() {
-        SafeApiCall.execute { questionApi.logOut() }
+        SafeApiCall.execute { mainApi.logOut() }
         dataStoreHelper.clearAccessToken()
+    }
+
+    suspend fun getAlertPersonnel(): Resource<List<AlertBody>> {
+        return SafeApiCall.execute { mainApi.getAlertPersonnel() }
     }
 
 }

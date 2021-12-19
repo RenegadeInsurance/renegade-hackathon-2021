@@ -2,7 +2,7 @@ package com.renegade.weas.di
 
 import com.renegade.weas.localdata.DataStoreHelper
 import com.renegade.weas.network.apiservices.AuthApi
-import com.renegade.weas.network.apiservices.QuestionApi
+import com.renegade.weas.network.apiservices.MainApi
 import com.renegade.weas.network.authenticator.AccessAuthenticator
 import dagger.Module
 import dagger.Provides
@@ -85,8 +85,8 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun providesQuestionApi(@OurApi retrofit: Retrofit): QuestionApi =
-        retrofit.create(QuestionApi::class.java)
+    fun providesQuestionApi(@OurApi retrofit: Retrofit): MainApi =
+        retrofit.create(MainApi::class.java)
 
 
     private fun getInterceptorWithTokenHeader(dataStoreHelper: DataStoreHelper): Interceptor {

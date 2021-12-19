@@ -39,13 +39,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="24dp"
             android:paddingVertical="16dp"
             android:text="Add alert personnels"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/homeFrg_takeSurvey_btn"
-            app:layout_constraintTop_toBottomOf="@+id/weather_layout" />
+            app:layout_constraintStart_toEndOf="@+id/homeFrg_takeSurvey_btn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
