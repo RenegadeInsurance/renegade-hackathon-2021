@@ -21,11 +21,13 @@ const FormStuff = () => {
     name: '',
     email: '',
     age: 0,
-    gender: 'female',
+    date_of_birth: '',
+    biological_gender: 'Female',
     country: '',
     state: '',
     city: '',
   });
+  console.log(formData)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -50,25 +52,25 @@ const FormStuff = () => {
     {
       title: 'Personal Detail',
       component: (
-        <PersonalDetail formData={formData} handleFormData={handleFormData} />
+        <PersonalDetail formData={formData} handleFormData={handleFormData}/>
       ),
     },
     {
       title: 'Location',
       component: (
-        <Location formData={formData} handleFormData={handleFormData} />
+        <Location formData={formData} handleFormData={handleFormData}/>
       ),
     },
     {
       title: 'Risk Assessment',
       component: (
-        <RiskAssessment formData={formData} handleFormData={handleFormData} />
+        <RiskAssessment formData={formData} handleFormData={handleFormData}/>
       ),
     },
   ];
   return (
     <Layout>
-      <Box sx={{ width: `100%` }}>
+      <Box sx={{width: `100%`}}>
         <Stepper activeStep={activeStep} orientation='vertical'>
           {steps.map((step, index) => (
             <Step key={step.title}>
@@ -83,19 +85,19 @@ const FormStuff = () => {
               </StepLabel>
               <StepContent>
                 <Box>{step.component}</Box>
-                <Box sx={{ mb: 2 }}>
+                <Box sx={{mb: 2}}>
                   <div>
                     <Button
                       variant='contained'
                       onClick={handleNext}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{mt: 1, mr: 1}}
                     >
                       {index === steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
                     <Button
                       disabled={index === 0}
                       onClick={handleBack}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{mt: 1, mr: 1}}
                     >
                       Back
                     </Button>
@@ -106,12 +108,12 @@ const FormStuff = () => {
           ))}
         </Stepper>
         {activeStep === steps.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
+          <Paper square elevation={0} sx={{p: 3}}>
             <Typography>All steps completed - you&apos;re finished</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+            <Button onClick={handleReset} sx={{mt: 1, mr: 1}}>
               Reset
             </Button>
-            <Button sx={{ mt: 1, mr: 1 }}>Submit</Button>
+            <Button sx={{mt: 1, mr: 1}}>Submit</Button>
           </Paper>
         )}
       </Box>

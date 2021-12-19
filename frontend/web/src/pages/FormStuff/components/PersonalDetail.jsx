@@ -10,7 +10,7 @@ import {
   FormLabel,
 } from '@mui/material';
 
-const PersonalDetail = ({ formData, handleFormData }) => {
+const PersonalDetail = ({formData, handleFormData}) => {
   return (
     <>
       <Typography variant='h4' fontWeight='bold' mb={2}>
@@ -22,50 +22,56 @@ const PersonalDetail = ({ formData, handleFormData }) => {
             <TextField
               type='text'
               label='Name'
+              name='name'
               variant='outlined'
               size='small'
+              onChange={handleFormData}
+              value={formData.name}
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
               type='email'
+              name='email'
               label='Email'
               variant='outlined'
               size='small'
+              onChange={handleFormData}
+              value={formData.email}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              type='number'
-              label='Age'
+              type='date'
+              label='Date Of Birth'
+              name='date_of_birth'
               variant='outlined'
               size='small'
+              onChange={handleFormData}
+              value={formData.date_of_birth}
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <FormControl component='fieldset'>
-              <FormLabel component='legend'>Gender</FormLabel>
+              <FormLabel component='legend'>Biological Gender</FormLabel>
               <RadioGroup
                 aria-label='gender'
                 defaultValue='female'
-                name='radio-buttons-group'
+                name='biological_gender'
+                onChange={handleFormData}
+                value={formData.biological_gender}
               >
-                <Box sx={{ display: `flex` }}>
+                <Box sx={{display: `flex`}}>
                   <FormControlLabel
-                    value='female'
-                    control={<Radio />}
+                    value='Female'
+                    control={<Radio/>}
                     label='Female'
                   />
                   <FormControlLabel
-                    value='male'
-                    control={<Radio />}
+                    value='Male'
+                    control={<Radio/>}
                     label='Male'
-                  />
-                  <FormControlLabel
-                    value='other'
-                    control={<Radio />}
-                    label='Other'
                   />
                 </Box>
               </RadioGroup>
