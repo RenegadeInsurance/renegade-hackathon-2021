@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{% load crispy_forms_tags %}
+{%load static %}
+
+{% block content %}
+
+<div style="display:flex;width:80%;margin:auto;background-color:#CBC3E3">
+    <div style="flex:1;margin:10px;padding:2px">
+       <div class="card" style="width: 18rem">
+              <div class="card-body" >
+                <h5 class="card-title">Current city</h5>
+                  {{data1}}
+
+              </div>
+       </div>
+    </div>
+    <div style="margin-right: 20px;">
+       <div class="card" style="width: 18rem">
+              <div class="card-body" >
+                <h5 class="card-title">Comparing City</h5>
+                {{data2}}
+              </div>
+       </div>
+
+    </div>
+
+</div>
+
+
+{% endblock%}

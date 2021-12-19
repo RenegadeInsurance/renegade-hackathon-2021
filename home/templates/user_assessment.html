@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content %}
+{% load crispy_forms_tags %}
+    <div style="flex:1;margin:10px;padding:2px">
+        <form method="POST">
+            {{form|crispy}}
+
+            <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+{%endblock%}
