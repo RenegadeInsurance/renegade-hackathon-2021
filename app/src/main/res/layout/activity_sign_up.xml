@@ -48,6 +48,8 @@
                     android:id="@+id/signUpAct_fName_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="First Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,6 +65,8 @@
                     android:id="@+id/signUpAct_lName_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="Last Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,6 +82,8 @@
                     android:id="@+id/signUpAct_province_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="Province" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,6 +99,8 @@
                     android:id="@+id/signUpAct_city_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="City/ Village" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,6 +117,8 @@
                     android:id="@+id/signUpAct_phoneNum_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="Phone Number" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,6 +135,8 @@
                     android:id="@+id/signUpAct_email_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="Email"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -141,6 +153,8 @@
                     android:id="@+id/signUpAct_password_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+
                     android:hint="Password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
