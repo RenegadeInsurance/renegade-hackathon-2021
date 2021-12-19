@@ -62,4 +62,9 @@ constructor(
         }
     }
 
+    suspend fun logOut() {
+        SafeApiCall.execute { questionApi.logOut() }
+        dataStoreHelper.clearAccessToken()
+    }
+
 }

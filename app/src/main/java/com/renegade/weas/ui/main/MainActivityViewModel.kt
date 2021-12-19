@@ -38,5 +38,12 @@ constructor(
         }
     }
 
+    fun logout() {
+        viewModelScope.launch {
+            mainRepository.logOut()
+            _isLoggedInLiveData.value = mainRepository.doesAccessTokenExists()
+        }
+    }
+
 
 }

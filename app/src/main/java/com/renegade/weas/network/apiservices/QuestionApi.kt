@@ -12,4 +12,7 @@ interface QuestionApi {
 
     @POST("api/v1/question/")
     suspend fun getNextQuestion(@Body questionBody: QuestionBody): Response<QuestionResponse>
+
+    @POST("api/v1/auth/token/logout/")
+    suspend fun logOut(): Response<Unit>
 }

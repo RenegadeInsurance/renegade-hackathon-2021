@@ -7,10 +7,13 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.renegade.weas.R
 import com.renegade.weas.databinding.ActivityMainBinding
 import com.renegade.weas.network.safeapicall.Resource
 import com.renegade.weas.ui.login.LoginActivity
@@ -120,8 +123,6 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
             if (location != null) {
                 val longitude = location.longitude
                 val latitude: Double = location.latitude
-                Log.e(TAG, "permissionAllowed: $longitude")
-                Log.e(TAG, "permissionAllowed: $latitude")
                 viewModel.getWeather(latitude, longitude)
             }
         } catch (ex: SecurityException) {
@@ -140,5 +141,17 @@ class MainActivity : AppCompatActivity(), IOnPermissionAllowed {
         override fun onProviderDisabled(provider: String) {}
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.mainact_bottom_nav_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            (R.id.logoutBtn_menu) -> {
+                viewModel.logout()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
