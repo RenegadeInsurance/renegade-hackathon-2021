@@ -1,0 +1,13 @@
+.sidebar {
+    width: 10vw;
+    padding: 15px;
+    font-size: 2rem;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    list-style: none;
+}
