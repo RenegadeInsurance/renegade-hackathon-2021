@@ -72,4 +72,8 @@ constructor(
         return SafeApiCall.execute { mainApi.getAlertPersonnel() }
     }
 
+    suspend fun addAlertPersonnel(alertBody: AlertBody) {
+        SafeApiCall.execute { mainApi.addAlertPersonnel(alertBody) }
+    }
+
 }

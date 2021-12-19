@@ -1,5 +1,6 @@
 package com.renegade.weas.ui.addalert
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,7 @@ import com.renegade.weas.network.requestbody.AlertBody
 class PersonnelListRVA : ListAdapter<AlertBody, PersonnelListRVA.Holder>(PersonnelDiffCallback()) {
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -17,7 +19,7 @@ class PersonnelListRVA : ListAdapter<AlertBody, PersonnelListRVA.Holder>(Personn
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        TODO("Not yet implemented")
+        holder.
     }
 }
 

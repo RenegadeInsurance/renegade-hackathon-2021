@@ -20,4 +20,7 @@ interface MainApi {
 
     @GET("api/v1/alert/")
     suspend fun getAlertPersonnel(): Response<List<AlertBody>>
+
+    @POST("api/v1/alert")
+    suspend fun addAlertPersonnel(@Body alertBody: AlertBody): Response<AlertBody>
 }
