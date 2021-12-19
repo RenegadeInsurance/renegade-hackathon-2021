@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Form from "./components/form";
 import FormView from "./components/formv2";
 import FormWrap from "./components/formv2/Forms";
+import SubmissionForms from "./components/formv2/SubmissionForms";
+import SubmissionForm from "./components/formv2/SubmissionForm";
 import { WeatherTab } from "./pages/WeatherTab";
 import RiskAssessment from "./components/formv2/RiskAssessment";
 import Home from "./pages/Home";
@@ -20,6 +22,8 @@ function App() {
           <Route path="/risk" element={<RiskAssessment />} />
           <Route path="/forms/:id" element={<FormView />} />
           <Route path="/forms" element={<FormWrap />} />
+          <Route path="/submissions" element={<SubmissionForms />} />
+          <Route path="/submissions/:id" element={<SubmissionForm />} />
           <Route path="/v2" element={<FormView />} />
           <Route path="/weather" element={<WeatherTab />} />
           <Route path="/create-form" element={<CreateForm />} />

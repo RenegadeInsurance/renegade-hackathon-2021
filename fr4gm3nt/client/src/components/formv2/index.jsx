@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Select, Spin } from "antd";
+import { Form, Button, Select, Spin, Typography } from "antd";
 import { useParams } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import { fetchDynamicFormById } from "../../services/api";
 import { Builder } from "./Builder";
 import RiskAssessment from "./RiskAssessment";
 
+const { Title } = Typography;
 
 const { Option } = Select;
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
@@ -13,10 +14,12 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 const FormView = () => {
   const { id } = useParams();
   const [form, setForm] = useState(null);
+  const [formName, setFormName] = useState("");
   const [riskData, setRiskData] = useState(null);
 
   useEffect(() => {
     fetchDynamicFormById(id).then((data) => {
+      setFormName(data.formName);
       const generalSection = JSON.parse(data.generalSection);
       const riskSection = JSON.parse(data.riskSection);
       setRiskData(riskSection);
@@ -56,10 +59,10 @@ const FormView = () => {
           initialValues={{}}
           layout="vertical"
         >
-          <h1>{form.formName}</h1>
+          <Title>{formName}</Title>
           {form.map((data) => (
             <div key={data.id}>
-              <h1>{data.heading}</h1>
+              <Title level={3}>{data.heading}</Title>
               <Builder fields={data.fields} />
             </div>
           ))}

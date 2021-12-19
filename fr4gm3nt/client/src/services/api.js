@@ -18,3 +18,15 @@ export const fetchDynamicFormById = async (id) => {
   const response = await http.get(`${url}/${id}`);
   return response.data;
 };
+
+export const fetchSubmissionFormById = async (id) => {
+  const url = config.endpoints.form.showForms;
+  const response = await http.get(`${url}/${id}`);
+  return response.data;
+};
+
+export const fetchSubmissions = async (id) => {
+  const url = config.endpoints.form.showForms;
+  const response = await http.get(`${url}/?formid=${id}`);
+  return response.data;
+};

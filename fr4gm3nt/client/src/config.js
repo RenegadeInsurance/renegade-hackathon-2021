@@ -13,7 +13,8 @@ const config = {
     },
     form: {
       id: "/forms",
-      v2: "/dynamic-forms"
+      v2: "/dynamic-forms",
+      showForms: "/dynamic-submissions"
     },
     weather: {
       current: "/current.json"

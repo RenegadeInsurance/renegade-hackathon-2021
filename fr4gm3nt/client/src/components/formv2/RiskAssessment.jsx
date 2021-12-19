@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { Select } from "antd";
+import { Select, Typography } from "antd";
 import { test } from "./test";
 const { Option } = Select;
+
+const { Title } = Typography;
 
 const RiskAssessment = (data) => {
   const riskData = data.data;
@@ -42,7 +44,7 @@ const RiskAssessment = (data) => {
 
   return (
     <div>
-      <h1>{riskData.title}</h1>
+      <Title level={3}>{riskData.title}</Title>
       {questions.map((data) => (
         <h2>
           {data.label} - {data.answer}

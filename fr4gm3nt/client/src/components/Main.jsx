@@ -59,6 +59,23 @@ const Main = () => {
             <Meta title="View Available Forms" />
           </Card>
         </Link>
+        <Link
+          to="/submissions"
+          className="py-4 px-4 hover:text-blue-800 transition duration-300"
+        >
+          <Card
+            hoverable
+            style={{ width: 240, height: 240 }}
+            cover={
+              <img
+                alt="Form Submissions"
+                src="https://maxcdn.icons8.com/Share/icon/Logos/google_forms1600.png"
+              />
+            }
+          >
+            <Meta title="Form Submissions" />
+          </Card>
+        </Link>
       </div>
     </>
   );
