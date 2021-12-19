@@ -7,6 +7,16 @@
       "answers": [
         {}
       ]
+    },
+    {
+      "id": 2,
+      "question": "",
+      "weight": null,
+      "answers": [
+        {},
+        {},
+        {}
+      ]
     }
   ],
   "answers": [
@@ -14,6 +24,21 @@
       "answer": "yes",
       "weight": "14",
       "id": 1
+    },
+    {
+      "answer": "",
+      "weight": "",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "answer": "",
+      "weight": ""
+    },
+    {
+      "id": 4,
+      "answer": "",
+      "weight": ""
     }
   ],
   "form": {}

@@ -67,7 +67,7 @@ function Block(props) {
           })}
         </div>
       </fieldset>
-      <button onClick={e => addNewField()}>Add Field</button>
+      <button className='btn btn-primary' onClick={e => addNewField()}>Add Field</button>
     </div>
   );
 }
@@ -77,9 +77,6 @@ function InputField(props) {
   const [value, setValue] = useState('');
   return (
     <div>
-      <label>
-        {label} {type === 'range' ? `(${value || 0})` : ''}
-      </label>
       <input
         type={type || 'text'}
         name={name}
