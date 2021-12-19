@@ -21,8 +21,6 @@ def register_for_notification(request: Request) -> Response:
     :param request: drf request
     :return: json resp
     """
-    data = request.data
-    data["phonenumbers"] = data["phonenumbers"].replace(" ", "").strip()
     user_detail_serializer = serializer.UserDetailsSerializer(data=request.data)
 
     if user_detail_serializer.is_valid():
@@ -32,7 +30,6 @@ def register_for_notification(request: Request) -> Response:
             status=status.HTTP_201_CREATED
         )
     else:
-        print(user_detail_serializer.errors)
         return Response(
             user_detail_serializer.errors,
             status=status.HTTP_422_UNPROCESSABLE_ENTITY
