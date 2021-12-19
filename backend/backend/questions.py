@@ -1,3 +1,6 @@
+import json
+from django.http import HttpResponse
+
 data = [
    {
       "q":"Have you experienced one or more flooding events in your life ?",
@@ -56,27 +59,25 @@ class nody:
    def srch(value=0, choice="null"):
       nod = data[value]
       nextnod = nod
-      if choice == 'yes':
-         value = nod.get('yes')
+      if choice == "yes":
+         value = nod.get("yes")
+         print(value)
          nextnod= data[value]
-      elif choice == 'no':
+         print(nextnod)
+      elif choice == "no":
          value =nod.get('no')
          nextnod= data[value]
 
       return nextnod.get('q', nextnod.get('a')), value
 
-
-# first case
-# q, index = nody.srch()
-# print(q, index)
-
-# # if response:
-# a = nody.srch(2,"yes")
-# print(a)
-
 def nextquestion(request):
     print("jack was Here !")
-    value = request.GET.get("index")
-    choice = request.GET.get("index")
-    q, value = nody().srch(value, choice)
-    return value, q
+    value = int(request.GET.get("index"))
+    choice = request.GET.get("choice")
+    q, value = nody.srch(value, choice)
+    data = {
+       "q" : q,
+       "index" : value
+    }
+    jsondata = json.dumps(data)
+    return HttpResponse(jsondata, content_type= 'application/json')
