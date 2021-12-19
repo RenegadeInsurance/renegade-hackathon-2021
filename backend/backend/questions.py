@@ -57,6 +57,7 @@ data = [
 
 class nody:
    def srch(value=0, choice="null"):
+      end =False
       nod = data[value]
       nextnod = nod
       if choice == "yes":
@@ -67,17 +68,20 @@ class nody:
       elif choice == "no":
          value =nod.get('no')
          nextnod= data[value]
+      if nextnod.get('a'):
+         end = True
 
-      return nextnod.get('q', nextnod.get('a')), value
+      return nextnod.get('q', nextnod.get('a')), value, end
 
 def nextquestion(request):
     print("jack was Here !")
     value = int(request.GET.get("index"))
     choice = request.GET.get("choice")
-    q, value = nody.srch(value, choice)
+    q, value, end = nody.srch(value, choice)
     data = {
        "q" : q,
-       "index" : value
+       "index" : value,
+       "end":end
     }
     jsondata = json.dumps(data)
     return HttpResponse(jsondata, content_type= 'application/json')
