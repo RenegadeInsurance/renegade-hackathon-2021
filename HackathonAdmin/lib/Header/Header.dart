@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 List heading = [
   "",
   "Current Surveys",
-  "Risk Assessment",
+  "Settings",
   "Flood Risk Assessment",
   "Sign Up",
 ];

@@ -5,6 +5,7 @@ import 'AdminPanel/AdminPanel.dart';
 void main() {
   runApp(const AdminHome());
 }
+
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
 
@@ -17,13 +18,10 @@ class _AdminHomeState extends State<AdminHome> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:AdminPanel() ,
+      home: AdminPanel(),
     );
   }
 }
-
-

@@ -56,7 +56,10 @@ class _AlertGroupState extends State<AlertGroup> {
                 height: 20,
               ),
               FutureBuilder(
-                  future: PersonalContactService().fetchPersonalContacts().then((value) => value.where((element) => element.userID == meUser!.userID).toList()),
+                  future: PersonalContactService().fetchPersonalContacts().then(
+                      (value) => value
+                          .where((element) => element.userID == meUser!.userID)
+                          .toList()),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       List<PersonalContact> personalContacts = snapshot.data;
@@ -80,7 +83,7 @@ class _AlertGroupState extends State<AlertGroup> {
                                   showDialog(
                                       context: context,
                                       builder: (_) {
-                                      return ThresholdBox();
+                                        return ThresholdBox();
                                       });
                                 },
                                 child: Container(
