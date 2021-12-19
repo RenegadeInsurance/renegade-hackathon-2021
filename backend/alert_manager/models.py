@@ -6,6 +6,8 @@ from utils.validators import validate_name, validate_phone
 
 
 class RiskAssessment(BaseModel):
+    """Stores data related to risk assessment, for different categories"""
+
     RISK_AMOUNT_CHOICES = [
         ("High", "high"),
         ("Moderate", "Moderate"),
@@ -28,6 +30,10 @@ class RiskAssessment(BaseModel):
 
 
 class AlertPersonnel(BaseModel):
+    """
+    Stores data of the people who will be added by the applicant.
+    """
+
     name = models.CharField(
         verbose_name=_("Name"),
         help_text=_("Name of the user."),
@@ -139,12 +145,12 @@ class UserDetails(BaseModel):
         verbose_name=_("Category"),
         help_text=_("Category of risk"),
         max_length=64,
+        default="Flooding"
     )
     risk_amount = models.CharField(
         verbose_name=_("Risk Amount"),
         help_text=_("Severeness of risk"),
         max_length=32,
-        choices=RISK_AMOUNT_CHOICES,
     )
     relative = models.ManyToManyField(
         to=AlertPersonnel,

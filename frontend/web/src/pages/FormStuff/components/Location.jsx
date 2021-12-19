@@ -1,11 +1,6 @@
 import {Box, Grid, Typography, TextField, Autocomplete} from '@mui/material';
-import {useEffect} from "react";
 
 const Location = ({formData, handleFormData}) => {
-  useEffect(() => {
-
-  }, [])
-
   return (
     <>
       <Typography variant='h4' fontWeight='bold' mb={2}>
@@ -18,9 +13,15 @@ const Location = ({formData, handleFormData}) => {
               disablePortal
               options={country}
               sx={{width: 300}}
+              name={"country"}
+              value={formData.country}
               renderInput={(params) => (
                 <TextField {...params} label='Country' size='small'/>
               )}
+              onChange={(e) => {
+                e.target.value = e.target.innerText
+                handleFormData(e)
+              }}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -28,9 +29,15 @@ const Location = ({formData, handleFormData}) => {
               disablePortal
               options={state}
               sx={{width: 300}}
+              name={"state"}
+              value={formData.state}
               renderInput={(params) => (
                 <TextField {...params} label='State' size='small'/>
               )}
+              onChange={(e) => {
+                e.target.value = e.target.innerText
+                handleFormData(e)
+              }}
             />
           </Grid>
 
@@ -39,9 +46,13 @@ const Location = ({formData, handleFormData}) => {
               disablePortal
               options={city}
               sx={{width: 300}}
-              renderInput={(params) => (
-                <TextField {...params} label='City' size='small'/>
-              )}
+              name={"city"}
+              value={formData.city}
+              onChange={(e) => {
+                e.target.value = e.target.innerText
+                handleFormData(e)
+              }}
+              renderInput={(params) => (<TextField {...params} label='City' size='small'/>)}
             />
           </Grid>
         </Grid>
@@ -52,27 +63,17 @@ const Location = ({formData, handleFormData}) => {
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const state = [
-  {label: 'State 1'},
-  {label: 'State 2'},
-  {label: 'State 3'},
-  {label: 'State 4'},
-  {label: 'State 5'},
-  {label: 'State 6'},
-  {label: 'State 7'},
+  "Bagmati"
 ];
 
 const country = [
-  {label: 'Nepal'},
+  'Nepal'
 ];
 
 const city = [
-  {label: 'City 1'},
-  {label: 'City 2'},
-  {label: 'City 3'},
-  {label: 'City 4'},
-  {label: 'City 5'},
-  {label: 'City 6'},
-  {label: 'City 7'},
+  'Kathmandu',
+  'Bhaktapur',
+  'Lalitpur',
 ];
 
 export default Location;
