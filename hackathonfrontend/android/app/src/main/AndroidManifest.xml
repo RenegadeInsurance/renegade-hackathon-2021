@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
    <application
-        android:label="hackathonfrontend"
+        android:label="WEAS"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

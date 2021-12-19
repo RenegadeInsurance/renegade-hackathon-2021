@@ -11,19 +11,24 @@ class DropdownSkeleton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Container(
-        height: 59,
-        width: 180,
+        height: 50,
+        width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: Color(0xff6DA7FE)),
           borderRadius: BorderRadius.circular(12),
         ),
         child: DropdownSearch<String>(
+          dropDownButton: Icon(
+            Icons.keyboard_arrow_down_sharp,
+            color: Colors.grey,size: 30,
+          ),
           showClearButton: false,
           mode: Mode.MENU,
           showSelectedItems: true,
           items: [],
           dropdownSearchDecoration: InputDecoration(
             hintText: "$hintText",
+            hintStyle: TextStyle(color: Colors.grey),
             contentPadding: EdgeInsets.only(left: 12, top: 4),
             filled: false,
             border: InputBorder.none,

@@ -7,13 +7,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:hackathonfrontend/components/texts.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class WeatherDetails extends StatelessWidget {
-  final String svgAsset;
+  final BoxedIcon icon;
   final String temperature;
   final String Location;
 
-  WeatherDetails(this.svgAsset, this.temperature, this.Location);
+  WeatherDetails(this.icon, this.temperature, this.Location);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class WeatherDetails extends StatelessWidget {
           right: 12.0, bottom: 12.0, top: 12.0),
       child: Container(
         padding: EdgeInsets.only(top: 12, bottom: 12),
-        width: 111,
+        width: 100,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -38,12 +39,7 @@ class WeatherDetails extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child: SvgPicture.asset(
-                svgAsset,
-                height: 60,
-                width: 60,
-                color: Colors.yellow,
-              ),
+              child: icon
             ),
             SizedBox(
               height: 12,
@@ -51,7 +47,7 @@ class WeatherDetails extends StatelessWidget {
             Text(
               temperature,
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -65,7 +61,7 @@ class WeatherDetails extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            Heading3(Location, Colors.white),
+            Heading12(Location, Colors.white),
           ],
         ),
       ),

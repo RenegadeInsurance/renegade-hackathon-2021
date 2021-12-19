@@ -22,6 +22,9 @@ class FAQService {
   }
 
   Future<bool> postFAQ(
+    int riskAssessmentID,
+    double yesRiskFactor,
+    double noRiskFactor,
     String question,
     int yesNode,
     int noNode,
@@ -30,6 +33,9 @@ class FAQService {
     final response = await http.post(
       Uri.parse(postUrl),
       body: <String, String>{
+        "riskAssessmentID": riskAssessmentID.toString(),
+        "yesRiskFactor": yesRiskFactor.toString(),
+        "noRiskFactor": noRiskFactor.toString(),
         "question": question.toString(),
         "yesNode": yesNode.toString(),
         "noNode": noNode.toString(),
@@ -43,15 +49,18 @@ class FAQService {
     }
   }
 
-  Future<bool> updateFAQ(FAQ location) async {
+  Future<bool> updateFAQ(FAQ faq) async {
     final res = await http.put(
       Uri.parse(updateUrl),
       body: <String, String>{
-        "FAQID": location.FAQID.toString(),
-        "question": location.question.toString(),
-        "yesNode": location.yesNode.toString(),
-        "noNode": location.noNode.toString(),
-        "isStart": location.isStart.toString(),
+        "FAQID": faq.FAQID.toString(),
+        "riskAssessmentID": faq.riskAssessmentID.toString(),
+        "yesRiskFactor": faq.yesRiskFactor.toString(),
+        "noRiskFactor": faq.noRiskFactor.toString(),
+        "question": faq.question.toString(),
+        "yesNode": faq.yesNode.toString(),
+        "noNode": faq.noNode.toString(),
+        "isStart": faq.isStart.toString(),
       },
     );
     if (res.statusCode == 200) {

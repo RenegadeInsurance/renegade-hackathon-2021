@@ -2,11 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-
 import 'package:http/http.dart' as http;
 
+import '../../data.dart';
+
 class CountryService {
-  final String getCountryUrl = "https://www.universal-tutorial.com/api/countries";
+  final String getCountryUrl =
+      "https://www.universal-tutorial.com/api/countries";
   final String getStateUrl = "https://www.universal-tutorial.com/api/states/";
   final String getCityUrl = "https://www.universal-tutorial.com/api/cities/";
 
@@ -14,13 +16,21 @@ class CountryService {
     final response =
         await http.get(Uri.parse(getCountryUrl), headers: <String, String>{
       "Authorization":
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ3ZWJwazE0NEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiI2ODNHNllUX1lmRWJEa09NZFVVNTVzaVE0eWpMYy15YTUzeE1XR2dHRkNGTXpwQnRkbURXRTNHdE82SmozTndOY29VIn0sImV4cCI6MTYzOTgxNTgyMX0.7CEmPu4o0quZSYVL-m0XVAP76jN2IqfcasYbaJzGjoI",
+          "Bearer $authKey",
       "Accept": "application/json"
     });
-    List<dynamic> values = jsonDecode(response.body);
+    List<dynamic> values;
+    try {
+      values = jsonDecode(response.body);
+    } catch (e) {
+      // ScaffoldMessenger.of(context)
+      //     .showSnackBar(SnackBar(content: Text("Auth Key expired")));
+      print("COUNTRY AUTH KEY HAS BEEN EXPIRED");
+    }
+
+    values = jsonDecode(response.body);
     List<String> country =
         values.map((e) => e["country_name"].toString()).toList();
-
     if (response.statusCode == 200) {
       return country;
     } else {
@@ -32,7 +42,7 @@ class CountryService {
     final response = await http
         .get(Uri.parse("$getStateUrl$suffixUrl"), headers: <String, String>{
       "Authorization":
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ3ZWJwazE0NEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiI2ODNHNllUX1lmRWJEa09NZFVVNTVzaVE0eWpMYy15YTUzeE1XR2dHRkNGTXpwQnRkbURXRTNHdE82SmozTndOY29VIn0sImV4cCI6MTYzOTgxNTgyMX0.7CEmPu4o0quZSYVL-m0XVAP76jN2IqfcasYbaJzGjoI",
+          "Bearer $authKey",
       "Accept": "application/json"
     });
     List<dynamic> values = jsonDecode(response.body);
@@ -50,12 +60,11 @@ class CountryService {
     final response = await http
         .get(Uri.parse("$getCityUrl$suffixUrl"), headers: <String, String>{
       "Authorization":
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ3ZWJwazE0NEBnbWFpbC5jb20iLCJhcGlfdG9rZW4iOiI2ODNHNllUX1lmRWJEa09NZFVVNTVzaVE0eWpMYy15YTUzeE1XR2dHRkNGTXpwQnRkbURXRTNHdE82SmozTndOY29VIn0sImV4cCI6MTYzOTgxNTgyMX0.7CEmPu4o0quZSYVL-m0XVAP76jN2IqfcasYbaJzGjoI",
+      "Bearer $authKey",
       "Accept": "application/json"
     });
     List<dynamic> values = jsonDecode(response.body);
-    List<String> city =
-    values.map((e) => e["city_name"].toString()).toList();
+    List<String> city = values.map((e) => e["city_name"].toString()).toList();
     print(response.body);
     print("$getStateUrl$suffixUrl");
     if (response.statusCode == 200) {

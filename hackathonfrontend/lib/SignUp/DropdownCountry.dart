@@ -18,29 +18,45 @@ class DropdownCountry extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Container(
-        height: 59,
+        height: 50,
         width: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: Color(0xff6DA7FE)),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: DropdownSearch<String>(
-          showClearButton: false,
-          mode: Mode.MENU,
-          selectedItem: selectedItem,
-          showSelectedItems: true,
-          items: items,
-          dropdownSearchDecoration: InputDecoration(
-            hintText: hintText,
-            contentPadding: EdgeInsets.only(left: 12, top: 4),
-            filled: false,
-            border: InputBorder.none,
+        child: Theme(
+          data: (ThemeData(
+            textTheme: TextTheme(
+              subtitle1: TextStyle(
+                color: Color(0xff6DA7FE),
+              ),
+            ),
+          )),
+          child: DropdownSearch<String>(
+            dropDownButton: const Icon(
+              Icons.arrow_drop_down,
+              color: Colors.grey,
+            ),
+            showClearButton: false,
+            mode: Mode.MENU,
+            selectedItem: selectedItem,
+            showSelectedItems: true,
+            items: items,
+            dropdownSearchDecoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: TextStyle(color: Colors.grey),
+              contentPadding: EdgeInsets.only(left: 12, top: 4),
+              filled: false,
+
+              border: InputBorder.none,
+            ),
+            popupBackgroundColor: Color(0xff0B122F),
+            showSearchBox: true,
+            popupItemDisabled: (String s) => s.startsWith('I'),
+            onChanged: (input) {
+              onchanged(input);
+            },
           ),
-          showSearchBox: false,
-          popupItemDisabled: (String s) => s.startsWith('I'),
-          onChanged: (input) {
-            onchanged(input);
-          },
         ),
       ),
     );

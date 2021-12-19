@@ -1,30 +1,41 @@
 
 import 'package:flutter/material.dart';
 
-Text Heading1 (String text,Color color){
+Text Heading20Bold (String text,Color color){
   return Text(text,
                 style: TextStyle(color: color,fontSize: 20,fontWeight: FontWeight.bold),);
 
 }
-Text Heading1Bold (String text){
+Text Heading16Bold (String text,Color color){
   return Text(text,
-    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),);
+    style: TextStyle(color:color,fontSize: 16, fontWeight: FontWeight.bold),);
 
 }
 
-Text Heading2 (String text,Color color){
+Text Heading14 (String text,Color color){
   return Text(text,
     style: TextStyle(fontSize: 14,color: color),);
 
+}Text Heading14Bold (String text,Color color){
+  return Text(text,
+    style: TextStyle(fontSize: 14,color: color, fontWeight: FontWeight.bold),);
+
 }
 
-Text Heading3 (String text,Color color){
+Text Heading16 (String text,Color color){
+  return Text(text,
+    style: TextStyle(fontSize: 16,color: color),);
+
+}
+
+
+Text Heading12 (String text,Color color){
   return Text(text,textAlign: TextAlign.justify,
     style: TextStyle(fontSize: 12,color: color,),);
 
 }
 
-Text Heading4 (String text){
+Text Heading20 (String text){
   return Text(text,
     style: TextStyle(fontSize: 20),);
 

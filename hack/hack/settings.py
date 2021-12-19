@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5#hcx)5e2_@k_cfx%acgtq&&yij=(ok+#=jefy%7*sp5+8qtey
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "localhost", "*", "192.168.137.81"]
+ALLOWED_HOSTS = ["*","192.168.0.118"]
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'hackathon.apps.HackathonConfig',
     'rest_framework',
     'corsheaders',
+    # 'channels',
+    # 'notify',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # CORS_ALLOW_ALL_ORIGINS = True
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+# }
+
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             "hosts": [('127.0.0.1', 6379)],
+#         },
+#     },
+# }

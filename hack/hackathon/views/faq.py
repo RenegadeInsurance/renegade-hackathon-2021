@@ -16,7 +16,7 @@ def getFAQs(request):
         cursor = cnx.cursor()
         query = ("SELECT * FROM FAQ;")
         cursor.execute(query)
-        df = pd.DataFrame(cursor.fetchall(),columns=["faqID", "question", "yesNode", "noNode", "isStart"]).to_json(orient="records")
+        df = pd.DataFrame(cursor.fetchall(),columns=["faqID", "riskAssessmentID", "yesRiskFactor", "noRiskFactor", "question", "yesNode", "noNode", "isStart"]).to_json(orient="records")
         return Response(json.loads(df))
     return Response("False")
 

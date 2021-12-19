@@ -7,12 +7,13 @@ class Button extends StatelessWidget {
   final Function buttonFunction;
   final Color color;
   final IconData icon;
+  final bool isNotIcon;
 
   Button(
     this.Btext,
     this.buttonFunction,
     this.color,
-    this.icon,
+    this.icon, this.isNotIcon,
   );
 
   @override
@@ -29,12 +30,13 @@ class Button extends StatelessWidget {
           child: Container(
             height: 50,
             color: color,
-            child: Row(
+            child:
+            isNotIcon ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
                   icon,
-                  color: Colors.white,
+                  color: Colors.black,
                   size: 25,
                 ),
                 SizedBox(
@@ -42,7 +44,15 @@ class Button extends StatelessWidget {
                 ),
                 Text(
                   Btext,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
+                ),
+              ],
+            ) : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  Btext,
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),

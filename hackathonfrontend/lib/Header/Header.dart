@@ -4,6 +4,8 @@ List heading = [
   "",
   "Alert Group",
   "Risk Assessment",
+  "Flood Risk Assessment",
+  "Sign Up",
 ];
 
 class Header extends StatefulWidget {
@@ -37,7 +39,9 @@ class _HeaderState extends State<Header> {
                   color: Colors.white,
                 ),
               ),
-        SizedBox(width: 20,),
+        SizedBox(
+          width: 20,
+        ),
         Text(
           heading[widget.index],
           style: TextStyle(
@@ -47,29 +51,6 @@ class _HeaderState extends State<Header> {
         ),
         Expanded(
           child: Container(),
-        ),
-        InkWell(
-          onTap: () {
-            // if (widget.isNotBackIcon) {
-            //   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //           builder: (context) =>
-            //               NotificationScreen(widget.refresh)));
-            // }
-          },
-          child: Container(
-            height: 30,
-            width: 30,
-            decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.yellow),
-            child: widget.isNotBackIcon
-                ? Center(
-                    child: Icon(
-                      Icons.notifications_active_outlined,
-                    ),
-                  )
-                : Container(),
-          ),
         ),
       ],
     );

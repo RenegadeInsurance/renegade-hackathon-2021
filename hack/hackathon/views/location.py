@@ -42,9 +42,12 @@ def insertLocation(request):
         query1 = (query1[0:len(query1)-1] + ");")
         cursor.execute(query1)
         cnx.commit()
-        return Response("True")
+        query = ("SELECT MAX(locationID) FROM Location ;")
+        cursor.execute(query)
+        frame = pd.DataFrame(cursor.fetchall())
+        return Response(str(frame[0][0]))
     else:
-        return Response(str(type(request_json)))
+        return Response("False")
 
 @api_view(['PUT'])
 def updateLocation(request): 

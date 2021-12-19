@@ -21,7 +21,7 @@ class LocationService {
     }
   }
 
-  Future<bool> postLocation(
+  Future<int> postLocation(
     String country,
     String state,
     String city,
@@ -34,10 +34,11 @@ class LocationService {
         "city": city.toString(),
       },
     );
+    print(response.body);
     if (response.statusCode == 200) {
-      return true;
+      return int.parse(jsonDecode(response.body));
     } else {
-      return false;
+      return -1;
     }
   }
 
