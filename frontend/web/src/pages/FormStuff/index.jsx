@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import Layout from 'components/shared/Layout';
+import axios from "axios";
 
 const PersonalDetail = React.lazy(() => import('./components/PersonalDetail'));
 const Location = React.lazy(() => import('./components/Location'));
@@ -20,14 +21,15 @@ const FormStuff = () => {
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
+    phonenumbers: "",
     age: 0,
     date_of_birth: '',
     biological_gender: 'Female',
-    country: '',
-    state: '',
-    city: '',
+    country: 'Nepal',
+    state: 'Bagmati',
+    city: 'Kathmandu',
+    relative: ["1", '2']
   });
-  console.log(formData)
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -64,7 +66,7 @@ const FormStuff = () => {
     {
       title: 'Risk Assessment',
       component: (
-        <RiskAssessment formData={formData} handleFormData={handleFormData}/>
+        <RiskAssessment formData={formData} setFormData={setFormData} handleFormData={handleFormData}/>
       ),
     },
   ];
@@ -113,7 +115,15 @@ const FormStuff = () => {
             <Button onClick={handleReset} sx={{mt: 1, mr: 1}}>
               Reset
             </Button>
-            <Button sx={{mt: 1, mr: 1}}>Submit</Button>
+            <Button sx={{mt: 1, mr: 1}} onClick={(e) => {
+              e.preventDefault();
+              axios.post("http://localhost:8000/api/alert-management/register-for-notification/", formData
+              ).then(resp => {
+                console.log(resp)
+              }).catch(resp => {
+                console.log(resp)
+              })
+            }}>Submit</Button>
           </Paper>
         )}
       </Box>

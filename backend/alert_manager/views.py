@@ -3,6 +3,7 @@ import time
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.request import Request
 
 from dotenv import dotenv_values
 
@@ -13,7 +14,15 @@ from weather_manager.weather_api import WeatherAPI
 
 
 @api_view(["POST"])
-def register_for_notification(request):
+def register_for_notification(request: Request) -> Response:
+    """
+    Puts you and your contact details in the list of people receiving notification.
+
+    :param request: drf request
+    :return: json resp
+    """
+    data = request.data
+    data["phonenumbers"] = data["phonenumbers"].replace(" ", "").strip()
     user_detail_serializer = serializer.UserDetailsSerializer(data=request.data)
 
     if user_detail_serializer.is_valid():
@@ -23,6 +32,7 @@ def register_for_notification(request):
             status=status.HTTP_201_CREATED
         )
     else:
+        print(user_detail_serializer.errors)
         return Response(
             user_detail_serializer.errors,
             status=status.HTTP_422_UNPROCESSABLE_ENTITY
@@ -30,7 +40,13 @@ def register_for_notification(request):
 
 
 @api_view(["POST"])
-def register_alert_personnel(request):
+def register_alert_personnel(request: Request) -> Response:
+    """
+    registers the person added to receive notification.
+
+    :param request: drf request
+    :return: drf resp
+    """
     alert_personnel = serializer.AlertPersonnelSerializer(data=request.data)
 
     if alert_personnel.is_valid():
@@ -47,7 +63,13 @@ def register_alert_personnel(request):
 
 
 @api_view(["GET"])
-def run_weather_scraper(request):
+def run_weather_scraper(request: Request) -> Response:
+    """
+    Checks current weather and puts messages into queue for sending.
+
+    :param request: drf request
+    :return: drf resp
+    """
     recently_sent_numbers = {}
 
     while True:
@@ -107,9 +129,17 @@ def run_weather_scraper(request):
 
         time.sleep(60)
 
+    return Response({"message": "Completed", "error": False})
+
 
 @api_view(["GET"])
-def get_and_delete_sms_data(request):
+def get_and_delete_sms_data(request: Request) -> Response:
+    """
+    Returns all the pending SMS and deletes them from the database
+
+    :param request: drf request
+    :return: drf response
+    """
     api_key = request.GET.get("key")
 
     if api_key and api_key == dotenv_values().get("SMS_KEY"):
