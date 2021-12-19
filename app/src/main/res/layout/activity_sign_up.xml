@@ -195,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="LOGIN"
-                    android:textColor="@color/purple_500"
+                    android:textColor="@color/blue_400"
 
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
