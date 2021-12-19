@@ -25,7 +25,13 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             "risk_amount", "category", "relative"
         ]
 
-    def validate_relative(self, value):
+    def validate_relative(self, value):  # NOQA
         if len(value) > 3:
             raise ValidationError("Only 3 members can be added.")
         return value
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ToSendSMS
+        fields = ["message", "sms_to_phone_number"]

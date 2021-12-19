@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from dotenv import dotenv_values
+
 from alert_manager import serializer
 from alert_manager import models
 from alert_manager.models import ThresholdData, ToSendSMS
@@ -59,7 +61,7 @@ def run_weather_scraper(request):
             "wind_speed_threshold": threshold_data.wind_speed_threshold
         }
         seen = {}
-        weather_api = WeatherAPI({"weatherapi": "0e9591f33b6e43bfbd795528211712"})
+        weather_api = WeatherAPI({"weatherapi": dotenv_values().get("WEATHER_API_KEY")})
 
         for user_detail in models.UserDetails.objects.all():
             location = f"{user_detail.city}, {user_detail.country}"
@@ -104,3 +106,24 @@ def run_weather_scraper(request):
                             recently_sent_numbers[person.phone_number] = time.time()
 
         time.sleep(60)
+
+
+@api_view(["GET"])
+def get_and_delete_sms_data(request):
+    api_key = request.GET.get("key")
+
+    if api_key and api_key == dotenv_values().get("SMS_KEY"):
+        all_messages = models.ToSendSMS.objects.all()
+        messages = serializer.MessageSerializer(all_messages, many=True)
+        messages = messages.data
+        all_messages.delete()
+
+        return Response(
+            messages,
+            status=status.HTTP_200_OK
+        )
+    else:
+        return Response(
+            {},
+            status=status.HTTP_404_NOT_FOUND
+        )

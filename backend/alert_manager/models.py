@@ -96,6 +96,8 @@ class UserDetails(BaseModel):
         help_text=_("Phone Number to send notification on."),
         validators=[validate_phone],
         max_length=32,
+        blank=True,
+        null=True
     )
     date_of_birth = models.DateField(
         verbose_name=_("Date of Birth"),
