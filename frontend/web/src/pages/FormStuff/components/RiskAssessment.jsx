@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Box, TextField, Button } from '@mui/material';
 
 const manageQuestion = (data, setQuestion, setCurrentQuestion) => {
   const question = Object.keys(data)[0];
@@ -10,11 +11,24 @@ const manageQuestion = (data, setQuestion, setCurrentQuestion) => {
 const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
   const [question, setQuestion] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState('');
-
+  const [alertGroup, setAlertGroup] = useState({
+    name: '',
+    email: '',
+    phone_number: '',
+    relationship: '',
+  });
   const [contactDetails, setContactDetails] = useState({});
 
   const handle = (e) => {
-    setContactDetails({ ...contactDetails, [e.target.name]: e.target.value });
+    setContactDetails((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+
+    setAlertGroup((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   useEffect(() => {
@@ -77,13 +91,79 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
         NO
       </button>
       <hr />
-      <h1>Add Contact</h1>
-      <input
-        type='text'
-        placeholder={'phonenumbers , separated'}
-        name={'phonenumbers'}
-        onChange={handleFormData}
-      />
+      <h1>Alert Group</h1>
+      <Box>
+        <form
+          onSubmit={(e) => {
+            console.log(alertGroup);
+            e.preventDefault();
+            //http://localhost:8000/api/alert-management/register-alert-personnel/
+            axios
+              .post(
+                `/api/alert-management/register-alert-personnel/`,
+                alertGroup
+              )
+              .then((res) => {
+                console.log(res.data);
+                setFormData((prev) => ({
+                  ...prev,
+                  relative: [res.data.pk],
+                }));
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        >
+          <TextField
+            name='name'
+            type='text'
+            label='Name'
+            variant='outlined'
+            size='small'
+            onChange={handle}
+            value={alertGroup.name}
+          />
+          <br />
+          <br />
+          <TextField
+            name='phone_number'
+            type='tel'
+            label='Phone number'
+            variant='outlined'
+            size='small'
+            onChange={handle}
+            value={alertGroup.phone_number}
+          />
+          <br />
+          <br />
+          <TextField
+            name='relationship'
+            type='text'
+            label='Relationship'
+            variant='outlined'
+            size='small'
+            onChange={handle}
+            value={alertGroup.relationship}
+          />
+          <br />
+          <br />
+          <TextField
+            name='email'
+            type='email'
+            label='Email'
+            variant='outlined'
+            size='small'
+            onChange={handle}
+            value={alertGroup.email}
+          />
+          <br></br>
+          <br></br>
+          <Button type='submit' variant='outlined'>
+            Submit
+          </Button>
+        </form>
+      </Box>
       <hr />
     </>
   );
