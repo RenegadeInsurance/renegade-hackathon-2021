@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
-import { Box, TextField, Button } from '@mui/material';
+import {Box, TextField, Button, Snackbar, Alert} from '@mui/material';
 
 const manageQuestion = (data, setQuestion, setCurrentQuestion) => {
   const question = Object.keys(data)[0];
@@ -8,7 +8,8 @@ const manageQuestion = (data, setQuestion, setCurrentQuestion) => {
   setQuestion(data[question]);
 };
 
-const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
+const RiskAssessment = ({formData, handleFormData, setFormData}) => {
+  const [open, setOpen] = useState(false)
   const [question, setQuestion] = useState({});
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [alertGroup, setAlertGroup] = useState({
@@ -42,6 +43,14 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
       });
   }, []);
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const hidden =
     currentQuestion === 'Low Risk' ||
     currentQuestion === 'Moderate Risk' ||
@@ -50,6 +59,11 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
 
   return (
     <>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Alert group added!
+        </Alert>
+      </Snackbar>
       <h1>Risk Assessment Detail</h1>
       <p>{currentQuestion}</p>
       <button
@@ -60,7 +74,7 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             if (typeof newState === 'string') {
               setCurrentQuestion(newState);
               setFormData((prev) => {
-                return { ...prev, risk_amount: newState };
+                return {...prev, risk_amount: newState};
               });
             } else {
               manageQuestion(newState, setQuestion, setCurrentQuestion);
@@ -79,7 +93,7 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             if (typeof newState === 'string') {
               setCurrentQuestion(newState);
               setFormData((prev) => {
-                return { ...prev, risk_amount: newState };
+                return {...prev, risk_amount: newState};
               });
             } else {
               manageQuestion(newState, setQuestion, setCurrentQuestion);
@@ -90,9 +104,10 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
       >
         NO
       </button>
-      <hr />
+      <hr/>
       <h1>Alert Group</h1>
       <Box>
+        <Button varient="outlined">Add Other User</Button>
         <form
           onSubmit={(e) => {
             console.log(alertGroup);
@@ -100,10 +115,11 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             //http://localhost:8000/api/alert-management/register-alert-personnel/
             axios
               .post(
-                `/api/alert-management/register-alert-personnel/`,
+                `http://localhost:8000/api/alert-management/register-alert-personnel/`,
                 alertGroup
               )
               .then((res) => {
+                setOpen(true)
                 console.log(res.data);
                 setFormData((prev) => ({
                   ...prev,
@@ -124,8 +140,8 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             onChange={handle}
             value={alertGroup.name}
           />
-          <br />
-          <br />
+          <br/>
+          <br/>
           <TextField
             name='phone_number'
             type='tel'
@@ -135,8 +151,8 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             onChange={handle}
             value={alertGroup.phone_number}
           />
-          <br />
-          <br />
+          <br/>
+          <br/>
           <TextField
             name='relationship'
             type='text'
@@ -146,8 +162,8 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
             onChange={handle}
             value={alertGroup.relationship}
           />
-          <br />
-          <br />
+          <br/>
+          <br/>
           <TextField
             name='email'
             type='email'
@@ -164,7 +180,7 @@ const RiskAssessment = ({ formData, handleFormData, setFormData }) => {
           </Button>
         </form>
       </Box>
-      <hr />
+      <hr/>
     </>
   );
 };

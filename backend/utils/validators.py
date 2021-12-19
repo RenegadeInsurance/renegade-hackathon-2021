@@ -29,8 +29,8 @@ def validate_name(name: str) -> None:
     :return: None
     """
 
-    for letter in name:
-        if letter and not letter.isalnum():
-            raise ValidationError(
-                _(f"`{name}` is not a valid name, Numbers can only contain Alphabets.")
-            )
+    name = name.replace(" ", "")
+    if not name.isalpha():
+        raise ValidationError(
+            _(f"`{name}` is not a valid name, Numbers can only contain Alphabets.")
+        )

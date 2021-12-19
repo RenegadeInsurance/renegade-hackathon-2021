@@ -8,6 +8,8 @@ import {
   StepLabel,
   StepContent,
   Typography,
+  Snackbar,
+  Alert
 } from '@mui/material';
 import Layout from 'components/shared/Layout';
 import axios from 'axios';
@@ -17,6 +19,7 @@ const Location = React.lazy(() => import('./components/Location'));
 const RiskAssessment = React.lazy(() => import('./components/RiskAssessment'));
 
 const FormStuff = () => {
+  const [open, setOpen] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
   const [formData, setFormData] = React.useState({
     name: '',
@@ -41,6 +44,14 @@ const FormStuff = () => {
 
   const handleReset = () => {
     setActiveStep(0);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const handleFormData = (e) => {
@@ -76,6 +87,11 @@ const FormStuff = () => {
   ];
   return (
     <Layout>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Done! Thank you!
+        </Alert>
+      </Snackbar>
       <Box sx={{ width: `100%` }}>
         <Stepper activeStep={activeStep} orientation='vertical'>
           {steps.map((step, index) => (
@@ -130,6 +146,7 @@ const FormStuff = () => {
                   )
                   .then((resp) => {
                     console.log(resp);
+                    setOpen(true)
                   })
                   .catch((resp) => {
                     console.log(resp);

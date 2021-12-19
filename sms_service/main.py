@@ -30,11 +30,12 @@ class SMSService:
                                 f"'{message.get('message')}'", "s16", '"null"', "s16", '"null"',
                             ]
                         )
+                        break
                     except Exception as e:
                         print(f"[!] ERROR [sending message]:: {e}")
                         time.sleep(self.sms_send_error_delay)
                         continue
-                        
+
                     time.sleep(self.sms_send_delay)
 
             time.sleep(self.sms_check_delay)
