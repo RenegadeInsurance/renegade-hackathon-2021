@@ -18,6 +18,7 @@ class RiskManagementQuestion(BaseModel):
         max_length=128,
         blank=False,
     )
+
     # This will store data in a tree format,
     # where each new dictionary branches from the given question, until the final question is reached.
     questions = models.JSONField(

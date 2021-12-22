@@ -29,7 +29,7 @@ class _WebViewWidgetState extends State<WebViewWidget> {
           ),
           Expanded(
             child: WebView(
-              initialUrl: 'https://google.com',
+              initialUrl: 'http://10.0.2.2:3000',
               javascriptMode: JavascriptMode.unrestricted,
               onWebViewCreated: (controller) => {this.controller = controller},
               onProgress: (progress) =>
